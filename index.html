@@ -47,8 +47,39 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;background:rad
 #landscapeGate p{color:#d8c5ec;font-size:13px;line-height:1.5}
 #startLandscape{margin-top:10px;padding:13px 22px;border-radius:12px;background:linear-gradient(100deg,#9d42e5,#416ff0);font-weight:900}
 @media (orientation:portrait){#landscapeGate{display:grid}}
+
+.lobby-screen,.select-screen{max-width:1100px;margin:0 auto;padding:18px 22px 26px;min-height:calc(100vh - 20px);color:#fff;background:radial-gradient(ellipse at 50% 0%,#53207b,#150c29 62%,#090611);border:1px solid #9c57bd66;border-radius:22px;box-shadow:0 20px 70px #0008}
+.lobby-head,.select-head{display:flex;align-items:center;justify-content:space-between;gap:12px}.lobby-brand{font-size:20px;font-weight:1000;letter-spacing:1px;color:#ffe18b;text-shadow:0 0 16px #df8bff}.lobby-brand b{color:#fff}.lobby-wallet{padding:10px 14px;border-radius:12px;background:#211432;border:1px solid #8b5aa9;color:#d7ff91;font-weight:900}.lobby-avatar{width:42px;height:42px;border-radius:50%;background:#523078;border:2px solid #d9a5ff;font-size:22px}
+.lobby-welcome{display:flex;align-items:end;justify-content:space-between;margin:38px 0 22px}.lobby-welcome small,.select-head small{letter-spacing:2px;color:#d9a9ff;font-weight:900}.lobby-welcome h1{font-size:clamp(25px,4vw,42px);margin:6px 0;color:#fff}.lobby-welcome p{margin:0;color:#cbb8dc}.lobby-level{padding:9px 13px;border-radius:20px;background:#382052;color:#ffe18b;font-weight:900;font-size:12px}
+.mode-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.mode-card{min-height:190px;padding:18px 12px;border-radius:18px;text-align:left;display:flex;flex-direction:column;align-items:flex-start;gap:9px;background:linear-gradient(145deg,#30204c,#171125);border:1px solid #a978c966;box-shadow:0 10px 25px #0005;transition:transform .18s,border-color .18s}.mode-card:active,.table-option:active{transform:scale(.98)}.mode-card.featured{background:linear-gradient(145deg,#7141a4,#2b1851);border-color:#f4ce7c;box-shadow:0 0 25px #a855f744}.mode-icon{font-size:38px;filter:drop-shadow(0 5px 8px #0008)}.mode-card b{font-size:13px;color:#ffe29a}.mode-card small{font-size:11px;color:#d3c1e7}.mode-card em{font-style:normal;font-size:10px;font-weight:1000;letter-spacing:1px;color:#9dff7a;margin-top:auto}
+.lobby-tools{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:22px}.lobby-tools button{padding:14px 8px;border-radius:12px;background:#211832;border:1px solid #65447e;color:#eee0ff;font-weight:800;font-size:12px}.lobby-foot{display:flex;justify-content:space-between;margin-top:28px;color:#a88bbd;font-size:10px;letter-spacing:1px}
+.select-head{margin-bottom:34px}.select-head button{background:#37204f;border:1px solid #a979c9;border-radius:10px;padding:10px 15px;font-weight:900}.select-head h2{margin:4px 0;color:#ffe19a;font-size:22px}.table-options{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:30px}.table-option{min-height:220px;padding:22px;border-radius:18px;background:linear-gradient(145deg,#174e49,#102a32);border:1px solid #6cbca1;display:flex;flex-direction:column;align-items:flex-start;text-align:left;gap:13px;box-shadow:0 12px 28px #0007}.table-option.recommended{background:linear-gradient(145deg,#4d286c,#1d153b);border:2px solid #e9c16c;box-shadow:0 0 24px #d69d4d55}.table-option span{font-size:12px;letter-spacing:1px;color:#c7f5d8;font-weight:900}.table-option b{font-size:42px;color:#ffe49c}.table-option small{color:#e3d4ed}.table-option em{font-style:normal;font-size:11px;font-weight:1000;color:#a8ff87;margin-top:auto}.select-note{text-align:center;color:#bfaed0;font-size:12px;margin-top:24px}
+body.in-game .lobby-screen,body.in-game .select-screen{display:none}body:not(.in-game) .top,body:not(.in-game) .wrap{display:none}
+@media(max-width:700px){.lobby-screen,.select-screen{border-radius:0;padding:14px 12px;min-height:100dvh}.lobby-brand{font-size:15px}.lobby-wallet{padding:8px;font-size:11px}.lobby-avatar{width:34px;height:34px}.lobby-welcome{margin:24px 0 16px}.lobby-welcome p{font-size:12px}.mode-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.mode-card{min-height:150px;padding:13px 10px}.mode-icon{font-size:30px}.lobby-tools{grid-template-columns:repeat(2,1fr);gap:8px}.lobby-tools button{padding:12px 5px;font-size:11px}.table-options{grid-template-columns:1fr;gap:10px;margin-top:18px}.table-option{min-height:135px;padding:16px}.table-option b{font-size:30px}.select-head{gap:7px}.select-head h2{font-size:15px}.select-head button{padding:8px;font-size:11px}.lobby-foot{font-size:8px}}
 </style></head>
-<body>
+<body><div id="screensRoot">
+<section id="lobby" class="lobby-screen">
+ <header class="lobby-head"><div class="lobby-brand">♛ TEEN PATTI <b>DIAMOND</b></div><div class="lobby-wallet">🟢 <span id="lobbyCoins">10,000</span></div><button class="lobby-avatar" id="profileBtn">😎</button></header>
+ <div class="lobby-welcome"><div><small>WELCOME BACK</small><h1>Choose your game</h1><p>Play with friends or challenge the table</p></div><div class="lobby-level">⭐ LEVEL 12</div></div>
+ <div class="mode-grid">
+  <button class="mode-card featured" data-mode="Classic Teen Patti"><span class="mode-icon">🂡</span><b>CLASSIC TEEN PATTI</b><small>Traditional 3-card table</small><em>PLAY NOW ›</em></button>
+  <button class="mode-card" data-mode="Joker"><span class="mode-icon">🃏</span><b>JOKER</b><small>Wild card variation</small><em>PLAY ›</em></button>
+  <button class="mode-card" data-mode="Muflis"><span class="mode-icon">♠</span><b>MUFLIS</b><small>Lowest hand wins</small><em>PLAY ›</em></button>
+  <button class="mode-card" data-mode="AK47"><span class="mode-icon">🎯</span><b>AK47</b><small>Special wild cards</small><em>PLAY ›</em></button>
+ </div>
+ <div class="lobby-tools"><button data-tool="Daily Rewards">🎁 Daily Rewards</button><button data-tool="Leaderboard">🏆 Leaderboard</button><button data-tool="Private Room">🔒 Private Room</button><button data-tool="How to Play">📖 How to Play</button></div>
+ <div class="lobby-foot"><span>♣ SOCIAL TABLES</span><span>VIRTUAL COINS · NO CASH VALUE</span></div>
+</section>
+<section id="tableSelect" class="select-screen" hidden>
+ <header class="select-head"><button id="backLobby">‹ BACK</button><div><small>SELECT A TABLE</small><h2 id="selectedMode">CLASSIC TEEN PATTI</h2></div><div class="lobby-wallet">🟢 <span id="selectCoins">10,000</span></div></header>
+ <div class="table-options">
+  <button class="table-option" data-boot="100" data-pot="500"><span>🌱 BEGINNER</span><b>500</b><small>Win Pot · Boot 100</small><em>JOIN TABLE ›</em></button>
+  <button class="table-option recommended" data-boot="500" data-pot="2500"><span>🔥 PRO TABLE</span><b>2,500</b><small>Win Pot · Boot 500</small><em>JOIN TABLE ›</em></button>
+  <button class="table-option" data-boot="1000" data-pot="5000"><span>💎 HIGH ROLLER</span><b>5,000</b><small>Win Pot · Boot 1,000</small><em>JOIN TABLE ›</em></button>
+ </div>
+ <p class="select-note">All coins are virtual practice points with no cash value.</p>
+</section>
+</div>
 <div id="landscapeGate"><div class="gatebox"><div class="rotateicon">📱 ↻</div><h2>Play in Landscape</h2><p>Teen Patti Diamond is designed for a wide screen. Tap below to enter full-screen landscape mode. If rotation is locked, turn on Auto-rotate on your phone.</p><button id="startLandscape">START GAME</button></div></div>
 <header class="top"><button class="menu" id="menu">☰</button><div class="brand"><span>♛ TEEN PATTI</span>DIAMOND</div><div class="righttop"><div class="wallet"><span class="coin-dot" aria-hidden="true"></span> <span id="wallet">10,000</span></div><button class="sound" id="sound">♫</button><button class="settings" id="settings">⚙</button></div></header>
 <main class="wrap"><div class="gamebar"><b>♠ Classic Teen Patti · Table 01</b><span>CASUAL SOCIAL PLAY</span></div>
@@ -96,6 +127,13 @@ $('rules').onclick=()=>{$('mtitle').textContent='How to play';$('mbody').textCon
 let soundOn=true;function toggleSound(){soundOn=!soundOn;$('sound').textContent=soundOn?'♫':'🔇';$('sound2').textContent=soundOn?'♫ Sound':'🔇 Muted';toast(soundOn?'Sound indicator on':'Sound muted')} $('sound').onclick=toggleSound;$('sound2').onclick=toggleSound;
 $('menu').onclick=()=>toast('Menu · More modes coming soon');$('settings').onclick=()=>$('rules').click();
 deal();update();
+let chosenMode='Classic Teen Patti';
+document.querySelectorAll('.mode-card').forEach(btn=>btn.addEventListener('click',()=>{chosenMode=btn.dataset.mode;$('selectedMode').textContent=chosenMode.toUpperCase();$('lobbyCoins').textContent=coins.toLocaleString();$('selectCoins').textContent=coins.toLocaleString();$('lobby').hidden=true;$('tableSelect').hidden=false;}));
+$('backLobby').onclick=()=>{$('tableSelect').hidden=true;$('lobby').hidden=false;};
+document.querySelectorAll('.table-option').forEach(btn=>btn.addEventListener('click',()=>{const boot=Number(btn.dataset.boot);if(coins<boot){toast('Not enough practice coins for this table.');return;}pot=Number(btn.dataset.pot);bet=boot;document.body.classList.add('in-game');$('gamebar').innerHTML='<b>♠ '+chosenMode+' · Boot '+boot+'</b><span>CASUAL SOCIAL PLAY</span>';newDeal();}));
+document.querySelectorAll('[data-tool]').forEach(btn=>btn.addEventListener('click',()=>{const name=btn.dataset.tool;$('mtitle').textContent=name;$('mbody').textContent=name==='How to Play'?'Choose a table, receive three cards, then use Blind, Seen, Chaal, Pack or Show. This demo uses virtual practice coins only.':name==='Private Room'?'Private-room UI preview: invite and online multiplayer require a connected backend.':name==='Leaderboard'?'Leaderboard preview: rankings will be available when player accounts and server scores are connected.':'Daily rewards preview: rewards are local demo content, not redeemable currency.';$('modal').style.display='grid';}));
+$('profileBtn').onclick=()=>toast('Player profile · Demo level 12');
+
 $('startLandscape').onclick=async()=>{try{if(!document.fullscreenElement&&document.documentElement.requestFullscreen)await document.documentElement.requestFullscreen();if(screen.orientation&&screen.orientation.lock)await screen.orientation.lock('landscape');$('landscapeGate').style.display='none';}catch(e){$('landscapeGate').style.display='grid';toast('Please enable Auto-rotate and turn your phone sideways.');}};
 function checkOrientation(){if(window.matchMedia('(orientation:landscape)').matches)$('landscapeGate').style.display='none';else if(!document.fullscreenElement)$('landscapeGate').style.display='grid';}
 window.addEventListener('orientationchange',checkOrientation);
