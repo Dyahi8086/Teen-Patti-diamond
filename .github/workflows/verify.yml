@@ -1,0 +1,67 @@
+name: Verify Teen Patti Diamond
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: HTML and JavaScript checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Verify game page and inline JavaScript
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const vm = require('node:vm');
+          const html = fs.readFileSync('index.html', 'utf8');
+
+          const required = [
+            '<!doctype html',
+            '<meta name="viewport"',
+            'id="wallet"',
+            'id="hand"',
+            'id="pack"',
+            'id="chaal"',
+            'id="show"',
+            'id="startLandscape"'
+          ];
+          const missing = required.filter((item) => !html.toLowerCase().includes(item.toLowerCase()));
+          if (missing.length) {
+            console.error('Missing required game markup:', missing.join(', '));
+            process.exit(1);
+          }
+
+          const scripts = [...html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/gi)]
+            .map((match) => match[1])
+            .filter((script) => script.trim().length);
+          if (!scripts.length) {
+            console.error('No inline JavaScript found.');
+            process.exit(1);
+          }
+
+          for (let i = 0; i < scripts.length; i++) {
+            try {
+              new vm.Script(scripts[i], { filename: `index-inline-${i + 1}.js` });
+            } catch (error) {
+              console.error(error.message);
+              process.exit(1);
+            }
+          }
+          console.log(`PASS: game markup checks passed; ${scripts.length} inline script(s) parse successfully.`);
+          NODE
