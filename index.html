@@ -234,6 +234,68 @@ body:before{display:none!important}
  .seat .avatar{width:26px!important;height:26px!important}
 }
 
+
+/* FINAL MOBILE PORTRAIT GAME FIT — compact full-screen composition */
+@media (max-width:700px) and (orientation:portrait){
+ html,body{width:100%;min-height:100%;margin:0;overflow-x:hidden;background:#17151d!important}
+ body:before{display:none!important}
+ .top{height:48px!important;padding:0 10px!important}
+ .menu,.sound,.settings{width:34px!important;height:34px!important;border-radius:12px!important}
+ .brand{font-size:15px!important;line-height:1!important}
+ .brand span{font-size:13px!important}
+ .wallet{padding:7px 9px!important;font-size:10px!important}
+ .wrap{height:auto!important;min-height:calc(100dvh - 48px)!important;max-width:480px!important;margin:0 auto!important;padding:2px 9px 8px!important;display:flex!important;flex-direction:column!important}
+ .gamebar{height:22px!important;flex:0 0 22px!important;margin:0 2px 2px!important;font-size:9px!important}
+ .gamebar b{font-size:10px!important}
+ .table-wrap{flex:0 0 auto!important;display:grid!important;grid-template-columns:1fr!important;grid-template-rows:auto auto auto!important;justify-items:center!important;align-items:start!important;gap:0!important;
+  min-height:0!important;height:auto!important;padding:0!important;margin:0!important}
+ .dealer{position:relative!important;top:auto!important;left:auto!important;transform:none!important;width:auto!important;height:56px!important;margin:0 auto 2px!important;display:flex!important;align-items:center!important;gap:7px!important}
+ .dealer-art{width:42px!important;height:48px!important;font-size:34px!important;margin:0!important}
+ .dealer-label{font-size:8px!important;letter-spacing:1px!important}
+ .table{width:min(100%,390px)!important;height:auto!important;aspect-ratio:858/1536!important;max-height:49dvh!important;min-height:0!important;
+  margin:0 auto!important;position:relative!important;display:block!important;border:0!important;border-radius:0!important;
+  background:url('./table_256.png?v=5') center/100% 100% no-repeat!important;box-shadow:none!important;transform:none!important;overflow:visible!important}
+ .table:before,.table:after{display:none!important}
+ .table .center{position:absolute!important;left:50%!important;top:50%!important;transform:translate(-50%,-50%)!important;width:58%!important;z-index:6!important}
+ .pot{font-size:10px!important;margin:0 0 3px!important;animation:none!important;text-shadow:none!important}
+ .community{gap:3px!important}
+ .slot{width:clamp(19px,6vw,29px)!important;height:clamp(28px,8vw,39px)!important}
+ .mycards{margin-top:8px!important;gap:4px!important;filter:none!important}
+ .card{width:clamp(35px,10vw,46px)!important;height:clamp(52px,15vw,66px)!important;padding:5px!important;font-size:15px!important;box-shadow:inset 1px 1px 3px #fff,3px 5px 0 #08061188,5px 7px 10px #0007!important}
+ .seat{min-width:64px!important;padding:3px!important;border-radius:10px!important}
+ .seat .avatar{width:24px!important;height:24px!important;font-size:16px!important;margin-bottom:1px!important}
+ .seat b{font-size:8px!important}.seat small{font-size:7px!important}
+ .seat.topseat{top:4%!important;left:50%!important;transform:translateX(-50%)!important}
+ .seat.leftseat{left:1%!important;right:auto!important;top:31%!important}
+ .seat.rightseat{right:1%!important;left:auto!important;top:31%!important}
+ .seat.lowerleft{left:2%!important;right:auto!important;bottom:17%!important}
+ .seat.lowerright{right:2%!important;left:auto!important;bottom:17%!important}
+ .seat.you{position:relative!important;left:auto!important;right:auto!important;bottom:auto!important;transform:none!important;
+  width:82px!important;min-width:82px!important;margin:5px auto 0!important;padding:4px!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:6px!important}
+ .seat.you .avatar{width:30px!important;height:30px!important;margin:0!important}
+ .seat.you b,.seat.you small{display:block!important}
+ .controls{width:100%!important;max-width:100%!important;flex:0 0 auto!important;margin:5px auto 0!important}
+ .betline{gap:6px!important;margin:0 auto 5px!important}
+ .betline input{min-width:0!important}
+ .betval{min-width:58px!important;padding:6px!important;font-size:10px!important}
+ .quick{gap:5px!important}
+ .quick button{padding:6px 9px!important;font-size:9px!important;border-radius:9px!important}
+ .actions{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:5px!important;margin-top:6px!important}
+ .actions button{min-width:0!important;width:100%!important;padding:10px 2px!important;font-size:9px!important;border-radius:12px!important}
+ .controls>.hint{font-size:9px!important;margin-top:5px!important}
+ .footer{display:flex!important;gap:5px!important;margin-top:6px!important}
+ .footer button{padding:6px 8px!important;font-size:9px!important}
+ .seat,.menu,.sound,.settings,.wallet,.betval,.quick button,.actions button,.footer button{box-shadow:3px 3px 6px #0c0b10,-2px -2px 5px #494453!important}
+}
+@media (max-width:380px) and (orientation:portrait){
+ .table{max-height:45dvh!important;width:min(100%,350px)!important}
+ .dealer{height:48px!important}
+ .dealer-art{width:36px!important;height:42px!important;font-size:30px!important}
+ .seat{min-width:58px!important}
+ .actions button{font-size:8px!important}
+ .footer button{font-size:8px!important;padding:5px!important}
+}
+
 </style></head>
 <body class="in-game"><div id="screensRoot">
 <section id="lobby" class="lobby-screen">
@@ -314,8 +376,7 @@ $('helpBtn').onclick=()=>$('rules').click();
 // Start directly at the game table. Orientation lock is attempted after the first user interaction.
 document.body.classList.add('in-game');
 let orientationRequested=false;
-async function requestGameOrientation(){if(orientationRequested)return;orientationRequested=true;try{if(!document.fullscreenElement&&document.documentElement.requestFullscreen)await document.documentElement.requestFullscreen();if(screen.orientation&&screen.orientation.lock)await screen.orientation.lock('landscape');}catch(e){/* CSS rotates the game view when browser orientation locking is unavailable. */}}
-document.addEventListener('pointerdown',requestGameOrientation,{once:true});
+async function requestGameOrientation(){return;}
 
 let chosenMode='Classic Teen Patti';
 document.querySelectorAll('.mode-card').forEach(btn=>btn.addEventListener('click',()=>{chosenMode=btn.dataset.mode;$('selectedMode').textContent=chosenMode.toUpperCase();$('lobbyCoins').textContent=coins.toLocaleString();$('selectCoins').textContent=coins.toLocaleString();$('lobby').hidden=true;$('tableSelect').hidden=false;}));
@@ -324,6 +385,6 @@ document.querySelectorAll('.table-option').forEach(btn=>btn.addEventListener('cl
 document.querySelectorAll('[data-tool]').forEach(btn=>btn.addEventListener('click',()=>{const name=btn.dataset.tool;$('mtitle').textContent=name;$('mbody').textContent=name==='How to Play'?'Choose a table, receive three cards, then use Blind, Seen, Chaal, Pack or Show. This demo uses virtual practice coins only.':name==='Private Room'?'Private-room UI preview: invite and online multiplayer require a connected backend.':name==='Leaderboard'?'Leaderboard preview: rankings will be available when player accounts and server scores are connected.':'Daily rewards preview: rewards are local demo content, not redeemable currency.';$('modal').style.display='grid';}));
 $('profileBtn').onclick=()=>toast('Player profile · Demo level 12');
 
-async function enterLandscape(){try{if(!document.fullscreenElement&&document.documentElement.requestFullscreen)await document.documentElement.requestFullscreen();if(screen.orientation&&screen.orientation.lock)await screen.orientation.lock('landscape');}catch(e){toast('Auto-rotate on karke phone sideways kar do.');}}
+async function enterLandscape(){return;}
 
 </script></body></html>
