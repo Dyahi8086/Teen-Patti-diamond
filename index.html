@@ -65,6 +65,83 @@ body.in-game .lobby-screen,body.in-game .select-screen{display:none}body:not(.in
  body.in-game .controls{margin:12px auto 0}
 }
 
+
+/* === ORIGINAL TABLE ART + CLAYMORPHIC CONTROLS + 3D CARDS === */
+:root{--clay-base:#29213a;--clay-light:#493b60;--clay-dark:#120e1d}
+body{background:#171322!important}
+body:before{display:none!important}
+.table-wrap{padding:96px 0 92px!important;min-height:0!important}
+.table{
+ width:min(100%,360px)!important;height:auto!important;aspect-ratio:858/1536!important;
+ margin:0 auto!important;border:0!important;border-radius:0!important;
+ background:url('./table_256.png?v=3') center/100% 100% no-repeat!important;
+ box-shadow:none!important;transform:none!important;overflow:visible!important;
+}
+.table:before,.table:after{display:none!important}
+.center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:62%;z-index:4}
+.pot{color:#fff1c7;text-shadow:none;animation:none!important}
+.slot{background:#101d36aa;border:1px dashed #d9e7ff99}
+.mycards{filter:none!important;perspective:900px}
+.card{
+ width:clamp(42px,14vw,58px)!important;height:clamp(62px,19vw,82px)!important;
+ border-radius:10px!important;padding:7px!important;
+ background:linear-gradient(145deg,#fff 0%,#f0edf7 58%,#c9c3d8 100%)!important;
+ border:1px solid #fff!important;color:#171323!important;
+ box-shadow:inset 2px 2px 4px #fff, inset -3px -4px 6px #aaa3,
+  7px 9px 0 #08061199, 9px 13px 18px #0008!important;
+ transform:rotateY(-8deg) rotateX(5deg) rotate(-3deg)!important;
+ animation:none!important;
+}
+.card:nth-child(2){transform:translateY(5px) rotateY(0deg) rotateX(5deg)!important}
+.card:nth-child(3){transform:rotateY(8deg) rotateX(5deg) rotate(3deg)!important}
+.card.red{color:#d72c51!important}
+.card.back,.backs i{
+ background:repeating-linear-gradient(45deg,#382c55,#382c55 5px,#594875 5px,#594875 10px)!important;
+ border:2px solid #d9c9f2!important;box-shadow:inset 2px 2px 4px #ffffff66,3px 4px 0 #100b1a!important;
+}
+.backs i{animation:none!important}
+.dealer-art{background:none!important;filter:none!important;animation:none!important}
+.dealer-label{color:#e5d7f2;text-shadow:none}
+.seat{
+ background:linear-gradient(145deg,#40364f,#211b2d)!important;
+ border:1px solid #756788!important;
+ box-shadow:6px 6px 12px #0b0812,-4px -4px 10px #51445f!important;
+}
+.seat .avatar{box-shadow:inset 2px 2px 4px #fff8,3px 4px 7px #090611!important;border-color:#b9a9ce!important}
+.seat.you{background:linear-gradient(145deg,#3c526c,#1d2a3e)!important;border-color:#9bb8d8!important;box-shadow:6px 6px 12px #080b12,-4px -4px 10px #53647a!important}
+.seat.you .avatar{box-shadow:inset 2px 2px 4px #fff8,3px 4px 7px #090611!important}
+.menu,.sound,.settings,.wallet,.betval,.quick button,.actions button,.footer button,
+.side-action,.side-link,.modalbox button,.lobby-tools button,.select-head button,.mode-card,.table-option{
+ border:1px solid #756887!important;
+ background:linear-gradient(145deg,#40364f,#211b2d)!important;
+ color:#f5efff!important;
+ box-shadow:6px 6px 12px #0b0812,-4px -4px 10px #51445f!important;
+ text-shadow:none!important;
+}
+.quick button.active{background:linear-gradient(145deg,#62517b,#342947)!important;border-color:#c5b3df!important}
+.actions .pack,.actions .blind,.actions .chaal,.actions .show{
+ background:linear-gradient(145deg,#493d5b,#282136)!important;color:#fff!important;
+ box-shadow:7px 7px 13px #0b0812,-4px -4px 9px #51445f, inset 1px 1px 2px #ffffff33!important;
+}
+button:active{transform:translateY(2px) scale(.985)!important;box-shadow:inset 3px 3px 7px #100b1a,inset -3px -3px 7px #51445f!important}
+.coin-dot{box-shadow:none!important}
+.modal,.toast{box-shadow:none!important}
+.modalbox{background:linear-gradient(145deg,#40364f,#211b2d)!important;border:1px solid #756887!important;box-shadow:8px 8px 16px #090711,-5px -5px 12px #51445f!important}
+@media(max-width:650px){
+ .table-wrap{padding:92px 0 86px!important;min-height:0!important}
+ .table{width:min(100%,360px)!important;height:auto!important;aspect-ratio:858/1536!important}
+ .seat.topseat{top:8%!important}.seat.leftseat{left:-2%!important;top:35%!important}
+ .seat.rightseat{right:-2%!important;top:35%!important}
+ .seat.lowerleft{left:0!important;bottom:17%!important}.seat.lowerright{right:0!important;bottom:17%!important}
+ .center{top:50%!important;width:60%!important}
+ .dealer{top:-3px!important}
+}
+@media(max-width:380px){
+ .table{width:min(100%,330px)!important}
+ .seat{min-width:70px!important}
+ .seat .avatar{width:27px!important;height:27px!important}
+}
+
 </style></head>
 <body class="in-game"><div id="screensRoot">
 <section id="lobby" class="lobby-screen">
