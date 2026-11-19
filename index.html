@@ -252,7 +252,7 @@ body:before{display:none!important}
  .dealer{position:relative!important;top:auto!important;left:auto!important;transform:none!important;width:auto!important;height:56px!important;margin:0 auto 2px!important;display:flex!important;align-items:center!important;gap:7px!important}
  .dealer-art{width:42px!important;height:48px!important;font-size:34px!important;margin:0!important}
  .dealer-label{font-size:8px!important;letter-spacing:1px!important}
- .table{width:min(100%,390px)!important;height:auto!important;aspect-ratio:858/1536!important;max-height:49dvh!important;min-height:0!important;
+ .table{width:min(100%,calc(49dvh * 858 / 1536))!important;height:auto!important;aspect-ratio:858/1536!important;min-height:0!important;
   margin:0 auto!important;position:relative!important;display:block!important;border:0!important;border-radius:0!important;
   background:url('./table_256.png?v=5') center/100% 100% no-repeat!important;box-shadow:none!important;transform:none!important;overflow:visible!important}
  .table:before,.table:after{display:none!important}
@@ -288,7 +288,7 @@ body:before{display:none!important}
  .seat,.menu,.sound,.settings,.wallet,.betval,.quick button,.actions button,.footer button{box-shadow:3px 3px 6px #0c0b10,-2px -2px 5px #494453!important}
 }
 @media (max-width:380px) and (orientation:portrait){
- .table{max-height:45dvh!important;width:min(100%,350px)!important}
+ .table{width:min(100%,calc(45dvh * 858 / 1536))!important}
  .dealer{height:48px!important}
  .dealer-art{width:36px!important;height:42px!important;font-size:30px!important}
  .seat{min-width:58px!important}
