@@ -75,6 +75,24 @@ body.in-game .top,body.in-game .wrap{display:flex!important}
  .actions{gap:5px;margin-top:3px}.actions button{min-width:0;flex:1;padding:6px 4px;font-size:8px}
  .controls .hint{font-size:7px;margin-top:1px}.footer{display:none!important}
 }
+
+/* Arena layout inspired by the supplied gameplay recording, with original purple-crystal styling */
+.arena-layout{display:grid;grid-template-columns:178px minmax(0,1fr) 178px;align-items:stretch;gap:13px;min-height:560px}
+.arena-side{align-self:center;padding:13px 11px;border:1px solid #a66ad366;border-radius:15px;background:linear-gradient(160deg,#1d1230ed,#0d0a1aef);box-shadow:0 10px 30px #0008,inset 0 1px #ffffff0d;min-width:0}
+.side-heading{display:flex;align-items:center;gap:6px;padding:0 2px 10px;margin-bottom:7px;border-bottom:1px solid #a56bc533;color:#d9b6f5;font-size:9px;font-weight:1000;letter-spacing:1.2px}
+.side-heading b{margin-left:auto;color:#9cf36c;font-size:9px}
+.live-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#8cf45d;box-shadow:0 0 9px #8cf45d}
+.player-row{display:flex;align-items:center;gap:7px;padding:8px 3px;border-bottom:1px solid #ffffff0b}
+.player-row>i{font-style:normal;width:29px;height:29px;flex:0 0 29px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(140deg,#773ab0,#211434);border:1px solid #bd83e7;font-size:17px}
+.player-row span{min-width:0;display:flex;flex-direction:column;gap:2px}.player-row b{font-size:10px;color:#f7eaff}.player-row small{font-size:8px;color:#bca7d1}.player-row em{font-style:normal;margin-left:auto;font-size:7px;color:#91f542}.you-row{background:#542b8033;border-radius:8px;border:1px solid #7d53a566;padding:7px 4px;margin-top:4px}
+.side-action{width:100%;margin-top:10px;padding:9px 5px;border-radius:8px;background:linear-gradient(100deg,#792bd0,#a33cbb);border:1px solid #d99bff;color:white;font-size:9px;font-weight:1000}
+.detail-tile{padding:10px 9px;margin:7px 0;border-radius:9px;background:#ffffff08;border:1px solid #ffffff12;display:flex;flex-direction:column;gap:4px}.detail-tile small{font-size:8px;color:#b99ccf;letter-spacing:1px}.detail-tile strong{font-size:15px;color:#ffe39b}
+.side-subhead{margin-top:17px}.side-link{width:100%;display:flex;justify-content:space-between;padding:10px 4px;background:transparent;border-bottom:1px solid #ffffff12;text-align:left;color:#e8d8f5;font-size:9px;font-weight:800}.side-link span{color:#bd8fe5}
+.side-note{margin-top:18px;padding:9px 7px;border-radius:8px;background:#75d83c12;color:#a5f779;font-size:8px;font-weight:1000;line-height:1.8}.side-note small{color:#c4b2d3;font-weight:500}
+.arena-layout .table-wrap{min-width:0}
+@media(min-width:651px) and (max-width:950px){.arena-layout{grid-template-columns:125px minmax(0,1fr) 125px;gap:7px}.arena-side{padding:9px 6px}.player-row{gap:4px}.player-row>i{width:24px;height:24px;flex-basis:24px;font-size:14px}.player-row b{font-size:8px}.player-row small{font-size:7px}.side-heading{font-size:8px}.side-link{font-size:8px}}
+@media(max-width:650px){.arena-layout{display:block;min-height:0}.arena-side{display:none}}
+@media (orientation:landscape) and (max-height:520px){.arena-layout{grid-template-columns:145px minmax(0,1fr) 145px;gap:8px;min-height:0;flex:1}.arena-side{padding:7px 6px;align-self:center}.side-heading{font-size:7px;padding-bottom:5px;margin-bottom:3px}.player-row{padding:4px 2px;gap:4px}.player-row>i{width:22px;height:22px;flex-basis:22px;font-size:13px}.player-row b{font-size:7px}.player-row small{font-size:6px}.detail-tile{padding:5px;margin:4px 0}.detail-tile small{font-size:6px}.detail-tile strong{font-size:10px}.side-subhead{margin-top:8px}.side-link{padding:6px 2px;font-size:7px}.side-action{margin-top:5px;padding:5px;font-size:7px}.side-note{margin-top:7px;padding:5px;font-size:6px}.arena-layout .table-wrap{padding:48px 78px 36px}}
 </style></head>
 <body class="in-game"><div id="screensRoot">
 <section id="lobby" class="lobby-screen">
@@ -102,7 +120,7 @@ body.in-game .top,body.in-game .wrap{display:flex!important}
 <button id="startLandscape" type="button" hidden aria-hidden="true" tabindex="-1"></button>
 <header class="top"><button class="menu" id="menu">☰</button><div class="brand"><span>♛ TEEN PATTI</span>DIAMOND</div><div class="righttop"><div class="wallet"><span class="coin-dot" aria-hidden="true"></span> <span id="wallet">10,000</span></div><button class="sound" id="sound">♫</button><button class="settings" id="settings">⚙</button></div></header>
 <main class="wrap"><div class="gamebar"><b>♠ Classic Teen Patti · Table 01</b><span>CASUAL SOCIAL PLAY</span></div>
-<section class="table-wrap">
+<div class="arena-layout"><aside class="arena-side arena-left"><div class="side-heading"><span class="live-dot"></span> TABLE PLAYERS <b>6/6</b></div><div class="player-row"><i>🧔🏻</i><span><b>RoyalAce</b><small>Dealer · 8,450</small></span><em>●</em></div><div class="player-row"><i>👩🏻</i><span><b>QueenBee</b><small>6,200 chips</small></span><em>●</em></div><div class="player-row"><i>🦊</i><span><b>FoxKing</b><small>9,100 chips</small></span><em>●</em></div><div class="player-row"><i>🐼</i><span><b>PandaPro</b><small>5,900 chips</small></span><em>●</em></div><div class="player-row"><i>🧑🏽</i><span><b>Blaze</b><small>7,750 chips</small></span><em>●</em></div><div class="player-row you-row"><i>😎</i><span><b>You</b><small id="sideMyCoins">10,000 chips</small></span><em>YOU</em></div><button class="side-action" id="inviteBtn">＋ INVITE PLAYER</button></aside><section class="table-wrap">
 <div class="dealer"><div class="dealer-art">🧝🏻‍♀️</div><div class="dealer-label">DIAMOND DEALER</div></div>
 <div class="table">
 <div class="seat topseat"><div class="avatar">🧔🏻</div><b>RoyalAce</b><small><span class="coin-dot" aria-hidden="true"></span> 8,450</small><div class="backs"><i></i><i></i><i></i></div></div>
@@ -113,7 +131,7 @@ body.in-game .top,body.in-game .wrap{display:flex!important}
 <div class="center"><div class="pot"><span class="coin-dot" aria-hidden="true"></span> POT <span id="pot">60</span></div><div class="community" id="community"><div class="slot"></div><div class="slot"></div><div class="slot"></div></div><div class="mycards" id="hand"></div><div class="hint" id="status">Your turn · Cards dealt</div></div>
 </div>
 <div class="seat you"><div class="avatar">😎</div><b>You</b><small><span class="coin-dot" aria-hidden="true"></span> <span id="mycoins">10,000</span></small></div>
-</section>
+</section><aside class="arena-side arena-right"><div class="side-heading">TABLE DETAILS <b>LIVE</b></div><div class="detail-tile"><small>ROUND POT</small><strong>🟢 <span id="sidePot">60</span></strong></div><div class="detail-tile"><small>YOUR BET</small><strong>🟢 <span id="sideBet">60</span></strong></div><div class="detail-tile"><small>TABLE LIMIT</small><strong>10 – 500</strong></div><div class="side-heading side-subhead">QUICK MENU</div><button class="side-link" id="leaderBtn">🏆 &nbsp; Leaderboard <span>›</span></button><button class="side-link" id="historyBtn">◷ &nbsp; Hand History <span>›</span></button><button class="side-link" id="helpBtn">ⓘ &nbsp; How to Play <span>›</span></button><div class="side-note"><span class="live-dot"></span> PRACTICE TABLE<br><small>Virtual coins only · No cash value</small></div></aside></div>
 <section class="controls"><div class="betline"><input id="slider" type="range" min="10" max="500" step="10" value="60"><div class="betval"><span class="coin-dot" aria-hidden="true"></span> <span id="bet">60</span></div></div>
 <div class="quick"><button data-bet="10">MIN</button><button data-bet="30">½</button><button data-bet="60" class="active">POT</button><button data-bet="120">2×</button><button data-bet="all">ALL IN</button></div>
 <div class="actions"><button class="pack" id="pack">✕ PACK</button><button class="blind" id="blind">BLIND</button><button class="chaal" id="chaal">CHAL <span class="coin-dot" aria-hidden="true"></span> 60</button><button class="show" id="show">SHOW</button></div><div class="hint">Virtual practice diamonds only · No real money · No cash-out</div></section>
@@ -129,7 +147,7 @@ function deal(){shuffle();hand=[draw(),draw(),draw()];botHands=Array.from({lengt
 function rankHand(h){let vals=h.map(c=>c.v).sort((a,b)=>b-a),flush=h.every(c=>c.s===h[0].s),unique=[...new Set(vals)],straight=unique.length===3&&((vals[0]-vals[2]===2)||(vals[0]===14&&vals[1]===3&&vals[2]===2));if(vals[0]===14&&vals[1]===3&&vals[2]===2)vals=[3,2,1];let counts={};h.forEach(c=>counts[c.v]=(counts[c.v]||0)+1);let groups=Object.entries(counts).map(([v,n])=>[n,+v]).sort((a,b)=>b[0]-a[0]||b[1]-a[1]);if(groups[0][0]===3)return [6,groups[0][1]];if(straight&&flush)return [5,...vals];if(flush)return [4,...vals];if(straight)return [3,...vals];if(groups[0][0]===2)return [2,groups[0][1],groups[1][1]];return [1,...vals]}
 function compare(a,b){let x=rankHand(a),y=rankHand(b);for(let i=0;i<Math.max(x.length,y.length);i++){if((x[i]||0)!==(y[i]||0))return (x[i]||0)-(y[i]||0)}return 0}
 function handName(h){let r=rankHand(h)[0];return ['','High Card','Pair','Sequence','Color','Pure Sequence','Trail'][r]||'High Card'}
-function update(){$('wallet').textContent=coins.toLocaleString();$('mycoins').textContent=coins.toLocaleString();$('pot').textContent=pot;$('bet').textContent=bet;$('chaal').textContent='CHAL 🟢 '+Math.min(bet,coins);$('slider').value=Math.min(bet,500);$('blind').textContent=blindMode?'BLIND':'SEEN';}
+function update(){$('sideMyCoins').textContent=coins.toLocaleString()+' chips';$('sidePot').textContent=pot;$('sideBet').textContent=bet;$('wallet').textContent=coins.toLocaleString();$('mycoins').textContent=coins.toLocaleString();$('pot').textContent=pot;$('bet').textContent=bet;$('chaal').textContent='CHAL 🟢 '+Math.min(bet,coins);$('slider').value=Math.min(bet,500);$('blind').textContent=blindMode?'BLIND':'SEEN';}
 function toast(t){$('toast').textContent=t;$('toast').style.display='block';setTimeout(()=>$('toast').style.display='none',1900)}
 function finish(msg){done=true;$('status').textContent=msg;$('mtitle').textContent=msg;$('mbody').textContent='This round is complete. Start a new deal to play again.';$('modal').style.display='grid';update()}
 function playerBet(n){if(done)return toast('Start a new deal first.');n=Math.min(n,coins);if(n<=0)return toast('Practice diamonds khatam. New deal dabao.');coins-=n;pot+=n;update()}
@@ -146,6 +164,11 @@ $('rules').onclick=()=>{$('mtitle').textContent='How to play';$('mbody').textCon
 let soundOn=true;function toggleSound(){soundOn=!soundOn;$('sound').textContent=soundOn?'♫':'🔇';$('sound2').textContent=soundOn?'♫ Sound':'🔇 Muted';toast(soundOn?'Sound indicator on':'Sound muted')} $('sound').onclick=toggleSound;$('sound2').onclick=toggleSound;
 $('menu').onclick=()=>toast('Menu · More modes coming soon');$('settings').onclick=()=>$('rules').click();
 deal();update();
+
+$('inviteBtn').onclick=()=>toast('Invite preview · Online rooms need a connected multiplayer server.');
+$('leaderBtn').onclick=()=>{$('mtitle').textContent='Leaderboard';$('mbody').textContent='Local demo leaderboard: RoyalAce · QueenBee · FoxKing · PandaPro · Blaze. Online rankings need player accounts and a server.';$('modal').style.display='grid';};
+$('historyBtn').onclick=()=>toast('Hand history will appear after completed rounds.');
+$('helpBtn').onclick=()=>$('rules').click();
 
 // Start directly at the game table. Orientation lock is attempted after the first user interaction.
 document.body.classList.add('in-game');
