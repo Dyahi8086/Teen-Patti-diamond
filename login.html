@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#18002f">
+<title>Teen Patti Diamond | Login</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
+:root{--gold:#ffd66b;--purple:#7800b9}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;min-height:100svh;display:flex;align-items:center;justify-content:center;padding:22px 16px;color:#fff;font-family:Manrope,sans-serif;background:radial-gradient(ellipse at 50% 15%,#65009a 0%,transparent 48%),radial-gradient(ellipse at 10% 90%,#400071 0%,transparent 45%),linear-gradient(135deg,#10001f,#260044 55%,#090015);overflow-x:hidden}
+body:before,body:after{content:"";position:fixed;pointer-events:none;border:2px solid rgba(255,190,66,.25);border-radius:50%}
+body:before{width:80vw;height:80vw;right:-35vw;top:-40vw;box-shadow:0 0 55px #a500b733}
+body:after{width:65vw;height:65vw;left:-35vw;bottom:-40vw;box-shadow:0 0 55px #d000ff22}
+.sparkles{position:fixed;inset:0;pointer-events:none}
+.sparkles i{position:absolute;width:4px;height:4px;border-radius:50%;background:#ffe7a0;box-shadow:0 0 13px 4px #ffae36;animation:glow 3s infinite}
+.sparkles i:nth-child(1){left:12%;top:18%}.sparkles i:nth-child(2){left:85%;top:15%;animation-delay:.8s}.sparkles i:nth-child(3){left:72%;top:80%;animation-delay:1.5s}.sparkles i:nth-child(4){left:25%;top:82%;animation-delay:2s}
+@keyframes glow{50%{opacity:.25;transform:scale(.6)}}
+.wrap{position:relative;z-index:1;width:min(100%,940px);display:grid;grid-template-columns:1fr minmax(290px,410px);gap:clamp(20px,5vw,60px);align-items:center}
+.brand{text-align:center}
+.gem{width:76px;height:76px;margin:0 auto 22px;display:grid;place-items:center;transform:rotate(45deg);border:2px solid var(--gold);border-radius:15px;background:linear-gradient(145deg,#a000e9,#35005e);box-shadow:0 0 28px #d500ff,inset 0 0 18px #ffce62}
+.gem span{transform:rotate(-45deg);font-size:42px;color:#fff1a6;text-shadow:0 0 12px #ff8b00}
+.brand h1{margin:0;font:800 clamp(38px,6vw,66px)/1 Cinzel,serif;letter-spacing:-2px;color:#ffd66b;text-shadow:0 3px #7d3600,0 8px 22px #d000ff}
+.brand h2{display:inline-block;margin:14px 0 0;padding:8px 22px;border:1px solid var(--gold);border-radius:30px;background:linear-gradient(90deg,#41006e,#8b13bd,#41006e);font:700 23px Cinzel,serif;letter-spacing:6px;color:#fff2cf;box-shadow:0 0 22px #b000ff}
+.tagline{margin-top:20px;color:#d9b8f4;font-size:11px;letter-spacing:2px;text-transform:uppercase}
+.login{position:relative;padding:clamp(23px,4vw,36px);border:1px solid rgba(255,211,112,.85);border-radius:24px;background:linear-gradient(145deg,rgba(74,0,111,.92),rgba(27,0,52,.96));box-shadow:0 20px 65px #0009,0 0 35px #c500ff44,inset 0 1px #ffffff22}
+.login:before{content:"";position:absolute;inset:7px;border:1px solid #ffcd5a44;border-radius:17px;pointer-events:none}
+h3{margin:0 0 7px;text-align:center;font:700 24px Cinzel,serif;color:#ffe29a}
+.sub{margin:0 0 24px;text-align:center;color:#d7b9eb;font-size:13px}
+.field{display:block;margin-bottom:14px}
+.field span{display:block;margin:0 0 7px 3px;font-size:11px;font-weight:800;letter-spacing:1px;color:#f3d9ff;text-transform:uppercase}
+.field input{width:100%;height:51px;padding:0 14px;border:1px solid #ffcf6f70;border-radius:11px;background:#110022aa;color:white;font:600 14px Manrope;outline:none}
+.field input:focus{border-color:var(--gold);box-shadow:0 0 0 3px #ffd66b20}
+button{width:100%;height:51px;border-radius:12px;font:800 13px Manrope;cursor:pointer}
+.primary{margin-top:5px;border:1px solid #fff0a8;color:#381400;background:linear-gradient(#ffe99a,#ffb82e 58%,#d9790b);box-shadow:0 5px #783700,0 12px 25px #ff990033;letter-spacing:1px}
+.divider{display:flex;align-items:center;gap:12px;margin:20px 0 0;color:#b99acb;font-size:10px;letter-spacing:2px}
+.divider:before,.divider:after{content:"";height:1px;flex:1;background:linear-gradient(90deg,transparent,#a66bc4)}.divider:after{background:linear-gradient(90deg,#a66bc4,transparent)}
+.google{margin-top:18px;border:1px solid #ffffff55;color:white;background:#ffffff12}
+.guest{margin-top:10px;border:1px solid #ffd37288;color:#ffe5a0;background:transparent}
+button:active{transform:scale(.99);filter:brightness(1.1)}
+.note{text-align:center;color:#a989bc;font-size:10px;line-height:1.6;margin:18px 0 0}
+@media(max-width:680px){body{padding:18px 15px}.wrap{grid-template-columns:1fr;gap:22px;max-width:420px}.gem{width:55px;height:55px;margin-bottom:13px;border-radius:11px}.gem span{font-size:30px}.brand h1{font-size:clamp(35px,10vw,48px)}.brand h2{font-size:17px;letter-spacing:5px;margin-top:10px;padding:6px 18px}.tagline{margin-top:10px;font-size:9px}.login{padding:24px 20px}}
+</style>
+</head>
+<body>
+<div class="sparkles" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<main class="wrap">
+<section class="brand">
+<div class="gem"><span>♦</span></div>
+<h1>Teen Patti</h1>
+<h2>DIAMOND</h2>
+<div class="tagline">Enter the royal table</div>
+</section>
+<section class="login" aria-label="Login">
+<h3>Welcome Back</h3>
+<p class="sub">Sign in to continue playing</p>
+<form id="loginForm">
+<label class="field"><span>Mobile number or email</span><input id="identity" type="text" autocomplete="username" placeholder="Enter mobile number or email" required></label>
+<label class="field"><span>Password</span><input id="password" type="password" autocomplete="current-password" placeholder="Enter password" required></label>
+<button class="primary" type="submit">LOGIN</button>
+</form>
+<div class="divider">OR CONTINUE WITH</div>
+<button class="google" type="button" id="googleBtn">Continue with Google</button>
+<button class="guest" type="button" id="guestBtn">Guest Login</button>
+<p class="note">By continuing, you agree to the Terms of Service and Privacy Policy.</p>
+</section>
+</main>
+<script>
+// UI only. Connect these actions to your existing authentication backend.
+document.getElementById('loginForm').addEventListener('submit',e=>{e.preventDefault();alert('Connect your existing login API here.')});
+document.getElementById('googleBtn').addEventListener('click',()=>alert('Connect Google Sign-In here.'));
+document.getElementById('guestBtn').addEventListener('click',()=>alert('Connect guest-session logic here.'));
+</script>
+</body>
+</html>
