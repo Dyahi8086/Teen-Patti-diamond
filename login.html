@@ -7,54 +7,104 @@
 <title>Teen Patti Diamond | Login</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
-:root{--gold:#ffd66b;--purple:#7800b9}
+:root{--gold:#ffd66b;--gold2:#bd741c}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-body{margin:0;min-height:100svh;display:flex;align-items:center;justify-content:center;padding:22px 16px;color:#fff;font-family:Manrope,sans-serif;background:radial-gradient(ellipse at 50% 15%,#65009a 0%,transparent 48%),radial-gradient(ellipse at 10% 90%,#400071 0%,transparent 45%),linear-gradient(135deg,#10001f,#260044 55%,#090015);overflow-x:hidden}
-body:before,body:after{content:"";position:fixed;pointer-events:none;border:2px solid rgba(255,190,66,.25);border-radius:50%}
-body:before{width:80vw;height:80vw;right:-35vw;top:-40vw;box-shadow:0 0 55px #a500b733}
-body:after{width:65vw;height:65vw;left:-35vw;bottom:-40vw;box-shadow:0 0 55px #d000ff22}
-.sparkles{position:fixed;inset:0;pointer-events:none}
+html,body{margin:0;min-height:100%;font-family:Manrope,sans-serif;color:#fff}
+body{min-height:100svh;display:flex;align-items:center;justify-content:center;padding:clamp(12px,2.5vw,30px);overflow-x:hidden;background:radial-gradient(ellipse at 24% 38%,#7100ad88 0%,transparent 42%),radial-gradient(ellipse at 80% 15%,#b000ff55 0%,transparent 35%),linear-gradient(125deg,#10001f,#280047 52%,#090015)}
+body:before,body:after{content:"";position:fixed;pointer-events:none;border:1px solid #ffca632e;border-radius:50%}
+body:before{width:70vw;height:70vw;right:-30vw;top:-42vw;box-shadow:0 0 60px #a500b733}
+body:after{width:58vw;height:58vw;left:-28vw;bottom:-40vw;box-shadow:0 0 60px #d000ff22}
+.sparkles{position:fixed;inset:0;pointer-events:none;overflow:hidden}
 .sparkles i{position:absolute;width:4px;height:4px;border-radius:50%;background:#ffe7a0;box-shadow:0 0 13px 4px #ffae36;animation:glow 3s infinite}
 .sparkles i:nth-child(1){left:12%;top:18%}.sparkles i:nth-child(2){left:85%;top:15%;animation-delay:.8s}.sparkles i:nth-child(3){left:72%;top:80%;animation-delay:1.5s}.sparkles i:nth-child(4){left:25%;top:82%;animation-delay:2s}
-@keyframes glow{50%{opacity:.25;transform:scale(.6)}}
-.wrap{position:relative;z-index:1;width:min(100%,940px);display:grid;grid-template-columns:1fr minmax(290px,410px);gap:clamp(20px,5vw,60px);align-items:center}
-.brand{text-align:center}
-.gem{width:76px;height:76px;margin:0 auto 22px;display:grid;place-items:center;transform:rotate(45deg);border:2px solid var(--gold);border-radius:15px;background:linear-gradient(145deg,#a000e9,#35005e);box-shadow:0 0 28px #d500ff,inset 0 0 18px #ffce62}
-.gem span{transform:rotate(-45deg);font-size:42px;color:#fff1a6;text-shadow:0 0 12px #ff8b00}
-.brand h1{margin:0;font:800 clamp(38px,6vw,66px)/1 Cinzel,serif;letter-spacing:-2px;color:#ffd66b;text-shadow:0 3px #7d3600,0 8px 22px #d000ff}
-.brand h2{display:inline-block;margin:14px 0 0;padding:8px 22px;border:1px solid var(--gold);border-radius:30px;background:linear-gradient(90deg,#41006e,#8b13bd,#41006e);font:700 23px Cinzel,serif;letter-spacing:6px;color:#fff2cf;box-shadow:0 0 22px #b000ff}
-.tagline{margin-top:20px;color:#d9b8f4;font-size:11px;letter-spacing:2px;text-transform:uppercase}
-.login{position:relative;padding:clamp(23px,4vw,36px);border:1px solid rgba(255,211,112,.85);border-radius:24px;background:linear-gradient(145deg,rgba(74,0,111,.92),rgba(27,0,52,.96));box-shadow:0 20px 65px #0009,0 0 35px #c500ff44,inset 0 1px #ffffff22}
-.login:before{content:"";position:absolute;inset:7px;border:1px solid #ffcd5a44;border-radius:17px;pointer-events:none}
-h3{margin:0 0 7px;text-align:center;font:700 24px Cinzel,serif;color:#ffe29a}
-.sub{margin:0 0 24px;text-align:center;color:#d7b9eb;font-size:13px}
+@keyframes glow{50%{opacity:.2;transform:scale(.6)}}
+.wrap{position:relative;z-index:1;width:min(100%,1120px);display:grid;grid-template-columns:minmax(0,1.05fr) minmax(340px,.95fr);gap:clamp(26px,6vw,86px);align-items:center}
+.brand{text-align:center;padding:20px;position:relative}
+.brand:before{content:"";position:absolute;inset:8% 5%;border:1px solid #ffc95b38;border-radius:48% 48% 44% 44%;box-shadow:0 0 55px #a900ff24,inset 0 0 45px #a900ff16;pointer-events:none}
+.brand-inner{position:relative}
+.crown{font-size:clamp(38px,5vw,64px);line-height:1;margin-bottom:12px;filter:drop-shadow(0 0 14px #ffb52f)}
+.brand h1{margin:0;font:800 clamp(42px,6.5vw,78px)/.98 Cinzel,serif;letter-spacing:-2px;color:#ffd66b;text-shadow:0 3px #7d3600,0 8px 24px #d000ff}
+.brand h2{display:inline-block;margin:14px 0 0;padding:8px 30px;border:1px solid var(--gold);border-radius:30px;background:linear-gradient(90deg,#41006e,#8b13bd,#41006e);font:700 clamp(18px,2.5vw,28px) Cinzel,serif;letter-spacing:7px;color:#fff2cf;box-shadow:0 0 22px #b000ff}
+.tagline{margin-top:22px;color:#e2c4f6;font-size:11px;letter-spacing:3px;text-transform:uppercase}
+.brand-gem{margin:26px auto 0;width:58px;height:58px;display:grid;place-items:center;transform:rotate(45deg);border:1px solid #ffe08a;border-radius:12px;background:linear-gradient(145deg,#a000e9,#35005e);box-shadow:0 0 26px #d500ff,inset 0 0 15px #ffce62}
+.brand-gem span{transform:rotate(-45deg);font-size:30px;color:#fff1a6}
+.login{position:relative;padding:clamp(24px,3vw,38px);border:1px solid #ffd372d9;border-radius:25px;background:linear-gradient(145deg,#4a006feF,#1b0034f5);box-shadow:0 22px 65px #0009,0 0 38px #c500ff44,inset 0 1px #ffffff24}
+.login:before{content:"";position:absolute;inset:7px;border:1px solid #ffcd5a48;border-radius:18px;pointer-events:none}
+.login-top{text-align:center;margin-bottom:24px}
+h3{margin:0 0 7px;font:700 clamp(22px,2.7vw,30px) Cinzel,serif;color:#ffe29a}
+.sub{margin:0;color:#d7b9eb;font-size:13px}
 .field{display:block;margin-bottom:14px}
 .field span{display:block;margin:0 0 7px 3px;font-size:11px;font-weight:800;letter-spacing:1px;color:#f3d9ff;text-transform:uppercase}
-.field input{width:100%;height:51px;padding:0 14px;border:1px solid #ffcf6f70;border-radius:11px;background:#110022aa;color:white;font:600 14px Manrope;outline:none}
+.field input{width:100%;height:49px;padding:0 15px;border:1px solid #ffcf6f70;border-radius:11px;background:#110022bb;color:white;font:600 14px Manrope;outline:none}
 .field input:focus{border-color:var(--gold);box-shadow:0 0 0 3px #ffd66b20}
-button{width:100%;height:51px;border-radius:12px;font:800 13px Manrope;cursor:pointer}
-.primary{margin-top:5px;border:1px solid #fff0a8;color:#381400;background:linear-gradient(#ffe99a,#ffb82e 58%,#d9790b);box-shadow:0 5px #783700,0 12px 25px #ff990033;letter-spacing:1px}
-.divider{display:flex;align-items:center;gap:12px;margin:20px 0 0;color:#b99acb;font-size:10px;letter-spacing:2px}
+button{width:100%;height:49px;border-radius:12px;font:800 13px Manrope;cursor:pointer;transition:transform .15s,filter .15s}
+.primary{margin-top:4px;border:1px solid #fff0a8;color:#381400;background:linear-gradient(#ffe99a,#ffb82e 58%,#d9790b);box-shadow:0 5px #783700,0 12px 25px #ff990033;letter-spacing:1px}
+.divider{display:flex;align-items:center;gap:12px;margin:19px 0 0;color:#c5a4d8;font-size:10px;letter-spacing:2px}
 .divider:before,.divider:after{content:"";height:1px;flex:1;background:linear-gradient(90deg,transparent,#a66bc4)}.divider:after{background:linear-gradient(90deg,#a66bc4,transparent)}
-.google{margin-top:18px;border:1px solid #ffffff55;color:white;background:#ffffff12}
-.guest{margin-top:10px;border:1px solid #ffd37288;color:#ffe5a0;background:transparent}
+.google{margin-top:16px;border:1px solid #ffffff55;color:white;background:#ffffff12}
+.guest{margin-top:10px;border:1px solid #ffd37288;color:#ffe5a0;background:#ffffff05}
 button:active{transform:scale(.99);filter:brightness(1.1)}
-.note{text-align:center;color:#a989bc;font-size:10px;line-height:1.6;margin:18px 0 0}
-@media(max-width:680px){body{padding:18px 15px}.wrap{grid-template-columns:1fr;gap:22px;max-width:420px}.gem{width:55px;height:55px;margin-bottom:13px;border-radius:11px}.gem span{font-size:30px}.brand h1{font-size:clamp(35px,10vw,48px)}.brand h2{font-size:17px;letter-spacing:5px;margin-top:10px;padding:6px 18px}.tagline{margin-top:10px;font-size:9px}.login{padding:24px 20px}}
+.note{text-align:center;color:#b99acb;font-size:10px;line-height:1.6;margin:16px 0 0}
+@media(max-width:700px) and (orientation:portrait){
+ body{padding:18px 15px}
+ .wrap{grid-template-columns:1fr;gap:18px;max-width:430px}
+ .brand{padding:7px 4px}
+ .brand:before{inset:0 8%}
+ .crown{font-size:30px;margin-bottom:7px}
+ .brand h1{font-size:clamp(34px,9vw,46px)}
+ .brand h2{font-size:16px;letter-spacing:5px;margin-top:9px;padding:6px 18px}
+ .tagline{margin-top:10px;font-size:9px}
+ .brand-gem{display:none}
+ .login{padding:22px 19px}
+ .login-top{margin-bottom:18px}
+}
+@media(orientation:landscape) and (max-height:600px){
+ body{padding:10px 22px;min-height:100svh}
+ .wrap{width:min(100%,1080px);grid-template-columns:1fr 1fr;gap:clamp(18px,4vw,55px)}
+ .brand{padding:8px}
+ .crown{font-size:34px;margin-bottom:6px}
+ .brand h1{font-size:clamp(34px,5vw,56px)}
+ .brand h2{font-size:18px;margin-top:8px;padding:5px 22px;letter-spacing:5px}
+ .tagline{margin-top:12px;font-size:9px}
+ .brand-gem{width:42px;height:42px;margin-top:15px}
+ .brand-gem span{font-size:22px}
+ .login{padding:17px 23px;border-radius:20px}
+ .login-top{margin-bottom:13px}
+ h3{font-size:21px}
+ .sub{font-size:11px}
+ .field{margin-bottom:9px}
+ .field span{font-size:9px;margin-bottom:5px}
+ .field input{height:38px;font-size:12px}
+ button{height:38px;font-size:11px}
+ .divider{margin-top:11px;font-size:9px}
+ .google{margin-top:10px}
+ .guest{margin-top:7px}
+ .note{margin-top:9px;font-size:8px}
+}
+@media(min-width:701px) and (max-height:700px){
+ .wrap{max-width:1000px;gap:35px}
+ .login{padding:22px 28px}
+ .login-top{margin-bottom:14px}
+ .field{margin-bottom:9px}
+ .field input,button{height:42px}
+ .divider{margin-top:12px}
+ .google{margin-top:10px}
+ .guest{margin-top:7px}
+ .note{margin-top:10px}
+}
 </style>
 </head>
 <body>
 <div class="sparkles" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
 <main class="wrap">
-<section class="brand">
-<div class="gem"><span>♦</span></div>
-<h1>Teen Patti</h1>
-<h2>DIAMOND</h2>
-<div class="tagline">Enter the royal table</div>
-</section>
+<section class="brand"><div class="brand-inner">
+<div class="crown">♛</div>
+<h1>Teen Patti</h1><h2>DIAMOND</h2>
+<div class="tagline">The Royal Gaming Experience</div>
+<div class="brand-gem"><span>♦</span></div>
+</div></section>
 <section class="login" aria-label="Login">
-<h3>Welcome Back</h3>
-<p class="sub">Sign in to continue playing</p>
+<div class="login-top"><h3>Welcome Back</h3><p class="sub">Sign in to enter the royal table</p></div>
 <form id="loginForm">
 <label class="field"><span>Mobile number or email</span><input id="identity" type="text" autocomplete="username" placeholder="Enter mobile number or email" required></label>
 <label class="field"><span>Password</span><input id="password" type="password" autocomplete="current-password" placeholder="Enter password" required></label>
@@ -67,7 +117,6 @@ button:active{transform:scale(.99);filter:brightness(1.1)}
 </section>
 </main>
 <script>
-// UI only. Connect these actions to your existing authentication backend.
 document.getElementById('loginForm').addEventListener('submit',e=>{e.preventDefault();alert('Connect your existing login API here.')});
 document.getElementById('googleBtn').addEventListener('click',()=>alert('Connect Google Sign-In here.'));
 document.getElementById('guestBtn').addEventListener('click',()=>alert('Connect guest-session logic here.'));
