@@ -7,10 +7,10 @@
 <title>Teen Patti Diamond | Login</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
-:root{--gold:#ffd66b;--gold2:#bd741c}
+:root{--gold:#ffd66b}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;min-height:100%;font-family:Manrope,sans-serif;color:#fff}
-body{min-height:100svh;display:flex;align-items:center;justify-content:center;padding:clamp(12px,2.5vw,30px);overflow-x:hidden;background:radial-gradient(ellipse at 24% 38%,#7100ad88 0%,transparent 42%),radial-gradient(ellipse at 80% 15%,#b000ff55 0%,transparent 35%),linear-gradient(125deg,#10001f,#280047 52%,#090015)}
+body{min-height:100svh;display:flex;align-items:center;justify-content:center;padding:clamp(12px,2.5vw,30px);overflow:hidden;background:radial-gradient(ellipse at 24% 38%,#7100ad88 0%,transparent 42%),radial-gradient(ellipse at 80% 15%,#b000ff55 0%,transparent 35%),linear-gradient(125deg,#10001f,#280047 52%,#090015)}
 body:before,body:after{content:"";position:fixed;pointer-events:none;border:1px solid #ffca632e;border-radius:50%}
 body:before{width:70vw;height:70vw;right:-30vw;top:-42vw;box-shadow:0 0 60px #a500b733}
 body:after{width:58vw;height:58vw;left:-28vw;bottom:-40vw;box-shadow:0 0 60px #d000ff22}
@@ -45,74 +45,25 @@ button{width:100%;height:49px;border-radius:12px;font:800 13px Manrope;cursor:po
 .guest{margin-top:10px;border:1px solid #ffd37288;color:#ffe5a0;background:#ffffff05}
 button:active{transform:scale(.99);filter:brightness(1.1)}
 .note{text-align:center;color:#b99acb;font-size:10px;line-height:1.6;margin:16px 0 0}
-@media(max-width:700px) and (orientation:portrait){
- body{padding:18px 15px}
- .wrap{grid-template-columns:1fr;gap:18px;max-width:430px}
- .brand{padding:7px 4px}
- .brand:before{inset:0 8%}
- .crown{font-size:30px;margin-bottom:7px}
- .brand h1{font-size:clamp(34px,9vw,46px)}
- .brand h2{font-size:16px;letter-spacing:5px;margin-top:9px;padding:6px 18px}
- .tagline{margin-top:10px;font-size:9px}
- .brand-gem{display:none}
- .login{padding:22px 19px}
- .login-top{margin-bottom:18px}
-}
-@media(orientation:landscape) and (max-height:600px){
- body{padding:10px 22px;min-height:100svh}
- .wrap{width:min(100%,1080px);grid-template-columns:1fr 1fr;gap:clamp(18px,4vw,55px)}
- .brand{padding:8px}
- .crown{font-size:34px;margin-bottom:6px}
- .brand h1{font-size:clamp(34px,5vw,56px)}
- .brand h2{font-size:18px;margin-top:8px;padding:5px 22px;letter-spacing:5px}
- .tagline{margin-top:12px;font-size:9px}
- .brand-gem{width:42px;height:42px;margin-top:15px}
- .brand-gem span{font-size:22px}
- .login{padding:17px 23px;border-radius:20px}
- .login-top{margin-bottom:13px}
- h3{font-size:21px}
- .sub{font-size:11px}
- .field{margin-bottom:9px}
- .field span{font-size:9px;margin-bottom:5px}
- .field input{height:38px;font-size:12px}
- button{height:38px;font-size:11px}
- .divider{margin-top:11px;font-size:9px}
- .google{margin-top:10px}
- .guest{margin-top:7px}
- .note{margin-top:9px;font-size:8px}
-}
-@media(min-width:701px) and (max-height:700px){
- .wrap{max-width:1000px;gap:35px}
- .login{padding:22px 28px}
- .login-top{margin-bottom:14px}
- .field{margin-bottom:9px}
- .field input,button{height:42px}
- .divider{margin-top:12px}
- .google{margin-top:10px}
- .guest{margin-top:7px}
- .note{margin-top:10px}
-}
+.deal-zone{position:fixed;z-index:0;left:38%;top:50%;width:150px;height:120px;pointer-events:none;perspective:700px;transform:translate(-50%,-50%)}
+.playing-card{position:absolute;left:50%;top:50%;width:48px;height:68px;margin:-34px 0 0 -24px;border:2px solid #ffd77a;border-radius:7px;background:repeating-linear-gradient(45deg,#6900a4 0 4px,#31004f 4px 8px);box-shadow:0 5px 20px #0009,0 0 14px #d000ff88;opacity:0;animation:deal 3.6s ease-in-out infinite}
+.playing-card:before{content:"♦";position:absolute;inset:5px;border:1px solid #ffdc8b88;border-radius:3px;display:grid;place-items:center;color:#ffe08a;font-size:23px;text-shadow:0 0 9px #ffba36}
+.playing-card:nth-child(2){animation-delay:1.2s}.playing-card:nth-child(3){animation-delay:2.4s}
+@keyframes deal{0%{opacity:0;transform:translate(-90px,75px) rotate(-150deg) scale(.45)}12%{opacity:1}48%{opacity:1;transform:translate(65px,-35px) rotate(18deg) scale(1)}72%{opacity:.85;transform:translate(90px,-55px) rotate(28deg) scale(.9)}100%{opacity:0;transform:translate(145px,-100px) rotate(65deg) scale(.65)}}
+@media(max-width:700px) and (orientation:portrait){body{padding:18px 15px;overflow:auto}.wrap{grid-template-columns:1fr;gap:18px;max-width:430px}.brand{padding:7px 4px}.brand:before{inset:0 8%}.crown{font-size:30px;margin-bottom:7px}.brand h1{font-size:clamp(34px,9vw,46px)}.brand h2{font-size:16px;letter-spacing:5px;margin-top:9px;padding:6px 18px}.tagline{margin-top:10px;font-size:9px}.brand-gem{display:none}.login{padding:22px 19px}.login-top{margin-bottom:18px}.deal-zone{left:50%;top:29%;transform:translate(-50%,-50%) scale(.65);opacity:.65}}
+@media(orientation:landscape) and (max-height:600px){body{padding:10px 22px;min-height:100svh}.wrap{width:min(100%,1080px);grid-template-columns:1fr 1fr;gap:clamp(18px,4vw,55px)}.brand{padding:8px}.crown{font-size:34px;margin-bottom:6px}.brand h1{font-size:clamp(34px,5vw,56px)}.brand h2{font-size:18px;margin-top:8px;padding:5px 22px;letter-spacing:5px}.tagline{margin-top:12px;font-size:9px}.brand-gem{width:42px;height:42px;margin-top:15px}.brand-gem span{font-size:22px}.login{padding:17px 23px;border-radius:20px}.login-top{margin-bottom:13px}h3{font-size:21px}.sub{font-size:11px}.field{margin-bottom:9px}.field span{font-size:9px;margin-bottom:5px}.field input{height:38px;font-size:12px}button{height:38px;font-size:11px}.divider{margin-top:11px;font-size:9px}.google{margin-top:10px}.guest{margin-top:7px}.note{margin-top:9px;font-size:8px}.deal-zone{left:50%;transform:translate(-50%,-50%) scale(.8)}}
+@media(prefers-reduced-motion:reduce){.playing-card,.sparkles i{animation:none;display:none}}
 </style>
 </head>
 <body>
 <div class="sparkles" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<div class="deal-zone" aria-hidden="true"><div class="playing-card"></div><div class="playing-card"></div><div class="playing-card"></div></div>
 <main class="wrap">
-<section class="brand"><div class="brand-inner">
-<div class="crown">♛</div>
-<h1>Teen Patti</h1><h2>DIAMOND</h2>
-<div class="tagline">The Royal Gaming Experience</div>
-<div class="brand-gem"><span>♦</span></div>
-</div></section>
+<section class="brand"><div class="brand-inner"><div class="crown">♛</div><h1>Teen Patti</h1><h2>DIAMOND</h2><div class="tagline">The Royal Gaming Experience</div><div class="brand-gem"><span>♦</span></div></div></section>
 <section class="login" aria-label="Login">
 <div class="login-top"><h3>Welcome Back</h3><p class="sub">Sign in to enter the royal table</p></div>
-<form id="loginForm">
-<label class="field"><span>Mobile number or email</span><input id="identity" type="text" autocomplete="username" placeholder="Enter mobile number or email" required></label>
-<label class="field"><span>Password</span><input id="password" type="password" autocomplete="current-password" placeholder="Enter password" required></label>
-<button class="primary" type="submit">LOGIN</button>
-</form>
-<div class="divider">OR CONTINUE WITH</div>
-<button class="google" type="button" id="googleBtn">Continue with Google</button>
-<button class="guest" type="button" id="guestBtn">Guest Login</button>
+<form id="loginForm"><label class="field"><span>Mobile number or email</span><input id="identity" type="text" autocomplete="username" placeholder="Enter mobile number or email" required></label><label class="field"><span>Password</span><input id="password" type="password" autocomplete="current-password" placeholder="Enter password" required></label><button class="primary" type="submit">LOGIN</button></form>
+<div class="divider">OR CONTINUE WITH</div><button class="google" type="button" id="googleBtn">Continue with Google</button><button class="guest" type="button" id="guestBtn">Guest Login</button>
 <p class="note">By continuing, you agree to the Terms of Service and Privacy Policy.</p>
 </section>
 </main>
