@@ -3,122 +3,91 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Royal Dragon Table</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="theme-color" content="#18002f" />
+  <title>Teen Patti Diamond — Login</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&display=swap');
-
-    * {
-      box-sizing: border-box;
-      user-select: none;
-      -webkit-tap-highlight-color: transparent;
-    }
-
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
+    :root { color-scheme: dark; --gold:#ffd66b; --gold2:#b86a12; --purple:#6900a8; }
+    * { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+    html,body { margin:0; min-height:100%; }
     body {
-      margin: 0;
-      padding: 0;
-      min-height: 100dvh;
-      background: radial-gradient(circle at 50% 50%, #071b3d 0%, #020817 65%, #000208 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height:100svh; overflow-x:hidden; font-family:Manrope, sans-serif; color:#fff;
+      background:
+        radial-gradient(ellipse at 76% 20%, rgba(176,30,255,.42), transparent 34%),
+        radial-gradient(ellipse at 18% 75%, rgba(105,0,168,.52), transparent 40%),
+        linear-gradient(135deg,#10001f 0%,#260044 48%,#090015 100%);
+      display:flex; align-items:center; justify-content:center; padding:22px;
     }
-
-    .table-stage {
-      position: relative;
-      width: min(98vw, 440px);
-      height: min(98dvh, 860px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .table-png-base {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      z-index: 1;
-      pointer-events: none;
-      filter: drop-shadow(0 20px 35px rgba(0, 0, 0, 0.95));
-    }
-
-    .overlay-layer {
-      position: absolute;
-      inset: 0;
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 16% 20%;
-    }
-
-    .card-mini {
-      width: 46px;
-      height: 64px;
-      border-radius: 8px;
-      background: linear-gradient(145deg, #ffffff 0%, #e5ecff 100%);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
-      font-size: 16px;
-      border: 1.5px solid #cbd5e1;
-      transition: transform 0.25s ease;
-    }
-
-    .card-mini:hover {
-      transform: translateY(-5px) scale(1.06);
-    }
+    body:before,body:after { content:""; position:fixed; pointer-events:none; border:2px solid rgba(255,190,66,.28); border-radius:50%; filter:blur(.2px); }
+    body:before { width:75vw;height:75vw;max-width:850px;max-height:850px;right:-26vw;top:-35vw;box-shadow:0 0 45px rgba(255,169,38,.12),inset 0 0 55px rgba(255,169,38,.08); }
+    body:after { width:60vw;height:60vw;max-width:680px;max-height:680px;left:-28vw;bottom:-35vw;box-shadow:0 0 55px rgba(205,44,255,.18),inset 0 0 55px rgba(205,44,255,.12); }
+    .sparkles { position:fixed;inset:0;pointer-events:none;overflow:hidden; }
+    .sparkles i { position:absolute;width:4px;height:4px;border-radius:50%;background:#ffe7a0;box-shadow:0 0 12px 3px #ffae36;animation:twinkle 3s infinite ease-in-out; }
+    .sparkles i:nth-child(1){left:12%;top:18%}.sparkles i:nth-child(2){left:83%;top:15%;animation-delay:.7s}.sparkles i:nth-child(3){left:72%;top:78%;animation-delay:1.4s}.sparkles i:nth-child(4){left:25%;top:82%;animation-delay:2s}.sparkles i:nth-child(5){left:53%;top:9%;animation-delay:1s}
+    @keyframes twinkle { 0%,100%{opacity:.25;transform:scale(.7)}50%{opacity:1;transform:scale(1.5)} }
+    .page { width:min(100%,980px); position:relative; z-index:1; display:grid; grid-template-columns:1fr minmax(300px,420px); gap:clamp(24px,5vw,68px); align-items:center; }
+    .brand { text-align:center; padding:24px 8px; }
+    .crest { width:100px;height:100px;margin:0 auto 18px;display:grid;place-items:center;position:relative; }
+    .crest:before { content:"";position:absolute;inset:10px;transform:rotate(45deg);border:2px solid var(--gold);background:linear-gradient(145deg,#a000e9,#35005e);box-shadow:0 0 25px #d500ff,inset 0 0 18px #ffce62;border-radius:18px; }
+    .crest span { position:relative;font-size:48px;color:#fff1a6;text-shadow:0 2px 10px #ff8b00; }
+    .brand h1 { margin:0;font:800 clamp(38px,6vw,68px)/.98 Cinzel,serif;letter-spacing:-2px;color:#ffd66b;text-shadow:0 3px 0 #7d3600,0 8px 22px #d000ff; }
+    .brand h2 { margin:12px auto 0;display:inline-block;padding:8px 24px;border:1px solid #ffd66b;border-radius:999px;background:linear-gradient(90deg,#41006e,#8b13bd,#41006e);font:700 clamp(18px,3vw,28px) Cinzel,serif;letter-spacing:7px;color:#fff2cf;box-shadow:0 0 22px #b000ff; }
+    .brand p { color:#d9b8f4;letter-spacing:2px;font-size:12px;margin-top:22px;text-transform:uppercase; }
+    .login { border:1px solid rgba(255,211,112,.85);border-radius:26px;padding:clamp(24px,4vw,38px);background:linear-gradient(145deg,rgba(74,0,111,.88),rgba(27,0,52,.94));box-shadow:0 20px 65px rgba(0,0,0,.55),0 0 35px rgba(197,0,255,.28),inset 0 1px rgba(255,255,255,.12);position:relative; }
+    .login:before { content:"";position:absolute;inset:7px;border:1px solid rgba(255,205,90,.28);border-radius:19px;pointer-events:none; }
+    .login h3 { margin:0 0 7px;text-align:center;font:700 25px Cinzel,serif;color:#ffe29a; }
+    .sub { margin:0 0 25px;text-align:center;color:#d7b9eb;font-size:13px; }
+    .field { display:block;margin:0 0 15px; }
+    .field span { display:block;margin:0 0 7px 3px;font-size:12px;font-weight:700;letter-spacing:1px;color:#f3d9ff;text-transform:uppercase; }
+    .field input { width:100%;height:52px;border:1px solid rgba(255,207,111,.45);border-radius:12px;padding:0 15px;background:rgba(17,0,34,.65);color:white;font:600 15px Manrope;outline:none; }
+    .field input:focus { border-color:#ffd66b;box-shadow:0 0 0 3px rgba(255,214,107,.12); }
+    .primary,.google,.guest { width:100%;height:52px;border-radius:13px;font:800 14px Manrope;cursor:pointer;transition:transform .15s,filter .15s; }
+    .primary { margin-top:5px;border:1px solid #fff0a8;color:#381400;background:linear-gradient(180deg,#ffe99a,#ffb82e 58%,#d9790b);box-shadow:0 6px 0 #783700,0 12px 25px rgba(255,153,0,.2);letter-spacing:1px; }
+    .google { margin-top:20px;border:1px solid rgba(255,255,255,.35);color:#fff;background:rgba(255,255,255,.09); }
+    .guest { margin-top:11px;border:1px solid rgba(255,211,112,.55);color:#ffe5a0;background:transparent; }
+    button:active { transform:translateY(2px) scale(.99);filter:brightness(1.12); }
+    .divider { display:flex;align-items:center;gap:12px;margin:19px 0 0;color:#b99acb;font-size:11px;letter-spacing:2px; }
+    .divider:before,.divider:after { content:"";height:1px;flex:1;background:linear-gradient(90deg,transparent,#a66bc4); }.divider:after{background:linear-gradient(90deg,#a66bc4,transparent)}
+    .note { text-align:center;color:#a989bc;font-size:10px;line-height:1.6;margin:20px 0 0; }
+    @media(max-width:700px) { body{padding:18px 15px}.page{grid-template-columns:1fr;gap:8px;max-width:430px}.brand{padding:10px 0 8px}.crest{width:65px;height:65px;margin-bottom:10px}.crest span{font-size:32px}.brand h1{font-size:clamp(34px,10vw,48px)}.brand h2{font-size:17px;letter-spacing:5px;padding:6px 19px}.brand p{margin-top:12px;font-size:10px}.login{padding:25px 21px}.login h3{font-size:22px} }
+    @media(max-height:700px) and (max-width:700px){body{align-items:flex-start}.brand{padding-top:4px}.crest{display:none}.brand p{margin-top:8px}.login{padding:20px}.field{margin-bottom:10px}.field input,.primary,.google,.guest{height:46px}}
   </style>
 </head>
 <body>
-  <div class="table-stage" id="tableStage">
-    <img src="table_256.png" alt="Royal Dragon Table" class="table-png-base" />
-
-    <div class="overlay-layer" id="tableOverlay">
-      <div class="flex flex-col items-center gap-3" id="cardsContainer">
-        <div class="flex gap-2" id="dealtCards">
-          <div class="card-mini text-rose-600"><span>A</span><span>♥</span></div>
-          <div class="card-mini text-slate-900"><span>K</span><span>♠</span></div>
-          <div class="card-mini text-rose-600"><span>Q</span><span>♦</span></div>
-        </div>
-        <button onclick="dealRandomHand()" class="px-4 py-1.5 rounded-full text-[11px] font-bold tracking-wider uppercase text-amber-200 bg-gradient-to-r from-amber-600/90 via-yellow-500/90 to-amber-600/90 border border-amber-300/70 shadow-lg active:scale-95 transition">
-          Deal Cards
-        </button>
-      </div>
-    </div>
-  </div>
-    <script>
-    const ranks = ['A', 'K', 'Q', 'J', '10', '9', '8'];
-    const suits = [
-      { sym: '♥', color: 'text-rose-600' },
-      { sym: '♦', color: 'text-rose-600' },
-      { sym: '♠', color: 'text-slate-900' },
-      { sym: '♣', color: 'text-slate-900' }
-    ];
-
-    function dealRandomHand() {
-      const container = document.getElementById('dealtCards');
-      container.innerHTML = '';
-      for (let i = 0; i < 3; i++) {
-        const r = ranks[Math.floor(Math.random() * ranks.length)];
-        const s = suits[Math.floor(Math.random() * suits.length)];
-        const card = document.createElement('div');
-        card.className = `card-mini ${s.color}`;
-        card.style.transform = 'scale(0.7) rotate(-8deg)';
-        card.innerHTML = `<span>${r}</span><span>${s.sym}</span>`;
-        container.appendChild(card);
-        requestAnimationFrame(() => {
-          card.style.transform = 'scale(1) rotate(0deg)';
-        });
-      }
-    }
+  <div class="sparkles" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+  <main class="page">
+    <section class="brand" aria-label="Teen Patti Diamond">
+      <div class="crest"><span>♦</span></div>
+      <h1>Teen Patti</h1>
+      <h2>DIAMOND</h2>
+      <p>Enter the royal table</p>
+    </section>
+    <section class="login" aria-label="Login form">
+      <h3>Welcome Back</h3>
+      <p class="sub">Sign in to continue playing</p>
+      <form id="loginForm">
+        <label class="field"><span>Mobile number or email</span><input id="identity" type="text" autocomplete="username" placeholder="Enter mobile number or email" required /></label>
+        <label class="field"><span>Password</span><input id="password" type="password" autocomplete="current-password" placeholder="Enter password" required /></label>
+        <button class="primary" type="submit">LOGIN</button>
+      </form>
+      <div class="divider">OR CONTINUE WITH</div>
+      <button class="google" type="button" id="googleBtn">Continue with Google</button>
+      <button class="guest" type="button" id="guestBtn">Guest Login</button>
+      <p class="note">By continuing, you agree to the Terms of Service and Privacy Policy.</p>
+    </section>
+  </main>
+  <script>
+    // UI only: connect these handlers to your authentication service.
+    document.getElementById('loginForm').addEventListener('submit', function (event) {
+      event.preventDefault();
+      alert('Connect your login API/authentication here.');
+    });
+    document.getElementById('googleBtn').addEventListener('click', function () {
+      alert('Connect Google Sign-In here.');
+    });
+    document.getElementById('guestBtn').addEventListener('click', function () {
+      alert('Connect guest-session logic here.');
+    });
   </script>
 </body>
 </html>
