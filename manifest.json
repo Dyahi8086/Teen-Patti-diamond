@@ -1,0 +1,19 @@
+{
+  "name": "Teen Patti Diamond",
+  "short_name": "TP Diamond",
+  "description": "Teen Patti Diamond game",
+  "start_url": "./login.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "landscape",
+  "background_color": "#210039",
+  "theme_color": "#260044",
+  "icons": [
+    {
+      "src": "./table_256.png",
+      "sizes": "256x256",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
