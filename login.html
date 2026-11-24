@@ -3,473 +3,58 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="theme-color" content="#140026">
+<meta name="theme-color" content="#260044">
 <title>Teen Patti Diamond | Login</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Playfair+Display:ital,wght@1,800;1,900&family=Manrope:wght@500;600;700;800&display=swap');
-
-:root {
-  --gold-light: #fff1a8;
-  --gold: #ffcf56;
-  --gold-dark: #b86400;
-  --purple-deep: #120022;
-  --purple-mid: #3a0068;
-  --purple-glow: #c400ff;
-}
-
-* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-
-html, body {
-  margin: 0;
-  min-height: 100%;
-  font-family: 'Manrope', sans-serif;
-  color: #fff;
-  background: #120022;
-}
-
-body {
-  min-height: 100svh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow-x: hidden;
-  position: relative;
-  background:
-    radial-gradient(circle at 25% 40%, rgba(168, 0, 255, 0.42), transparent 45%),
-    radial-gradient(circle at 75% 30%, rgba(255, 196, 64, 0.22), transparent 42%),
-    linear-gradient(135deg, #0d001a 0%, #2a004d 50%, #110021 100%);
-}
-
-/* Optional full background image (aapki image file ka naam yahan rakhein) */
-.bg-art {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: left center;
-  opacity: 0.92;
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* Royal gold arch & vignette overlay */
-.vignette {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-  background:
-    radial-gradient(ellipse at 72% 52%, rgba(18, 0, 36, 0.45) 0%, rgba(10, 0, 20, 0.85) 100%),
-    linear-gradient(90deg, rgba(16, 0, 32, 0.15) 0%, rgba(18, 0, 36, 0.72) 52%, rgba(14, 0, 28, 0.88) 100%);
-}
-
-/* Floating golden particles & suits */
-.fx-layer {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 2;
-  overflow: hidden;
-}
-
-.spark {
-  position: absolute;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: #ffe999;
-  box-shadow: 0 0 12px 3px #ffb732;
-  animation: floatSpark 3.5s ease-in-out infinite;
-}
-.spark:nth-child(1) { left: 10%; top: 20%; }
-.spark:nth-child(2) { left: 45%; top: 15%; animation-delay: 1s; }
-.spark:nth-child(3) { left: 88%; top: 22%; animation-delay: 1.8s; }
-.spark:nth-child(4) { left: 62%; top: 82%; animation-delay: 0.6s; }
-.spark:nth-child(5) { left: 92%; top: 74%; animation-delay: 2.3s; }
-
-@keyframes floatSpark {
-  0%, 100% { opacity: 0.25; transform: translateY(0) scale(0.8); }
-  50% { opacity: 1; transform: translateY(-10px) scale(1.2); }
-}
-
-.float-card {
-  position: absolute;
-  width: 44px;
-  height: 60px;
-  border-radius: 7px;
-  background: #fff;
-  border: 2px solid #ffd875;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.55), 0 0 16px rgba(196, 0, 255, 0.45);
-  display: grid;
-  place-items: center;
-  font-weight: 900;
-  font-size: 20px;
-  animation: cardBob 4s ease-in-out infinite;
-}
-.float-card.c1 { left: 4%; top: 10%; color: #111; transform: rotate(-16deg); }
-.float-card.c2 { left: 2%; top: 26%; color: #d4002a; transform: rotate(-28deg); animation-delay: 1.2s; }
-.float-card.c3 { right: 4%; top: 38%; color: #111; transform: rotate(22deg); animation-delay: 2s; }
-
-@keyframes cardBob {
-  0%, 100% { transform: translateY(0) rotate(var(--r, -14deg)); }
-  50% { transform: translateY(-8px) rotate(var(--r, -10deg)); }
-}
-
-/* Main Split Container matching photo */
-.stage {
-  position: relative;
-  z-index: 3;
-  width: min(100%, 1180px);
-  min-height: 100svh;
-  display: grid;
-  grid-template-columns: 1fr 1.05fr;
-  align-items: center;
-  padding: 16px 24px;
-  gap: 20px;
-}
-
-/* Left Hero Space (lets background character shine, with fallback frame if image missing) */
-.hero-space {
-  position: relative;
-  height: 100%;
-  min-height: 360px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-}
-
-.hero-fallback {
-  display: none;
-  width: min(320px, 85%);
-  aspect-ratio: 3/4;
-  border-radius: 26px;
-  border: 2px solid rgba(255, 207, 86, 0.55);
-  background: radial-gradient(circle at 50% 30%, #7d00c7, #22003d 75%);
-  box-shadow: 0 0 40px rgba(196, 0, 255, 0.45);
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  text-align: center;
-  padding: 20px;
-}
-.hero-fallback.show { display: flex; }
-
-/* Right Column: Logo + Diamond + Login Box */
-.right-panel {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  max-width: 440px;
-  margin: 0 auto;
-}
-
-/* Crown + Teen Patti DIAMOND + Gem Crest */
-.crest {
-  text-align: center;
-  margin-bottom: 14px;
-  position: relative;
-  width: 100%;
-}
-
-.crown-icon {
-  font-size: clamp(34px, 4.5vw, 48px);
-  line-height: 1;
-  color: #ffd86b;
-  filter: drop-shadow(0 3px 0 #7a3b00) drop-shadow(0 0 16px #ffb700);
-  margin-bottom: -4px;
-}
-
-.title-script {
-  margin: 0;
-  font-family: 'Playfair Display', Georgia, serif;
-  font-style: italic;
-  font-weight: 900;
-  font-size: clamp(38px, 5.2vw, 58px);
-  line-height: 1;
-  background: linear-gradient(180deg, #fff7c2 0%, #ffd24c 48%, #e07b00 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 4px 0 #471400) drop-shadow(0 8px 18px rgba(196, 0, 255, 0.75));
-}
-
-.diamond-ribbon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 6px;
-  padding: 6px 28px;
-  border-radius: 14px;
-  border: 2px solid #ffd56b;
-  background: linear-gradient(180deg, #5d0099 0%, #2a004d 100%);
-  box-shadow:
-    0 4px 0 #6e3400,
-    0 0 24px rgba(196, 0, 255, 0.85),
-    inset 0 1px 0 rgba(255,255,255,0.35);
-}
-
-.diamond-ribbon span {
-  font-family: 'Cinzel', serif;
-  font-weight: 900;
-  font-size: clamp(18px, 2.4vw, 25px);
-  letter-spacing: 5px;
-  color: #ffffff;
-  text-shadow: 0 2px 8px rgba(217, 102, 255, 0.9);
-}
-
-.gem-center {
-  width: 44px;
-  height: 44px;
-  margin: -8px auto 0;
-  transform: rotate(45deg);
-  border-radius: 8px;
-  border: 2px solid #ffe494;
-  background: linear-gradient(135deg, #f07dff 0%, #9400e6 50%, #44007a 100%);
-  box-shadow: 0 0 22px #d900ff, inset 0 0 10px #fff;
-  display: grid;
-  place-items: center;
-}
-.gem-center i {
-  transform: rotate(-45deg);
-  font-style: normal;
-  font-size: 20px;
-  color: #fff6cc;
-}
-
-/* Dark Purple Glass Login Box (matching the dark framed panel below logo in photo) */
-.login-box {
-  width: 100%;
-  padding: 20px 22px 18px;
-  border-radius: 22px;
-  border: 1.5px solid rgba(255, 209, 92, 0.72);
-  background: linear-gradient(180deg, rgba(44, 0, 74, 0.86) 0%, rgba(20, 0, 38, 0.94) 100%);
-  backdrop-filter: blur(10px);
-  box-shadow:
-    0 18px 45px rgba(0, 0, 0, 0.75),
-    0 0 32px rgba(180, 0, 255, 0.38),
-    inset 0 1px 0 rgba(255, 232, 163, 0.3);
-}
-
-.bonus-pill {
-  text-align: center;
-  margin: 0 auto 14px;
-  padding: 6px 14px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 214, 102, 0.65);
-  background: linear-gradient(90deg, rgba(255,184,46,0.12), rgba(255,214,102,0.28), rgba(255,184,46,0.12));
-  color: #ffe699;
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 0.5px;
-}
-
-.input-group {
-  margin-bottom: 10px;
-}
-
-.input-group input {
-  width: 100%;
-  height: 44px;
-  padding: 0 14px;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 207, 86, 0.45);
-  background: rgba(12, 0, 24, 0.78);
-  color: #fff;
-  font-size: 13.5px;
-  font-weight: 600;
-  outline: none;
-}
-
-.input-group input::placeholder { color: #bfa0d6; }
-.input-group input:focus {
-  border-color: #ffd66b;
-  box-shadow: 0 0 0 3px rgba(255, 214, 107, 0.18);
-}
-
-.btn {
-  width: 100%;
-  height: 45px;
-  border-radius: 13px;
-  font-family: 'Manrope', sans-serif;
-  font-weight: 800;
-  font-size: 13.5px;
-  letter-spacing: 0.6px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 9px;
-  transition: transform 0.14s ease, filter 0.14s ease;
-}
-
-.btn:active { transform: scale(0.98); filter: brightness(1.08); }
-
-.btn-gold {
-  margin-top: 4px;
-  border: 1.5px solid #fff2b2;
-  color: #361300;
-  background: linear-gradient(180deg, #ffec9e 0%, #ffb72b 55%, #d67200 100%);
-  box-shadow: 0 4px 0 #703200, 0 10px 22px rgba(255, 166, 0, 0.35);
-}
-
-.sep {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 12px 0;
-  color: #c8a6de;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 1.8px;
-}
-.sep::before, .sep::after {
-  content: "";
-  height: 1px;
-  flex: 1;
-  background: linear-gradient(90deg, transparent, rgba(255, 207, 86, 0.45), transparent);
-}
-
-.social-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-
-.btn-google {
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  background: rgba(255, 255, 255, 0.12);
-  color: #fff;
-}
-
-.btn-guest {
-  border: 1px solid rgba(255, 209, 92, 0.7);
-  background: rgba(138, 19, 189, 0.28);
-  color: #ffe69e;
-}
-
-.legal {
-  margin: 12px 0 0;
-  text-align: center;
-  font-size: 10px;
-  line-height: 1.45;
-  color: #c5a8d8;
-}
-.legal a { color: #ffd66b; text-decoration: none; }
-
-/* Portrait Mobile Responsive */
-@media (max-width: 768px) and (orientation: portrait) {
-  .bg-art {
-    object-position: 22% top;
-    opacity: 0.55;
-  }
-  .vignette {
-    background: linear-gradient(180deg, rgba(18, 0, 36, 0.35) 0%, rgba(16, 0, 32, 0.88) 46%, rgba(12, 0, 24, 0.96) 100%);
-  }
-  .stage {
-    grid-template-columns: 1fr;
-    padding: 18px 16px;
-    align-content: end;
-  }
-  .hero-space { min-height: 150px; }
-  .float-card.c3 { display: none; }
-}
-
-/* Landscape Mobile Responsive (matches your 16:9 image directly) */
-@media (orientation: landscape) and (max-height: 540px) {
-  .stage {
-    grid-template-columns: 0.95fr 1.05fr;
-    padding: 8px 18px;
-  }
-  .crest { margin-bottom: 8px; }
-  .crown-icon { font-size: 28px; }
-  .title-script { font-size: 34px; }
-  .diamond-ribbon { padding: 4px 20px; }
-  .diamond-ribbon span { font-size: 16px; letter-spacing: 4px; }
-  .gem-center { width: 32px; height: 32px; margin-top: -6px; }
-  .gem-center i { font-size: 15px; }
-  .login-box { padding: 12px 16px; border-radius: 16px; }
-  .bonus-pill { margin-bottom: 8px; padding: 4px 10px; font-size: 10.5px; }
-  .input-group { margin-bottom: 7px; }
-  .input-group input, .btn { height: 36px; font-size: 12px; }
-  .sep { margin: 8px 0; }
-  .legal { margin-top: 8px; font-size: 9px; }
-}
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;width:100%;min-height:100%;font-family:Manrope,sans-serif;color:#fff}
+body{min-height:100svh;display:flex;align-items:center;justify-content:flex-end;padding:clamp(12px,3vw,42px);overflow-x:hidden;background-color:#210039;background-image:linear-gradient(90deg,rgba(22,0,38,.03) 0%,rgba(22,0,38,.10) 42%,rgba(24,0,42,.56) 100%),url('assets/teen-patti-login-bg.png'),radial-gradient(ellipse at 75% 35%,#a900f2 0%,#3d0066 45%,#10001e 100%);background-size:cover;background-position:center;background-repeat:no-repeat;background-attachment:fixed}
+body:after{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at 80% 50%,transparent 20%,rgba(13,0,25,.2) 100%)}
+.wrap{position:relative;z-index:1;width:min(100%,430px);margin-right:clamp(0px,2vw,28px)}
+.login{position:relative;padding:clamp(22px,3vw,32px);border-radius:30px;background:linear-gradient(145deg,rgba(255,255,255,.19),rgba(130,33,184,.20) 35%,rgba(40,0,68,.76));border:1px solid rgba(255,225,153,.8);box-shadow:inset 5px 5px 14px rgba(255,255,255,.17),inset -7px -8px 18px rgba(17,0,35,.42),0 18px 45px rgba(10,0,22,.55),0 0 30px rgba(215,90,255,.28);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.login:before{content:"";position:absolute;inset:7px;border:1px solid rgba(255,224,151,.34);border-radius:23px;pointer-events:none}
+.head{text-align:center;margin:0 0 22px}
+h1{font:800 27px Cinzel,serif;color:#ffe5a0;text-shadow:0 2px 12px #ffb62d55;margin:0 0 6px}
+.sub{font-size:12px;color:#f0d9ff;margin:0}
+.field{display:block;margin:0 0 13px}
+.field span{display:block;margin:0 0 7px 4px;font-size:10px;font-weight:800;letter-spacing:1.1px;color:#ffe8bf;text-transform:uppercase}
+.field input{width:100%;height:48px;border:1px solid rgba(255,222,153,.65);border-radius:15px;padding:0 15px;background:linear-gradient(145deg,rgba(30,0,48,.65),rgba(91,0,130,.35));box-shadow:inset 4px 4px 10px rgba(0,0,0,.28),inset -2px -2px 7px rgba(255,255,255,.08);color:#fff;font:600 13px Manrope;outline:none}
+.field input::placeholder{color:#c7a7d7}
+.field input:focus{border-color:#fff0b5;box-shadow:0 0 0 3px #ffd66b24,inset 3px 3px 8px #0004}
+button{width:100%;height:48px;border-radius:15px;font:800 13px Manrope;cursor:pointer;transition:transform .15s,filter .15s}
+button:active{transform:translateY(2px) scale(.99);filter:brightness(1.12)}
+.primary{margin-top:4px;border:1px solid #fff0b0;color:#4a1d00;background:linear-gradient(145deg,#fff1b5,#ffd05d 48%,#d98519);box-shadow:inset 3px 3px 8px #ffffffa8,inset -4px -4px 8px #a64d1666,0 6px 0 #7d390b,0 10px 22px #ffad3444}
+.or{display:flex;align-items:center;gap:10px;margin:18px 0 13px;color:#e5c5f5;font-size:9px;letter-spacing:2px}
+.or:before,.or:after{content:"";height:1px;flex:1;background:linear-gradient(90deg,transparent,#e4b4ffb0)}.or:after{background:linear-gradient(90deg,#e4b4ffb0,transparent)}
+.social{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:10px;border:1px solid rgba(255,255,255,.52);color:#fff;background:linear-gradient(145deg,rgba(255,255,255,.22),rgba(87,0,123,.38));box-shadow:inset 3px 3px 8px #ffffff25,inset -4px -4px 9px #16002566,0 7px 18px #15002255}
+.fbmark{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:#fff;color:#2875e8;font:bold 18px Arial}
+.guest{border-color:rgba(255,219,133,.8);color:#ffe8aa;background:linear-gradient(145deg,rgba(255,255,255,.16),rgba(111,0,155,.38));box-shadow:inset 3px 3px 8px #ffffff20,inset -4px -4px 9px #16002555,0 7px 18px #15002255}
+.terms{text-align:center;color:#dfc5eb;font-size:9px;line-height:1.6;margin:15px 0 0}
+@media(orientation:landscape) and (max-height:600px){body{padding:10px 4vw;background-position:center 42%}.wrap{width:min(42vw,410px);margin-right:2vw}.login{padding:16px 22px;border-radius:23px}.head{margin-bottom:12px}h1{font-size:22px}.sub{font-size:10px}.field{margin-bottom:8px}.field span{font-size:9px;margin-bottom:4px}.field input,button{height:38px;border-radius:12px;font-size:11px}.or{margin:11px 0 8px;font-size:8px}.social{margin-top:7px}.terms{margin-top:9px;font-size:8px}}
+@media(orientation:portrait){body{justify-content:center;padding:18px 14px;background-position:35% center;background-attachment:scroll}.wrap{width:min(100%,410px);margin:0}.login{background:linear-gradient(145deg,rgba(67,0,96,.86),rgba(25,0,45,.91));backdrop-filter:blur(13px)}}
+@media(prefers-reduced-motion:reduce){button{transition:none}}
 </style>
 </head>
 <body>
-
-  <!-- Apni generated image ko 'bg-diamond.png' naam se same folder mein rakhein -->
-  <img class="bg-art" src="bg-diamond.png" alt="" onerror="this.style.display='none'; document.getElementById('fallbackHero').classList.add('show');">
-  <div class="vignette" aria-hidden="true"></div>
-
-  <div class="fx-layer" aria-hidden="true">
-    <div class="spark"></div><div class="spark"></div><div class="spark"></div><div class="spark"></div><div class="spark"></div>
-    <div class="float-card c1" style="--r:-16deg">A♠</div>
-    <div class="float-card c2" style="--r:-28deg">A♥</div>
-    <div class="float-card c3" style="--r:22deg">A♣</div>
-  </div>
-
-  <main class="stage">
-    <!-- Left Side: Character Art Area -->
-    <section class="hero-space" aria-hidden="true">
-      <div class="hero-fallback" id="fallbackHero">
-        <div style="font-size:52px; filter:drop-shadow(0 0 14px #ffd66b);">♛</div>
-        <p style="color:#ffe29a; font-family:Cinzel,serif; font-weight:700; margin:10px 0 4px;">ROYAL TABLE</p>
-        <small style="color:#d4b3eb;">Add <b>bg-diamond.png</b> in folder for character artwork</small>
-      </div>
-    </section>
-
-    <!-- Right Side: Logo Crest + Login Box -->
-    <section class="right-panel" aria-label="Teen Patti Diamond Login">
-      <div class="crest">
-        <div class="crown-icon">♛</div>
-        <h1 class="title-script">Teen Patti</h1>
-        <div class="diamond-ribbon"><span>DIAMOND</span></div>
-        <div class="gem-center"><i>♦</i></div>
-      </div>
-
-      <div class="login-box">
-        <div class="bonus-pill">♦ 1,20,000 Free Welcome Chips ♦</div>
-
-        <form id="loginForm">
-          <div class="input-group">
-            <input id="identity" type="text" autocomplete="username" placeholder="Mobile Number or Email" required>
-          </div>
-          <div class="input-group">
-            <input id="password" type="password" autocomplete="current-password" placeholder="Password" required>
-          </div>
-          <button class="btn btn-gold" type="submit">PLAY NOW</button>
-        </form>
-
-        <div class="sep">OR CONTINUE WITH</div>
-
-        <div class="social-row">
-          <button class="btn btn-google" type="button" id="googleBtn">Google</button>
-          <button class="btn btn-guest" type="button" id="guestBtn">Guest</button>
-        </div>
-
-        <p class="legal">
-          For entertainment purposes only (No real money). By signing in, you agree to our
-          <a href="#terms">Terms</a> &amp; <a href="#privacy">Privacy Policy</a>.
-        </p>
-      </div>
-    </section>
-  </main>
-
+<main class="wrap">
+<section class="login" aria-label="Teen Patti Diamond login">
+<header class="head"><h1>Welcome Back</h1><p class="sub">Enter the royal table and enjoy the game</p></header>
+<form id="loginForm">
+<label class="field"><span>Mobile number or email</span><input id="identity" type="text" autocomplete="username" placeholder="Enter mobile number or email" required></label>
+<label class="field"><span>Password</span><input id="password" type="password" autocomplete="current-password" placeholder="Enter password" required></label>
+<button class="primary" type="submit">LOGIN</button>
+</form>
+<div class="or">OR CONTINUE WITH</div>
+<button class="social" id="facebookBtn" type="button"><span class="fbmark">f</span> Continue with Facebook</button>
+<button class="guest" id="guestBtn" type="button">Continue as Guest</button>
+<p class="terms">By continuing, you agree to the Terms of Service and Privacy Policy.</p>
+</section>
+</main>
 <script>
-  document.getElementById('loginForm').addEventListener('submit', (e) => {
-    e.preventDefault();
-    alert('Login submitted — connect Supabase / backend auth here.');
-  });
-  document.getElementById('googleBtn').addEventListener('click', () => {
-    alert('Google Login clicked — connect Supabase Google OAuth here.');
-  });
-  document.getElementById('guestBtn').addEventListener('click', () => {
-    alert('Guest Login clicked — start guest virtual-chip session.');
-  });
+document.getElementById('loginForm').addEventListener('submit',e=>{e.preventDefault();alert('Connect your existing login API here.')});
+document.getElementById('facebookBtn').addEventListener('click',()=>alert('Connect Facebook Login here.'));
+document.getElementById('guestBtn').addEventListener('click',()=>alert('Connect guest-session logic here.'));
 </script>
 </body>
 </html>
