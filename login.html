@@ -105,7 +105,7 @@ document.getElementById('facebookBtn').addEventListener('click',()=>alert('Faceb
 document.getElementById('googleBtn').addEventListener('click',()=>alert('Google sign-in setup required: connect your Google OAuth client to enable login.'));
 document.getElementById('guestBtn').addEventListener('click',()=>alert('Guest session logic ko game ke saath connect karna baaki hai.'));
 
-if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=16',{updateViaCache:'none'}).then(reg=>reg.update()).catch(()=>{}));
+if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=17',{updateViaCache:'none'}).then(reg=>reg.update()).catch(()=>{}));
 if(window.matchMedia('(display-mode: standalone)').matches||window.matchMedia('(display-mode: fullscreen)').matches||window.navigator.standalone){
  const lock=()=>{if(screen.orientation&&screen.orientation.lock)screen.orientation.lock('landscape').catch(()=>{});};
  lock();window.addEventListener('load',lock);document.addEventListener('visibilitychange',()=>{if(!document.hidden)lock();});
