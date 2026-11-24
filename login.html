@@ -30,12 +30,42 @@ body:before{left:-30vw;top:-38vw}body:after{right:-35vw;bottom:-40vw}
 .bonus-message{display:none;min-height:42px;margin:0 auto 14px;max-width:460px;display:flex;align-items:center;justify-content:center;padding:7px 12px;color:#ffe7ad;font:700 clamp(12px,1.55vw,17px) Manrope,sans-serif;text-align:center;line-height:1.35;letter-spacing:.2px;text-shadow:0 0 12px #ffca5d88;opacity:0;transform:translateY(7px);transition:opacity .8s ease,transform .8s ease}.bonus-message.show{opacity:1;transform:translateY(0)}.brand-logo{display:block;width:min(390px,88%);height:auto;max-height:170px;object-fit:contain;margin:0 auto 20px;filter:drop-shadow(0 8px 18px #d94cff66);user-select:none;-webkit-user-drag:none;pointer-events:none}.social-row{display:flex;justify-content:center;gap:12px;margin:0 auto 12px}.social-btn{width:62px;height:54px;border-radius:17px;display:grid;place-items:center;cursor:pointer;position:relative;overflow:hidden;border:1px solid #ffffff55;box-shadow:5px 5px 12px #10001888,-4px -4px 12px #ffffff18,inset 2px 2px 5px #ffffff66,inset -3px -3px 6px #0005}.social-btn svg{width:27px;height:27px;position:relative;z-index:1}.facebook{color:#fff;background:linear-gradient(145deg,#66b4ff 0%,#1877f2 48%,#0755b8 100%);border-color:#a9d7ff;box-shadow:5px 6px 13px #080d2688,-3px -3px 10px #ffffff35,inset 2px 2px 5px #ffffff88,inset -3px -3px 7px #003d8c}.google{background:linear-gradient(145deg,#623a7d,#2b1044)}.guest-btn{width:156px;height:48px;border-radius:16px;display:flex;align-items:center;justify-content:center;gap:10px;margin:0 auto;color:#fff;font:700 16px Manrope;cursor:pointer;position:relative;overflow:hidden;background:linear-gradient(145deg,#424b59,#151a25 70%);border:1px solid #a9b4c455;box-shadow:5px 5px 12px #10001899,-4px -4px 12px #ffffff14,inset 2px 2px 5px #ffffff30,inset -3px -3px 7px #0009}.legal{font-size:10px;color:#d9b7ed;line-height:1.7;margin:7px 0 0}.legal a{color:#ffe2a0;text-decoration:underline;text-underline-offset:2px}.note{font-size:11px;color:#d9b7ed;line-height:1.6;margin-top:12px}
 @media(max-width:700px) and (orientation:portrait){body{padding:8px 14px}.page{height:100%;grid-template-columns:1fr;grid-template-rows:auto 1fr;grid-template-areas:"art" "login";gap:0;max-width:460px}.art{height:100%;max-height:42dvh;gap:0}.character{height:38dvh;max-height:38dvh;width:145%;max-width:520px}.brand{font-size:clamp(25px,7vw,34px);margin:0}.diamond{font-size:15px;padding:4px 18px}.login{padding:8px 5px;transform:translateY(3vh)}.bonus-message{min-height:38px;margin-bottom:8px;font-size:12px}.offer{font-size:18px;margin-bottom:8px;padding:8px 14px}.brand-logo{width:min(300px,82%);max-height:110px;margin-bottom:12px}.login-brand span{font-size:clamp(24px,7vw,32px)}.social-btn{width:58px;height:50px}.guest-btn{width:145px;height:44px}.note{margin-top:6px}.legal{font-size:9px;margin-top:3px}.top-tools{top:8px;right:8px}}
 @media(orientation:landscape){body{padding:0 3vw}.page{grid-template-columns:.95fr 1.05fr;grid-template-areas:"login art";gap:2vw;max-width:1380px}.character{height:98dvh;max-height:98dvh;width:155%;max-width:1100px;margin:0}.brand{font-size:clamp(30px,4.2vw,56px)}.diamond{font-size:clamp(16px,1.9vw,23px);padding:5px 20px}.offer{font-size:clamp(20px,2.2vw,29px);margin-bottom:18px}.brand-logo{width:min(350px,88%);max-height:145px;margin-bottom:16px}.social-btn{width:62px;height:54px}.guest-btn{width:156px;height:48px}.note{margin-top:10px}}
+
+/* Floating playing cards around the character artwork */
+.art{isolation:isolate}
+.character{position:relative;z-index:1}
+.card-sprinkle{position:absolute;inset:2% 1%;z-index:2;pointer-events:none;overflow:hidden}
+.play-card{position:absolute;width:clamp(38px,5.1vw,66px);height:clamp(57px,7.4vw,96px);border-radius:7px;background:linear-gradient(145deg,#fff 0%,#f7f4ef 100%);border:1px solid #d9d3cc;box-shadow:0 8px 18px #08000d88, inset 0 0 0 1px #fff;display:flex;align-items:center;justify-content:center;color:#171717;font-family:Georgia,serif;font-weight:700;transform-origin:center;}
+.play-card.red{color:#d71935}
+.play-card .pip{font-size:clamp(20px,2.8vw,35px);line-height:1;text-shadow:0 1px 0 #0001}
+.play-card .corner{position:absolute;left:5px;top:3px;font-size:clamp(9px,1.15vw,14px);line-height:.95;text-align:center}
+.play-card .corner.bottom{left:auto;top:auto;right:5px;bottom:3px;transform:rotate(180deg)}
+.play-card.c1{left:3%;top:12%;transform:rotate(-19deg)}
+.play-card.c2{left:22%;top:2%;transform:rotate(13deg)}
+.play-card.c3{right:19%;top:5%;transform:rotate(-14deg)}
+.play-card.c4{right:2%;top:23%;transform:rotate(17deg)}
+.play-card.c5{left:1%;top:48%;transform:rotate(13deg)}
+.play-card.c6{right:0%;top:52%;transform:rotate(-18deg)}
+.play-card.c7{left:12%;bottom:7%;transform:rotate(-12deg)}
+.play-card.c8{right:13%;bottom:5%;transform:rotate(15deg)}
+@media(max-width:700px) and (orientation:portrait){.play-card{width:36px;height:53px}.card-sprinkle{inset:0}.play-card.c1{left:1%;top:8%}.play-card.c2{left:18%;top:0}.play-card.c3{right:18%;top:0}.play-card.c4{right:0;top:12%}.play-card.c5{left:0;top:48%}.play-card.c6{right:0;top:48%}.play-card.c7{left:8%;bottom:3%}.play-card.c8{right:8%;bottom:3%}}
+
 </style>
 </head>
 <body>
 <main class="page">
 <section class="art" aria-label="Teen Patti Diamond character">
 <img class="character" src="./bg-diamond.png" alt="Teen Patti Diamond character">
+<div class="card-sprinkle" aria-hidden="true">
+<span class="play-card c1"><span class="corner">A<br>♦</span><span class="pip">♦</span><span class="corner bottom">A<br>♦</span></span>
+<span class="play-card c2"><span class="corner">9<br>♠</span><span class="pip">♠</span><span class="corner bottom">9<br>♠</span></span>
+<span class="play-card red c3"><span class="corner">8<br>♥</span><span class="pip">♥</span><span class="corner bottom">8<br>♥</span></span>
+<span class="play-card red c4"><span class="corner">3<br>♦</span><span class="pip">♦</span><span class="corner bottom">3<br>♦</span></span>
+<span class="play-card c5"><span class="corner">7<br>♠</span><span class="pip">♠</span><span class="corner bottom">7<br>♠</span></span>
+<span class="play-card c6"><span class="corner">8<br>♣</span><span class="pip">♣</span><span class="corner bottom">8<br>♣</span></span>
+<span class="play-card c7"><span class="corner">5<br>♠</span><span class="pip">♠</span><span class="corner bottom">5<br>♠</span></span>
+<span class="play-card red c8"><span class="corner">6<br>♥</span><span class="pip">♥</span><span class="corner bottom">6<br>♥</span></span>
+</div>
 
 </section>
 <section class="login" aria-label="Choose login method">
