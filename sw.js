@@ -1,5 +1,5 @@
-const CACHE_NAME = 'teen-patti-diamond-v10';
-const APP_SHELL = ['./', './index.html', './login.html', './manifest.json'];
+const CACHE_NAME = 'teen-patti-diamond-v11';
+const APP_SHELL = ['./', './index.html', './login.html', './manifest.json', './teen-patti-diamond-logo.png', './bg-diamond.png'];
 
 self.addEventListener('install', event => {
   event.waitUntil(
