@@ -4,7 +4,7 @@
   "description": "Teen Patti Diamond game",
   "start_url": "./login.html",
   "scope": "./",
-  "display": "fullscreen",
+  "display": "standalone",
   "orientation": "landscape",
   "background_color": "#210039",
   "theme_color": "#260044",
