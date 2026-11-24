@@ -31,27 +31,26 @@ body:before{left:-30vw;top:-38vw}body:after{right:-35vw;bottom:-40vw}
 @media(max-width:700px) and (orientation:portrait){body{padding:8px 14px}.page{height:100%;grid-template-columns:1fr;grid-template-rows:auto 1fr;grid-template-areas:"art" "login";gap:0;max-width:460px}.art{height:100%;max-height:42dvh;gap:0}.character{height:38dvh;max-height:38dvh;width:145%;max-width:520px}.brand{font-size:clamp(25px,7vw,34px);margin:0}.diamond{font-size:15px;padding:4px 18px}.login{padding:8px 5px;transform:translateY(3vh)}.bonus-message{min-height:38px;margin-bottom:8px;font-size:12px}.offer{font-size:18px;margin-bottom:8px;padding:8px 14px}.brand-logo{width:min(300px,82%);max-height:110px;margin-bottom:12px}.login-brand span{font-size:clamp(24px,7vw,32px)}.social-btn{width:58px;height:50px}.guest-btn{width:145px;height:44px}.note{margin-top:6px}.legal{font-size:9px;margin-top:3px}.top-tools{top:8px;right:8px}}
 @media(orientation:landscape){body{padding:0 3vw}.page{grid-template-columns:.95fr 1.05fr;grid-template-areas:"login art";gap:2vw;max-width:1380px}.character{height:98dvh;max-height:98dvh;width:155%;max-width:1100px;margin:0}.brand{font-size:clamp(30px,4.2vw,56px)}.diamond{font-size:clamp(16px,1.9vw,23px);padding:5px 20px}.offer{font-size:clamp(20px,2.2vw,29px);margin-bottom:18px}.brand-logo{width:min(350px,88%);max-height:145px;margin-bottom:16px}.social-btn{width:62px;height:54px}.guest-btn{width:156px;height:48px}.note{margin-top:10px}}
 
-/* Cards fall continuously beside the character, behind her artwork */
-.art{isolation:isolate}
-.character{position:relative;z-index:1}
+/* Random small cards falling in 10 different paths */
+.art{isolation:isolate}.character{position:relative;z-index:1}
 .card-sprinkle{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-.play-card{position:absolute;width:clamp(36px,4.6vw,60px);height:clamp(54px,6.8vw,82px);border-radius:7px;background:linear-gradient(145deg,#fff 0%,#f7f4ef 100%);border:1px solid #d9d3cc;box-shadow:0 7px 16px #08000d88,inset 0 0 0 1px #fff;display:flex;align-items:center;justify-content:center;color:#171717;font-family:Georgia,serif;font-weight:700;will-change:transform,opacity;animation:card-fall 8s linear infinite}
-.play-card.red{color:#d71935}
-.play-card .pip{font-size:clamp(19px,2.5vw,31px);line-height:1}
-.play-card .corner{position:absolute;left:5px;top:3px;font-size:clamp(9px,1vw,13px);line-height:.95;text-align:center}
-.play-card .corner.bottom{left:auto;top:auto;right:5px;bottom:3px;transform:rotate(180deg)}
-.play-card.c1{left:2%;top:-110px;--tilt:-18deg;animation-delay:-1s}
-.play-card.c2{left:13%;top:-110px;--tilt:14deg;animation-delay:-5s}
-.play-card.c3{right:13%;top:-110px;--tilt:-13deg;animation-delay:-3s}
-.play-card.c4{right:2%;top:-110px;--tilt:17deg;animation-delay:-7s}
-.play-card.c5{left:5%;top:-110px;--tilt:12deg;animation-delay:-4s}
-.play-card.c6{right:5%;top:-110px;--tilt:-17deg;animation-delay:-2s}
-.play-card.c7{left:16%;top:-110px;--tilt:-10deg;animation-delay:-6s}
-.play-card.c8{right:16%;top:-110px;--tilt:15deg;animation-delay:0s}
-@keyframes card-fall{0%{transform:translate3d(0,-5vh,0) rotate(var(--tilt));opacity:0}8%{opacity:1}82%{opacity:1}100%{transform:translate3d(18px,115vh,0) rotate(calc(var(--tilt) + 45deg));opacity:0}}
-@media(max-width:700px) and (orientation:portrait){.play-card{width:32px;height:48px}.play-card.c1{left:0}.play-card.c2{left:10%}.play-card.c3{right:10%}.play-card.c4{right:0}.play-card.c5{left:2%}.play-card.c6{right:2%}.play-card.c7{left:13%}.play-card.c8{right:13%}}
-@media(prefers-reduced-motion:reduce){.play-card{animation:none;opacity:.65;top:10%}}
-
+.play-card{position:absolute;top:-90px;width:clamp(27px,3.3vw,42px);height:clamp(41px,5vw,63px);border-radius:5px;background:linear-gradient(145deg,#fff,#f2eee8);border:1px solid #d7d0c8;box-shadow:0 5px 12px #08000d77,inset 0 0 0 1px #fff;display:flex;align-items:center;justify-content:center;color:#151515;font-family:Georgia,serif;font-weight:700;will-change:transform,opacity;animation-duration:var(--duration,8s);animation-delay:var(--delay,0s);animation-timing-function:linear;animation-iteration-count:infinite}
+.play-card.red{color:#d71935}.play-card .pip{font-size:clamp(16px,1.9vw,24px);line-height:1}.play-card .corner{position:absolute;left:4px;top:3px;font-size:clamp(7px,.8vw,10px);line-height:.9;text-align:center}.play-card .corner.bottom{left:auto;top:auto;right:4px;bottom:3px;transform:rotate(180deg)}.play-card .face{font-size:clamp(17px,2vw,24px);text-shadow:0 1px #d9a84d}.play-card .crown{position:absolute;top:12px;font-size:9px;color:#d49a22}
+.play-card.joker{background:linear-gradient(145deg,#fff9d9,#fff 55%,#f0ddff);color:#6923a5}.play-card.joker .pip{font-size:9px;letter-spacing:-.5px}.play-card.joker:after{content:"★";position:absolute;bottom:8px;font-size:12px;color:#c02b51}
+.play-card.c1{left:2%}.play-card.c2{left:14%}.play-card.c3{left:27%}.play-card.c4{right:27%}.play-card.c5{right:14%}.play-card.c6{right:2%}.play-card.c7{left:8%}.play-card.c8{right:8%}.play-card.c9{left:36%}.play-card.c10{right:36%}
+@keyframes cardFall0{0%{transform:translate(0,-8vh) rotate(-24deg);opacity:0}8%{opacity:1}100%{transform:translate(-22px,115vh) rotate(120deg);opacity:0}}
+@keyframes cardFall1{0%{transform:translate(0,-8vh) rotate(18deg);opacity:0}8%{opacity:1}100%{transform:translate(34px,115vh) rotate(205deg);opacity:0}}
+@keyframes cardFall2{0%{transform:translate(0,-8vh) rotate(-8deg);opacity:0}8%{opacity:1}100%{transform:translate(12px,115vh) rotate(-155deg);opacity:0}}
+@keyframes cardFall3{0%{transform:translate(0,-8vh) rotate(30deg);opacity:0}8%{opacity:1}100%{transform:translate(-38px,115vh) rotate(170deg);opacity:0}}
+@keyframes cardFall4{0%{transform:translate(0,-8vh) rotate(-32deg);opacity:0}8%{opacity:1}100%{transform:translate(42px,115vh) rotate(145deg);opacity:0}}
+@keyframes cardFall5{0%{transform:translate(0,-8vh) rotate(8deg);opacity:0}8%{opacity:1}100%{transform:translate(-12px,115vh) rotate(230deg);opacity:0}}
+@keyframes cardFall6{0%{transform:translate(0,-8vh) rotate(22deg);opacity:0}8%{opacity:1}100%{transform:translate(25px,115vh) rotate(-120deg);opacity:0}}
+@keyframes cardFall7{0%{transform:translate(0,-8vh) rotate(-16deg);opacity:0}8%{opacity:1}100%{transform:translate(-30px,115vh) rotate(185deg);opacity:0}}
+@keyframes cardFall8{0%{transform:translate(0,-8vh) rotate(35deg);opacity:0}8%{opacity:1}100%{transform:translate(18px,115vh) rotate(-190deg);opacity:0}}
+@keyframes cardFall9{0%{transform:translate(0,-8vh) rotate(-28deg);opacity:0}8%{opacity:1}100%{transform:translate(-45px,115vh) rotate(155deg);opacity:0}}
+.play-card.m0{animation-name:cardFall0}.play-card.m1{animation-name:cardFall1}.play-card.m2{animation-name:cardFall2}.play-card.m3{animation-name:cardFall3}.play-card.m4{animation-name:cardFall4}.play-card.m5{animation-name:cardFall5}.play-card.m6{animation-name:cardFall6}.play-card.m7{animation-name:cardFall7}.play-card.m8{animation-name:cardFall8}.play-card.m9{animation-name:cardFall9}
+@media(max-width:700px) and (orientation:portrait){.play-card{width:24px;height:36px}.play-card .pip{font-size:14px}.play-card .face{font-size:14px}.play-card .corner{font-size:6px}}
+@media(prefers-reduced-motion:reduce){.play-card{animation:none;opacity:.55;top:12%}}
 
 </style>
 </head>
@@ -60,14 +59,16 @@ body:before{left:-30vw;top:-38vw}body:after{right:-35vw;bottom:-40vw}
 <section class="art" aria-label="Teen Patti Diamond character">
 <img class="character" src="./bg-diamond.png" alt="Teen Patti Diamond character">
 <div class="card-sprinkle" aria-hidden="true">
-<span class="play-card c1"><span class="corner">A<br>♦</span><span class="pip">♦</span><span class="corner bottom">A<br>♦</span></span>
-<span class="play-card c2"><span class="corner">9<br>♠</span><span class="pip">♠</span><span class="corner bottom">9<br>♠</span></span>
-<span class="play-card red c3"><span class="corner">8<br>♥</span><span class="pip">♥</span><span class="corner bottom">8<br>♥</span></span>
-<span class="play-card red c4"><span class="corner">3<br>♦</span><span class="pip">♦</span><span class="corner bottom">3<br>♦</span></span>
-<span class="play-card c5"><span class="corner">7<br>♠</span><span class="pip">♠</span><span class="corner bottom">7<br>♠</span></span>
-<span class="play-card c6"><span class="corner">8<br>♣</span><span class="pip">♣</span><span class="corner bottom">8<br>♣</span></span>
-<span class="play-card c7"><span class="corner">5<br>♠</span><span class="pip">♠</span><span class="corner bottom">5<br>♠</span></span>
-<span class="play-card red c8"><span class="corner">6<br>♥</span><span class="pip">♥</span><span class="corner bottom">6<br>♥</span></span>
+<span class="play-card c1"><span class="corner">A<br>♠</span><span class="pip">♠</span><span class="corner bottom">A<br>♠</span></span>
+<span class="play-card red c2"><span class="corner">K<br>♥</span><span class="face">K</span><span class="crown">♛</span><span class="corner bottom">K<br>♥</span></span>
+<span class="play-card c3"><span class="corner">Q<br>♣</span><span class="face">Q</span><span class="crown">♛</span><span class="corner bottom">Q<br>♣</span></span>
+<span class="play-card red c4"><span class="corner">J<br>♦</span><span class="face">J</span><span class="crown">♛</span><span class="corner bottom">J<br>♦</span></span>
+<span class="play-card joker c5"><span class="corner">★</span><span class="pip">JOKER</span><span class="corner bottom">★</span></span>
+<span class="play-card red c6"><span class="corner">10<br>♥</span><span class="pip">♥</span><span class="corner bottom">10<br>♥</span></span>
+<span class="play-card c7"><span class="corner">9<br>♠</span><span class="pip">♠</span><span class="corner bottom">9<br>♠</span></span>
+<span class="play-card red c8"><span class="corner">8<br>♦</span><span class="pip">♦</span><span class="corner bottom">8<br>♦</span></span>
+<span class="play-card c9"><span class="corner">7<br>♣</span><span class="pip">♣</span><span class="corner bottom">7<br>♣</span></span>
+<span class="play-card red c10"><span class="corner">A<br>♦</span><span class="pip">♦</span><span class="corner bottom">A<br>♦</span></span>
 </div>
 
 </section>
@@ -82,6 +83,16 @@ body:before{left:-30vw;top:-38vw}body:after{right:-35vw;bottom:-40vw}
 </section>
 </main>
 <script>
+// Shuffle each card's fall direction and speed on load and after every fall.
+(()=>{
+ const cards=[...document.querySelectorAll('.play-card')];
+ const randomize=card=>{
+  for(let i=0;i<10;i++)card.classList.remove('m'+i);
+  card.classList.add('m'+Math.floor(Math.random()*10));
+  card.style.setProperty('--duration',(7+Math.random()*5).toFixed(2)+'s');
+ };
+ cards.forEach(card=>{randomize(card);card.addEventListener('animationiteration',()=>randomize(card));});
+})();
 document.getElementById('facebookBtn').addEventListener('click',()=>alert('Facebook sign-in setup required: connect your Facebook OAuth app to enable login.'));
 document.getElementById('googleBtn').addEventListener('click',()=>alert('Google sign-in setup required: connect your Google OAuth client to enable login.'));
 document.getElementById('guestBtn').addEventListener('click',()=>alert('Guest session logic ko game ke saath connect karna baaki hai.'));
