@@ -12,10 +12,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Manrope:wght@400;600;700;800&display=swap');
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;width:100%;height:100%;min-height:100%;font-family:Manrope,sans-serif;color:#fff;overflow:hidden;overscroll-behavior:none;touch-action:pan-x}
-body{height:100svh;min-height:0;overflow:hidden;background:radial-gradient(ellipse at 35% 45%,#7b00c6 0%,#31004e 52%,#100019 100%);display:flex;align-items:center;justify-content:center;padding:24px}
+body{height:100dvh;min-height:100dvh;overflow:hidden;background:radial-gradient(ellipse at 35% 45%,#7b00c6 0%,#31004e 52%,#100019 100%);display:flex;align-items:center;justify-content:center;padding:24px}
 body:before,body:after{content:"";position:fixed;pointer-events:none;border:1px solid #e6a9ff28;border-radius:50%;width:70vw;height:70vw;max-width:850px;max-height:850px}body:after{box-shadow:0 0 80px #8b26d522 inset}.sparkle{position:fixed;pointer-events:none;color:#ffe49a;text-shadow:0 0 12px #ffcc55;opacity:.75;z-index:0}.sparkle.one{left:7%;top:18%;font-size:20px}.sparkle.two{right:8%;top:24%;font-size:14px}.sparkle.three{right:45%;bottom:12%;font-size:18px}.top-tools{position:fixed;z-index:5;right:18px;top:14px;display:flex;gap:9px}.tool-btn{width:38px;height:38px;border-radius:50%;border:1px solid #ffd77a66;background:#2d0645aa;color:#ffe6a2;display:grid;place-items:center;font-size:19px;cursor:pointer;backdrop-filter:blur(8px)}
 body:before{left:-30vw;top:-38vw}body:after{right:-35vw;bottom:-40vw}
-.page{position:relative;z-index:1;width:min(1380px,100%);height:100%;display:grid;grid-template-columns:1fr 1fr;grid-template-areas:"login art";gap:clamp(20px,4vw,60px);align-items:center;margin:auto}
+.page{position:relative;z-index:1;width:min(1380px,100%);height:100dvh;display:grid;grid-template-columns:1fr 1fr;grid-template-areas:"login art";gap:clamp(20px,4vw,60px);align-items:center;margin:auto}
 .art{grid-area:art;min-width:0;height:100%;max-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:hidden;position:relative}.art:before{content:"";position:absolute;z-index:-1;left:8%;right:8%;bottom:7%;height:18%;background:radial-gradient(ellipse,#ffca5d75 0%,#a72bff38 38%,transparent 73%);filter:blur(14px)}.art:after{content:"";position:absolute;z-index:-1;left:12%;right:12%;bottom:5%;height:2px;background:linear-gradient(90deg,transparent,#ffd36d,#fff0b1,#ffd36d,transparent);box-shadow:0 0 20px 7px #ffb52d44;border-radius:50%}
 .character{display:block;width:auto;height:88dvh;max-width:100%;max-height:100%;min-height:0;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 0 30px #d54affaa) drop-shadow(0 14px 12px #160020aa);margin:0;flex:0 1 auto;user-select:none;-webkit-user-drag:none;pointer-events:none}
 
@@ -105,7 +105,7 @@ document.getElementById('facebookBtn').addEventListener('click',()=>alert('Faceb
 document.getElementById('googleBtn').addEventListener('click',()=>alert('Google sign-in setup required: connect your Google OAuth client to enable login.'));
 document.getElementById('guestBtn').addEventListener('click',()=>alert('Guest session logic ko game ke saath connect karna baaki hai.'));
 
-if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=16',{updateViaCache:'none'}).then(reg=>reg.update()).catch(()=>{}));
 if(window.matchMedia('(display-mode: standalone)').matches||window.matchMedia('(display-mode: fullscreen)').matches||window.navigator.standalone){
  const lock=()=>{if(screen.orientation&&screen.orientation.lock)screen.orientation.lock('landscape').catch(()=>{});};
  lock();window.addEventListener('load',lock);document.addEventListener('visibilitychange',()=>{if(!document.hidden)lock();});
