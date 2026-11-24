@@ -18,16 +18,16 @@ body:before{left:-30vw;top:-38vw}body:after{right:-35vw;bottom:-40vw}
 .page{position:relative;z-index:1;width:min(1180px,100%);display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(25px,5vw,70px);align-items:center}
 .art{min-width:0;display:flex;flex-direction:column;align-items:center;text-align:center}
 .character{display:block;width:min(100%,520px);height:min(76svh,700px);object-fit:contain;object-position:center bottom;filter:drop-shadow(0 0 25px #d54aff88)}
-.brand{font:800 clamp(30px,5vw,56px)/1.05 Cinzel,serif;letter-spacing:1px;color:#ffe078;text-shadow:0 3px 0 #7c3300,0 0 24px #ed8bff;margin:0 0 12px}
+.brand{font:800 clamp(34px,5.2vw,64px)/1.02 Cinzel,serif;letter-spacing:1px;color:#ffe078;text-shadow:0 2px 0 #fff0a4,0 5px 0 #9b4b00,0 8px 14px #17001f,0 0 28px #ff9d2f;margin:0 0 12px;position:relative}.brand:before{content:"♛";display:block;font:700 clamp(32px,4vw,48px)/1 Georgia,serif;color:#ffd45e;text-shadow:0 2px 0 #7d3500,0 0 18px #ffe07a;margin-bottom:8px}
 .diamond{font:700 clamp(18px,2.5vw,27px) Cinzel,serif;letter-spacing:7px;color:#fff0ce;text-shadow:0 0 18px #d15aff;border:1px solid #ffcf6b;border-radius:999px;padding:8px 24px;background:linear-gradient(90deg,#3d005d,#8500ba,#3d005d)}
 .login{width:100%;max-width:440px;margin:auto;text-align:center;padding:20px 8px;background:transparent;border:0;box-shadow:none}
 .offer{font:700 clamp(22px,3vw,32px) Cinzel,serif;color:#ffe4a0;text-shadow:0 2px 12px #ffb52d66;margin:0 0 30px}
-.action{width:100%;min-height:86px;border-radius:17px;display:flex;align-items:center;justify-content:center;gap:22px;margin:0 auto 22px;cursor:pointer;font:700 clamp(20px,2.6vw,29px) Manrope;transition:transform .15s,filter .15s}
+.action{width:100%;min-height:82px;border-radius:18px;display:grid;grid-template-columns:76px 1fr 76px;align-items:center;justify-items:center;margin:0 auto 22px;cursor:pointer;font:800 clamp(19px,2.2vw,25px) Manrope;line-height:1.15;transition:transform .15s,filter .15s;padding:8px 16px;text-align:center}
 .action:active{transform:translateY(2px) scale(.99);filter:brightness(1.12)}
-.facebook{color:white;border:2px solid #9fc5ff;background:linear-gradient(180deg,#5794e6,#174b9c 80%);box-shadow:inset 0 2px 6px #ffffff70,0 6px 0 #102f67,0 12px 24px #0006}
-.ficon{font:bold 55px Arial;line-height:1}
-.guest{max-width:82%;min-height:72px;margin:30px auto 0;color:#fff;border:2px solid #68717c;background:linear-gradient(180deg,#29313b,#090d12 80%);box-shadow:inset 0 2px 6px #ffffff25,0 5px 0 #030508,0 12px 22px #0008}
-.usericon{font-size:38px}
+.facebook{color:white;border:2px solid #a9d0ff;background:linear-gradient(180deg,#68a8ff 0%,#2871ce 48%,#17488f 100%);box-shadow:inset 0 3px 5px #ffffff8c,inset 0 -4px 0 #123b79,0 5px 0 #0c2c62,0 11px 22px #0007}
+.ficon{font:900 58px Arial,sans-serif;line-height:1;grid-column:1;color:#fff;text-shadow:0 2px 1px #17417e}.facebook span:last-child{grid-column:2/4;justify-self:center}
+.guest{max-width:86%;min-height:72px;margin:30px auto 0;color:#fff;border:2px solid #8995a4;background:linear-gradient(180deg,#303a47 0%,#151b24 50%,#070a10 100%);box-shadow:inset 0 3px 6px #ffffff35,inset 0 -4px 0 #05070a,0 5px 0 #030508,0 12px 22px #0008}
+.usericon{font-size:0;grid-column:1;justify-self:center;width:43px;height:43px;position:relative}.usericon:before{content:"";position:absolute;top:0;left:13px;width:18px;height:18px;border-radius:50%;background:#e9edf4}.usericon:after{content:"";position:absolute;left:5px;bottom:0;width:34px;height:22px;border-radius:18px 18px 7px 7px;background:#e9edf4}.guest span:last-child{grid-column:2/4;justify-self:center}
 .note{font-size:11px;color:#d9b7ed;line-height:1.6;margin-top:28px}
 @media(max-width:700px){body{padding:15px}.page{grid-template-columns:1fr;gap:0;max-width:460px}.art{gap:4px}.character{height:36svh;width:100%;max-width:360px;object-position:center bottom}.brand{font-size:clamp(27px,8vw,38px);margin:0}.diamond{font-size:17px;padding:6px 20px}.login{padding:20px 5px}.offer{font-size:23px;margin-bottom:20px}.action{min-height:68px;font-size:21px;margin-bottom:17px}.ficon{font-size:45px}.guest{min-height:62px;margin-top:20px}.note{margin-top:18px}}
 @media(orientation:landscape) and (max-height:600px){body{padding:8px 3vw}.page{grid-template-columns:1fr 1fr;gap:3vw}.character{height:68svh;width:100%}.brand{font-size:clamp(24px,4vw,40px)}.diamond{font-size:17px}.offer{font-size:22px;margin-bottom:16px}.action{min-height:58px;margin-bottom:13px;font-size:20px}.ficon{font-size:38px}.guest{min-height:54px;margin-top:12px}.note{margin-top:12px}}
@@ -42,8 +42,8 @@ body:before{left:-30vw;top:-38vw}body:after{right:-35vw;bottom:-40vw}
 </section>
 <section class="login" aria-label="Choose login method">
 <h2 class="offer">1,20,000 Chips Free!</h2>
-<button class="action facebook" id="facebookBtn" type="button"><span class="ficon">f</span><span>Login using<br><strong>Facebook</strong></span></button>
-<button class="action guest" id="guestBtn" type="button"><span class="usericon">👤</span><span>Guest</span></button>
+<button class="action facebook" id="facebookBtn" type="button"><span class="ficon" aria-hidden="true">f</span><span>Login using<br><strong>Facebook</strong></span></button>
+<button class="action guest" id="guestBtn" type="button"><span class="usericon" aria-hidden="true"></span><span>Guest</span></button>
 <p class="note">Play for fun. No real-money play or cash prizes.</p>
 </section>
 </main>
