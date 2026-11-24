@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<defs><radialGradient id="bg"><stop stop-color="#8500cf"/><stop offset="1" stop-color="#160020"/></radialGradient><linearGradient id="gold" x2="0" y2="1"><stop stop-color="#fff4a8"/><stop offset=".45" stop-color="#ffbf35"/><stop offset="1" stop-color="#a64a00"/></linearGradient></defs>
+<rect width="512" height="512" rx="112" fill="url(#bg)"/>
+<path d="M256 65 310 168 256 270 202 168Z" fill="#b400ff" stroke="url(#gold)" stroke-width="13"/>
+<path d="M256 65 310 168 256 145 202 168Z" fill="#f5c8ff"/>
+<path d="M120 190Q256 115 392 190L365 232Q256 185 147 232Z" fill="url(#gold)" stroke="#6c2600" stroke-width="8"/>
+<text x="256" y="300" text-anchor="middle" font-family="Georgia,serif" font-size="78" font-weight="bold" fill="url(#gold)" stroke="#5c1c00" stroke-width="4" paint-order="stroke">TP</text>
+<text x="256" y="370" text-anchor="middle" font-family="Georgia,serif" font-size="42" font-weight="bold" fill="#fff0a0">DIAMOND</text>
+<path d="M256 400 290 438 256 476 222 438Z" fill="#b500ff" stroke="url(#gold)" stroke-width="8"/>
+</svg>
