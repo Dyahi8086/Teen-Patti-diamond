@@ -31,24 +31,27 @@ body:before{left:-30vw;top:-38vw}body:after{right:-35vw;bottom:-40vw}
 @media(max-width:700px) and (orientation:portrait){body{padding:8px 14px}.page{height:100%;grid-template-columns:1fr;grid-template-rows:auto 1fr;grid-template-areas:"art" "login";gap:0;max-width:460px}.art{height:100%;max-height:42dvh;gap:0}.character{height:38dvh;max-height:38dvh;width:145%;max-width:520px}.brand{font-size:clamp(25px,7vw,34px);margin:0}.diamond{font-size:15px;padding:4px 18px}.login{padding:8px 5px;transform:translateY(3vh)}.bonus-message{min-height:38px;margin-bottom:8px;font-size:12px}.offer{font-size:18px;margin-bottom:8px;padding:8px 14px}.brand-logo{width:min(300px,82%);max-height:110px;margin-bottom:12px}.login-brand span{font-size:clamp(24px,7vw,32px)}.social-btn{width:58px;height:50px}.guest-btn{width:145px;height:44px}.note{margin-top:6px}.legal{font-size:9px;margin-top:3px}.top-tools{top:8px;right:8px}}
 @media(orientation:landscape){body{padding:0 3vw}.page{grid-template-columns:.95fr 1.05fr;grid-template-areas:"login art";gap:2vw;max-width:1380px}.character{height:98dvh;max-height:98dvh;width:155%;max-width:1100px;margin:0}.brand{font-size:clamp(30px,4.2vw,56px)}.diamond{font-size:clamp(16px,1.9vw,23px);padding:5px 20px}.offer{font-size:clamp(20px,2.2vw,29px);margin-bottom:18px}.brand-logo{width:min(350px,88%);max-height:145px;margin-bottom:16px}.social-btn{width:62px;height:54px}.guest-btn{width:156px;height:48px}.note{margin-top:10px}}
 
-/* Floating playing cards around the character artwork */
+/* Cards fall continuously beside the character, behind her artwork */
 .art{isolation:isolate}
 .character{position:relative;z-index:1}
-.card-sprinkle{position:absolute;inset:2% 1%;z-index:2;pointer-events:none;overflow:hidden}
-.play-card{position:absolute;width:clamp(38px,5.1vw,66px);height:clamp(57px,7.4vw,96px);border-radius:7px;background:linear-gradient(145deg,#fff 0%,#f7f4ef 100%);border:1px solid #d9d3cc;box-shadow:0 8px 18px #08000d88, inset 0 0 0 1px #fff;display:flex;align-items:center;justify-content:center;color:#171717;font-family:Georgia,serif;font-weight:700;transform-origin:center;}
+.card-sprinkle{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.play-card{position:absolute;width:clamp(36px,4.6vw,60px);height:clamp(54px,6.8vw,82px);border-radius:7px;background:linear-gradient(145deg,#fff 0%,#f7f4ef 100%);border:1px solid #d9d3cc;box-shadow:0 7px 16px #08000d88,inset 0 0 0 1px #fff;display:flex;align-items:center;justify-content:center;color:#171717;font-family:Georgia,serif;font-weight:700;will-change:transform,opacity;animation:card-fall 8s linear infinite}
 .play-card.red{color:#d71935}
-.play-card .pip{font-size:clamp(20px,2.8vw,35px);line-height:1;text-shadow:0 1px 0 #0001}
-.play-card .corner{position:absolute;left:5px;top:3px;font-size:clamp(9px,1.15vw,14px);line-height:.95;text-align:center}
+.play-card .pip{font-size:clamp(19px,2.5vw,31px);line-height:1}
+.play-card .corner{position:absolute;left:5px;top:3px;font-size:clamp(9px,1vw,13px);line-height:.95;text-align:center}
 .play-card .corner.bottom{left:auto;top:auto;right:5px;bottom:3px;transform:rotate(180deg)}
-.play-card.c1{left:3%;top:12%;transform:rotate(-19deg)}
-.play-card.c2{left:22%;top:2%;transform:rotate(13deg)}
-.play-card.c3{right:19%;top:5%;transform:rotate(-14deg)}
-.play-card.c4{right:2%;top:23%;transform:rotate(17deg)}
-.play-card.c5{left:1%;top:48%;transform:rotate(13deg)}
-.play-card.c6{right:0%;top:52%;transform:rotate(-18deg)}
-.play-card.c7{left:12%;bottom:7%;transform:rotate(-12deg)}
-.play-card.c8{right:13%;bottom:5%;transform:rotate(15deg)}
-@media(max-width:700px) and (orientation:portrait){.play-card{width:36px;height:53px}.card-sprinkle{inset:0}.play-card.c1{left:1%;top:8%}.play-card.c2{left:18%;top:0}.play-card.c3{right:18%;top:0}.play-card.c4{right:0;top:12%}.play-card.c5{left:0;top:48%}.play-card.c6{right:0;top:48%}.play-card.c7{left:8%;bottom:3%}.play-card.c8{right:8%;bottom:3%}}
+.play-card.c1{left:2%;top:-110px;--tilt:-18deg;animation-delay:-1s}
+.play-card.c2{left:13%;top:-110px;--tilt:14deg;animation-delay:-5s}
+.play-card.c3{right:13%;top:-110px;--tilt:-13deg;animation-delay:-3s}
+.play-card.c4{right:2%;top:-110px;--tilt:17deg;animation-delay:-7s}
+.play-card.c5{left:5%;top:-110px;--tilt:12deg;animation-delay:-4s}
+.play-card.c6{right:5%;top:-110px;--tilt:-17deg;animation-delay:-2s}
+.play-card.c7{left:16%;top:-110px;--tilt:-10deg;animation-delay:-6s}
+.play-card.c8{right:16%;top:-110px;--tilt:15deg;animation-delay:0s}
+@keyframes card-fall{0%{transform:translate3d(0,-5vh,0) rotate(var(--tilt));opacity:0}8%{opacity:1}82%{opacity:1}100%{transform:translate3d(18px,115vh,0) rotate(calc(var(--tilt) + 45deg));opacity:0}}
+@media(max-width:700px) and (orientation:portrait){.play-card{width:32px;height:48px}.play-card.c1{left:0}.play-card.c2{left:10%}.play-card.c3{right:10%}.play-card.c4{right:0}.play-card.c5{left:2%}.play-card.c6{right:2%}.play-card.c7{left:13%}.play-card.c8{right:13%}}
+@media(prefers-reduced-motion:reduce){.play-card{animation:none;opacity:.65;top:10%}}
+
 
 </style>
 </head>
