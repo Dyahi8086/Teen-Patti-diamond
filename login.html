@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <meta name="theme-color" content="#260044">
+<link rel="manifest" href="./manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
 <title>Teen Patti Diamond | Login</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
@@ -11,9 +14,9 @@
 html,body{margin:0;width:100%;min-height:100%;font-family:Manrope,sans-serif;color:#fff}
 body{min-height:100svh;display:flex;align-items:center;justify-content:flex-end;padding:clamp(12px,3vw,42px);overflow-x:hidden;background:radial-gradient(ellipse at 25% 45%,#8b00cf 0%,#39005f 48%,#160023 100%)}
 .character{position:fixed;z-index:0;left:1.5%;bottom:0;height:min(96svh,980px);width:min(54vw,720px);object-fit:contain;object-position:center bottom;filter:drop-shadow(0 0 24px #cf5aff88);pointer-events:none}
-.wrap{position:relative;z-index:1;width:min(100%,430px);margin-right:clamp(0px,2vw,28px)}
-.login{position:relative;padding:clamp(22px,3vw,32px);border-radius:30px;background:linear-gradient(145deg,rgba(255,255,255,.20),rgba(130,33,184,.22) 35%,rgba(40,0,68,.78));border:1px solid rgba(255,225,153,.85);box-shadow:inset 5px 5px 14px rgba(255,255,255,.18),inset -7px -8px 18px rgba(17,0,35,.42),0 18px 45px rgba(10,0,22,.55),0 0 30px rgba(215,90,255,.32);backdrop-filter:blur(13px);-webkit-backdrop-filter:blur(13px)}
-.login:before{content:"";position:absolute;inset:7px;border:1px solid rgba(255,224,151,.38);border-radius:23px;pointer-events:none}
+.wrap{position:relative;z-index:1;width:min(100%,430px);margin-right:clamp(0px,2vw,28px);background:transparent}
+.login{position:relative;padding:clamp(22px,3vw,32px);border:0;border-radius:0;background:transparent;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none}
+.login:before{display:none}
 .head{text-align:center;margin:0 0 22px}
 h1{font:800 27px Cinzel,serif;color:#ffe5a0;text-shadow:0 2px 12px #ffb62d55;margin:0 0 6px}
 .sub{font-size:12px;color:#f0d9ff;margin:0}
@@ -53,5 +56,13 @@ button:active{transform:translateY(2px) scale(.99);filter:brightness(1.12)}
 document.getElementById('loginForm').addEventListener('submit',e=>{e.preventDefault();alert('Connect your existing login API here.')});
 document.getElementById('facebookBtn').addEventListener('click',()=>alert('Connect Facebook Login here.'));
 document.getElementById('guestBtn').addEventListener('click',()=>alert('Connect guest-session logic here.'));
+
+// Installable PWA + request landscape lock when launched as an installed app.
+if ('serviceWorker' in navigator) window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone) {
+  const lockLandscape = () => { if (screen.orientation && screen.orientation.lock) screen.orientation.lock('landscape').catch(()=>{}); };
+  lockLandscape();
+  document.addEventListener('click', lockLandscape, {once:true});
+}
 </script>
 </body></html>
