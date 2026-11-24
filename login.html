@@ -9,60 +9,51 @@
 <meta name="mobile-web-app-capable" content="yes">
 <title>Teen Patti Diamond | Login</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Manrope:wght@400;600;700;800&display=swap');
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0;width:100%;min-height:100%;font-family:Manrope,sans-serif;color:#fff}
-body{min-height:100svh;display:flex;align-items:center;justify-content:flex-end;padding:clamp(12px,3vw,42px);overflow-x:hidden;background:radial-gradient(ellipse at 25% 45%,#8b00cf 0%,#39005f 48%,#160023 100%)}
-.character{position:fixed;z-index:0;left:1.5%;bottom:0;height:min(96svh,980px);width:min(54vw,720px);object-fit:contain;object-position:center bottom;filter:drop-shadow(0 0 24px #cf5aff88);pointer-events:none}
-.wrap{position:relative;z-index:1;width:min(100%,430px);margin-right:clamp(0px,2vw,28px);background:transparent}
-.login{position:relative;padding:clamp(22px,3vw,32px);border:0;border-radius:0;background:transparent;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none}
-.login:before{display:none}
-.head{text-align:center;margin:0 0 22px}
-h1{font:800 27px Cinzel,serif;color:#ffe5a0;text-shadow:0 2px 12px #ffb62d55;margin:0 0 6px}
-.sub{font-size:12px;color:#f0d9ff;margin:0}
-.field{display:block;margin:0 0 13px}
-.field span{display:block;margin:0 0 7px 4px;font-size:10px;font-weight:800;letter-spacing:1.1px;color:#ffe8bf;text-transform:uppercase}
-.field input{width:100%;height:48px;border:1px solid rgba(255,222,153,.72);border-radius:15px;padding:0 15px;background:linear-gradient(145deg,rgba(30,0,48,.72),rgba(91,0,130,.42));box-shadow:inset 4px 4px 10px rgba(0,0,0,.28),inset -2px -2px 7px rgba(255,255,255,.08);color:#fff;font:600 13px Manrope;outline:none}
-.field input::placeholder{color:#d1b2e0}
-.field input:focus{border-color:#fff0b5;box-shadow:0 0 0 3px #ffd66b24,inset 3px 3px 8px #0004}
-button{width:100%;height:48px;border-radius:15px;font:800 13px Manrope;cursor:pointer;transition:transform .15s,filter .15s}
-button:active{transform:translateY(2px) scale(.99);filter:brightness(1.12)}
-.primary{margin-top:4px;border:1px solid #fff0b0;color:#4a1d00;background:linear-gradient(145deg,#fff1b5,#ffd05d 48%,#d98519);box-shadow:inset 3px 3px 8px #ffffffa8,inset -4px -4px 8px #a64d1666,0 6px 0 #7d390b,0 10px 22px #ffad3444}
-.or{display:flex;align-items:center;gap:10px;margin:18px 0 13px;color:#f0d7ff;font-size:9px;letter-spacing:2px}
-.or:before,.or:after{content:"";height:1px;flex:1;background:linear-gradient(90deg,transparent,#e4b4ffb0)}.or:after{background:linear-gradient(90deg,#e4b4ffb0,transparent)}
-.social{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:10px;border:1px solid rgba(255,255,255,.62);color:#fff;background:linear-gradient(145deg,rgba(255,255,255,.26),rgba(87,0,123,.48));box-shadow:inset 3px 3px 8px #ffffff25,inset -4px -4px 9px #16002566,0 7px 18px #15002255}
-.fbmark{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:#fff;color:#2875e8;font:bold 18px Arial}
-.guest{margin-top:10px;border:1px solid rgba(255,219,133,.9);color:#ffe8aa;background:linear-gradient(145deg,rgba(255,255,255,.20),rgba(111,0,155,.48));box-shadow:inset 3px 3px 8px #ffffff20,inset -4px -4px 9px #16002555,0 7px 18px #15002255}
-.terms{text-align:center;color:#f0d9fa;font-size:9px;line-height:1.6;margin:15px 0 0}
-@media(orientation:landscape) and (max-height:600px){body{padding:10px 4vw}.character{height:96svh;width:55vw;left:0}.wrap{width:min(42vw,410px);margin-right:2vw}.login{padding:16px 22px;border-radius:23px}.head{margin-bottom:12px}h1{font-size:22px}.sub{font-size:10px}.field{margin-bottom:8px}.field span{font-size:9px;margin-bottom:4px}.field input,button{height:38px;border-radius:12px;font-size:11px}.or{margin:11px 0 8px;font-size:8px}.social{margin-top:7px}.guest{margin-top:7px}.terms{margin-top:9px;font-size:8px}}
-@media(orientation:portrait){body{justify-content:center;padding:18px 14px}.character{height:56svh;width:100vw;left:0;bottom:auto;top:0;opacity:.30;object-position:center top}.wrap{width:min(100%,410px);margin:0}.login{background:linear-gradient(145deg,rgba(67,0,96,.90),rgba(25,0,45,.95));backdrop-filter:blur(12px)}}
-@media(prefers-reduced-motion:reduce){button{transition:none}}
+html,body{margin:0;min-height:100%;font-family:Manrope,sans-serif;color:#fff}
+body{min-height:100svh;overflow-x:hidden;background:radial-gradient(ellipse at 35% 45%,#7b00c6 0%,#31004e 52%,#100019 100%);display:flex;align-items:center;justify-content:center;padding:24px}
+body:before,body:after{content:"";position:fixed;pointer-events:none;border:1px solid #e6a9ff28;border-radius:50%;width:70vw;height:70vw;max-width:850px;max-height:850px}
+body:before{left:-30vw;top:-38vw}body:after{right:-35vw;bottom:-40vw}
+.page{position:relative;z-index:1;width:min(1180px,100%);display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(25px,5vw,70px);align-items:center}
+.art{min-width:0;display:flex;flex-direction:column;align-items:center;text-align:center}
+.character{display:block;width:min(100%,520px);height:min(76svh,700px);object-fit:contain;object-position:center bottom;filter:drop-shadow(0 0 25px #d54aff88)}
+.brand{font:800 clamp(30px,5vw,56px)/1.05 Cinzel,serif;letter-spacing:1px;color:#ffe078;text-shadow:0 3px 0 #7c3300,0 0 24px #ed8bff;margin:0 0 12px}
+.diamond{font:700 clamp(18px,2.5vw,27px) Cinzel,serif;letter-spacing:7px;color:#fff0ce;text-shadow:0 0 18px #d15aff;border:1px solid #ffcf6b;border-radius:999px;padding:8px 24px;background:linear-gradient(90deg,#3d005d,#8500ba,#3d005d)}
+.login{width:100%;max-width:440px;margin:auto;text-align:center;padding:20px 8px;background:transparent;border:0;box-shadow:none}
+.offer{font:700 clamp(22px,3vw,32px) Cinzel,serif;color:#ffe4a0;text-shadow:0 2px 12px #ffb52d66;margin:0 0 30px}
+.action{width:100%;min-height:86px;border-radius:17px;display:flex;align-items:center;justify-content:center;gap:22px;margin:0 auto 22px;cursor:pointer;font:700 clamp(20px,2.6vw,29px) Manrope;transition:transform .15s,filter .15s}
+.action:active{transform:translateY(2px) scale(.99);filter:brightness(1.12)}
+.facebook{color:white;border:2px solid #9fc5ff;background:linear-gradient(180deg,#5794e6,#174b9c 80%);box-shadow:inset 0 2px 6px #ffffff70,0 6px 0 #102f67,0 12px 24px #0006}
+.ficon{font:bold 55px Arial;line-height:1}
+.guest{max-width:82%;min-height:72px;margin:30px auto 0;color:#fff;border:2px solid #68717c;background:linear-gradient(180deg,#29313b,#090d12 80%);box-shadow:inset 0 2px 6px #ffffff25,0 5px 0 #030508,0 12px 22px #0008}
+.usericon{font-size:38px}
+.note{font-size:11px;color:#d9b7ed;line-height:1.6;margin-top:28px}
+@media(max-width:700px){body{padding:15px}.page{grid-template-columns:1fr;gap:0;max-width:460px}.art{gap:4px}.character{height:36svh;width:100%;max-width:360px;object-position:center bottom}.brand{font-size:clamp(27px,8vw,38px);margin:0}.diamond{font-size:17px;padding:6px 20px}.login{padding:20px 5px}.offer{font-size:23px;margin-bottom:20px}.action{min-height:68px;font-size:21px;margin-bottom:17px}.ficon{font-size:45px}.guest{min-height:62px;margin-top:20px}.note{margin-top:18px}}
+@media(orientation:landscape) and (max-height:600px){body{padding:8px 3vw}.page{grid-template-columns:1fr 1fr;gap:3vw}.character{height:68svh;width:100%}.brand{font-size:clamp(24px,4vw,40px)}.diamond{font-size:17px}.offer{font-size:22px;margin-bottom:16px}.action{min-height:58px;margin-bottom:13px;font-size:20px}.ficon{font-size:38px}.guest{min-height:54px;margin-top:12px}.note{margin-top:12px}}
 </style>
 </head>
 <body>
+<main class="page">
+<section class="art" aria-label="Teen Patti Diamond">
 <img class="character" src="./bg-diamond.png" alt="Teen Patti Diamond character">
-<main class="wrap"><section class="login" aria-label="Teen Patti Diamond login">
-<header class="head"><h1>Welcome Back</h1><p class="sub">Enter the royal table and enjoy the game</p></header>
-<form id="loginForm">
-<label class="field"><span>Mobile number or email</span><input id="identity" type="text" autocomplete="username" placeholder="Enter mobile number or email" required></label>
-<label class="field"><span>Password</span><input id="password" type="password" autocomplete="current-password" placeholder="Enter password" required></label>
-<button class="primary" type="submit">LOGIN</button></form>
-<div class="or">OR CONTINUE WITH</div>
-<button class="social" id="facebookBtn" type="button"><span class="fbmark">f</span> Continue with Facebook</button>
-<button class="guest" id="guestBtn" type="button">Continue as Guest</button>
-<p class="terms">By continuing, you agree to the Terms of Service and Privacy Policy.</p>
-</section></main>
+<h1 class="brand">TEEN PATTI</h1>
+<div class="diamond">DIAMOND</div>
+</section>
+<section class="login" aria-label="Choose login method">
+<h2 class="offer">1,20,000 Chips Free!</h2>
+<button class="action facebook" id="facebookBtn" type="button"><span class="ficon">f</span><span>Login using<br><strong>Facebook</strong></span></button>
+<button class="action guest" id="guestBtn" type="button"><span class="usericon">👤</span><span>Guest</span></button>
+<p class="note">Play for fun. No real-money play or cash prizes.</p>
+</section>
+</main>
 <script>
-document.getElementById('loginForm').addEventListener('submit',e=>{e.preventDefault();alert('Connect your existing login API here.')});
-document.getElementById('facebookBtn').addEventListener('click',()=>alert('Connect Facebook Login here.'));
-document.getElementById('guestBtn').addEventListener('click',()=>alert('Connect guest-session logic here.'));
-
-// Installable PWA + request landscape lock when launched as an installed app.
-if ('serviceWorker' in navigator) window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
-if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone) {
-  const lockLandscape = () => { if (screen.orientation && screen.orientation.lock) screen.orientation.lock('landscape').catch(()=>{}); };
-  lockLandscape();
-  document.addEventListener('click', lockLandscape, {once:true});
+document.getElementById('facebookBtn').addEventListener('click',()=>alert('Facebook Login ko apne authentication provider se connect karna baaki hai.'));
+document.getElementById('guestBtn').addEventListener('click',()=>alert('Guest session logic ko game ke saath connect karna baaki hai.'));
+if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+if(window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone){
+ const lock=()=>{if(screen.orientation&&screen.orientation.lock)screen.orientation.lock('landscape').catch(()=>{});};
+ lock();document.addEventListener('click',lock,{once:true});
 }
 </script>
 </body></html>
