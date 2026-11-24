@@ -1,4 +1,4 @@
-const CACHE_NAME = 'teen-patti-diamond-v3';
+const CACHE_NAME = 'teen-patti-diamond-v4';
 const APP_SHELL = ['./', './login.html', './manifest.json'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(APP_SHELL)).then(() => self.skipWaiting()));
