@@ -1,49 +1,64 @@
-const CACHE_NAME = 'teen-patti-diamond-v24';
-const APP_SHELL = ['./', './index.html', './login.html', './manifest.json', './icon-192.svg', './icon-512.svg', './teen-patti-diamond-logo.png', './bg-diamond.png'];
+const CACHE_NAME = 'teen-patti-diamond-v25';
+const APP_SHELL = [
+  './', './index.html', './login.html', './manifest.json',
+  './icon-192.svg', './icon-512.svg',
+  './teen-patti-diamond-logo.png', './bg-diamond.png'
+];
 
 self.addEventListener('install', event => {
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => cache.addAll(APP_SHELL))
-      .then(() => self.skipWaiting())
-  );
+  event.waitUntil((async () => {
+    const cache = await caches.open(CACHE_NAME);
+    // Cache each resource independently so one missing/slow file cannot block app updates.
+    await Promise.allSettled(APP_SHELL.map(path => cache.add(path)));
+    await self.skipWaiting();
+  })());
 });
 
 self.addEventListener('activate', event => {
-  event.waitUntil(
-    caches.keys()
-      .then(keys => Promise.all(keys.filter(key => key.startsWith('teen-patti-diamond-') && key !== CACHE_NAME).map(key => caches.delete(key))))
-      .then(() => self.clients.claim())
-  );
+  event.waitUntil((async () => {
+    const keys = await caches.keys();
+    await Promise.all(keys
+      .filter(key => key.startsWith('teen-patti-diamond-') && key !== CACHE_NAME)
+      .map(key => caches.delete(key)));
+    await self.clients.claim();
+  })());
 });
 
 self.addEventListener('fetch', event => {
   const req = event.request;
-  if (req.method !== 'GET' || new URL(req.url).origin !== self.location.origin) return;
-
+  if (req.method !== 'GET') return;
   const url = new URL(req.url);
-  const isPage = req.mode === 'navigate' || req.destination === 'document' || /\\.html$/.test(url.pathname);
+  if (url.origin !== self.location.origin) return;
 
-  if (isPage) {
-    event.respondWith(
-      fetch(new Request(req, { cache: 'no-store' })).then(response => {
-        if (response.ok) {
-          const copy = response.clone();
-          caches.open(CACHE_NAME).then(cache => cache.put(req, copy));
+  const isDocument = req.mode === 'navigate' || req.destination === 'document';
+  if (isDocument) {
+    event.respondWith((async () => {
+      try {
+        const fresh = await fetch(new Request(req, { cache: 'no-store' }));
+        if (fresh && fresh.ok) {
+          const cache = await caches.open(CACHE_NAME);
+          await cache.put(req, fresh.clone());
         }
-        return response;
-      }).catch(() => caches.match(req).then(cached => cached || caches.match('./login.html')))
-    );
+        return fresh;
+      } catch (error) {
+        return (await caches.match(req)) || (await caches.match('./login.html')) || Response.error();
+      }
+    })());
     return;
   }
 
-  event.respondWith(
-    caches.match(req).then(cached => cached || fetch(req).then(response => {
-      if (response.ok) {
-        const copy = response.clone();
-        caches.open(CACHE_NAME).then(cache => cache.put(req, copy));
+  event.respondWith((async () => {
+    const cached = await caches.match(req);
+    if (cached) return cached;
+    try {
+      const fresh = await fetch(req);
+      if (fresh && fresh.ok) {
+        const cache = await caches.open(CACHE_NAME);
+        await cache.put(req, fresh.clone());
       }
-      return response;
-    }))
-  );
+      return fresh;
+    } catch (error) {
+      return Response.error();
+    }
+  })());
 });
