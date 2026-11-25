@@ -1,6 +1,6 @@
-const CACHE_NAME = 'teen-patti-diamond-v25';
+const CACHE_NAME = 'teen-patti-diamond-v26';
 const APP_SHELL = [
-  './', './index.html', './login.html', './manifest.json',
+  './', './index.html', './login.html', './lobby.html', './manifest.json',
   './icon-192.svg', './icon-512.svg',
   './teen-patti-diamond-logo.png', './bg-diamond.png'
 ];
