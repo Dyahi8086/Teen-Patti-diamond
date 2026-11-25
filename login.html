@@ -347,8 +347,14 @@ body::after { right: -35vw; bottom: -40vw; box-shadow: 0 0 80px #8b26d522 inset;
     width: min(330px, 78vw);
     max-height: min(16svh, 150px);
     height: auto;
-    margin: 0 auto;
+    margin: 0 auto 8px;
     object-fit: contain;
+    animation: logoFloat 2.8s ease-in-out infinite;
+    will-change: transform;
+  }
+  @keyframes logoFloat {
+    0%, 100% { transform: translateY(-8px); }
+    50% { transform: translateY(-14px); }
   }
   .welcome-pill {
     margin: 0 auto;
@@ -401,7 +407,7 @@ body::after { right: -35vw; bottom: -40vw; box-shadow: 0 0 80px #8b26d522 inset;
   .login { padding-left: 6px; padding-right: 6px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .character-stage, .play-card { animation: none !important; }
+  .character-stage, .play-card, .brand-logo { animation: none !important; }
 }
 
 /* Keep login controls at their original size when Android system bars appear/disappear. */
