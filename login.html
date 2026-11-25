@@ -2,283 +2,433 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <meta name="theme-color" content="#210039">
 <link rel="manifest" href="./manifest.json">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <title>Teen Patti Diamond | Login</title>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="./supabase-config.js"></script>
-
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Manrope:wght@400;600;700;800&display=swap');
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0;width:100%;height:100%;min-height:100%;font-family:Manrope,sans-serif;color:#fff;overflow:hidden;overscroll-behavior:none;touch-action:pan-x}
-body{height:100svh;min-height:100svh;overflow:hidden;background:radial-gradient(ellipse at 35% 45%,#7b00c6 0%,#31004e 52%,#100019 100%);display:flex;align-items:center;justify-content:center;padding:24px}
-body:before,body:after{content:"";position:fixed;pointer-events:none;border:1px solid #e6a9ff28;border-radius:50%;width:70vw;height:70vw;max-width:850px;max-height:850px}body:after{box-shadow:0 0 80px #8b26d522 inset}.sparkle{position:fixed;pointer-events:none;color:#ffe49a;text-shadow:0 0 12px #ffcc55;opacity:.75;z-index:0}.sparkle.one{left:7%;top:18%;font-size:20px}.sparkle.two{right:8%;top:24%;font-size:14px}.sparkle.three{right:45%;bottom:12%;font-size:18px}.top-tools{position:fixed;z-index:5;right:18px;top:14px;display:flex;gap:9px}.tool-btn{width:38px;height:38px;border-radius:50%;border:1px solid #ffd77a66;background:#2d0645aa;color:#ffe6a2;display:grid;place-items:center;font-size:19px;cursor:pointer;backdrop-filter:blur(8px)}
-body:before{left:-30vw;top:-38vw}body:after{right:-35vw;bottom:-40vw}
-.page{position:relative;z-index:1;width:min(1380px,100%);height:100svh;display:grid;grid-template-columns:1fr 1fr;grid-template-areas:"login art";gap:clamp(20px,4vw,60px);align-items:center;margin:auto}
-.art{grid-area:art;min-width:0;height:100%;max-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:hidden;position:relative}.art:before{content:"";position:absolute;z-index:-1;left:8%;right:8%;bottom:7%;height:18%;background:radial-gradient(ellipse,#ffca5d75 0%,#a72bff38 38%,transparent 73%);filter:blur(14px)}.art:after{content:"";position:absolute;z-index:-1;left:12%;right:12%;bottom:5%;height:2px;background:linear-gradient(90deg,transparent,#ffd36d,#fff0b1,#ffd36d,transparent);box-shadow:0 0 20px 7px #ffb52d44;border-radius:50%}
-.character-stage{position:relative;isolation:isolate;z-index:2;height:78svh;max-height:100%;aspect-ratio:2/3;width:auto;max-width:100%;flex:0 1 auto;overflow:visible;z-index:1}.character{display:block;width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain;object-position:center bottom;mix-blend-mode:lighten;filter:drop-shadow(0 0 26px #d54aff88) drop-shadow(0 14px 12px #160020aa);margin:0;user-select:none;-webkit-user-drag:none;pointer-events:none}
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800&family=Manrope:wght@500;700;800&display=swap');
 
-.login{grid-area:login;width:100%;max-width:520px;margin:auto;text-align:center;padding:20px 8px;background:transparent;border:0;box-shadow:none;transform:translateY(2vh)}
-.offer{font:700 clamp(22px,3vw,32px) Cinzel,serif;color:#ffe4a0;text-shadow:0 2px 12px #ffb52d66;margin:0 0 24px;display:inline-flex;align-items:center;justify-content:center;gap:12px;padding:12px 22px;border:1px solid #ffd77a55;border-radius:999px;background:linear-gradient(110deg,#260039cc,#5a1478aa,#260039cc);box-shadow:inset 0 1px 0 #fff5c044,0 8px 22px #16002066}.offer:before{content:"✦";font-size:25px;color:#ffda67;text-shadow:0 0 12px #ffb52d}.offer:after{content:"✦";font-size:25px;color:#ffda67;text-shadow:0 0 12px #ffb52d}
-.action{cursor:pointer;transition:transform .15s,filter .15s;position:relative;overflow:hidden}.action:active,.social-btn:active,.guest-btn:active{transform:translateY(2px) scale(.97);filter:brightness(1.12)}
-.clay:before{content:"";position:absolute;inset:3px;border-radius:inherit;border:1px solid #ffffff22;pointer-events:none}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; user-select: none; }
 
-
-
-.usericon{font-size:0;width:25px;height:25px;position:relative;flex:0 0 25px}.usericon:before{content:"";position:absolute;top:0;left:8px;width:10px;height:10px;border-radius:50%;background:#e9edf4}.usericon:after{content:"";position:absolute;left:3px;bottom:0;width:20px;height:14px;border-radius:12px 12px 4px 4px;background:#e9edf4}
-.bonus-message{display:none;min-height:42px;margin:0 auto 14px;max-width:460px;display:flex;align-items:center;justify-content:center;padding:7px 12px;color:#ffe7ad;font:700 clamp(12px,1.55vw,17px) Manrope,sans-serif;text-align:center;line-height:1.35;letter-spacing:.2px;text-shadow:0 0 12px #ffca5d88;opacity:0;transform:translateY(7px);transition:opacity .8s ease,transform .8s ease}.bonus-message.show{opacity:1;transform:translateY(0)}.brand-logo{display:block;width:min(390px,88%);height:auto;max-height:170px;object-fit:contain;margin:0 auto 20px;filter:drop-shadow(0 8px 18px #d94cff66);user-select:none;-webkit-user-drag:none;pointer-events:none}.social-row{display:flex;justify-content:center;gap:12px;margin:0 auto 12px}.social-btn{width:62px;height:54px;border-radius:17px;display:grid;place-items:center;cursor:pointer;position:relative;overflow:hidden;border:1px solid #ffffff55;box-shadow:5px 5px 12px #10001888,-4px -4px 12px #ffffff18,inset 2px 2px 5px #ffffff66,inset -3px -3px 6px #0005}.social-btn svg{width:27px;height:27px;position:relative;z-index:1}.facebook{color:#fff;background:linear-gradient(145deg,#66b4ff 0%,#1877f2 48%,#0755b8 100%);border-color:#a9d7ff;box-shadow:5px 6px 13px #080d2688,-3px -3px 10px #ffffff35,inset 2px 2px 5px #ffffff88,inset -3px -3px 7px #003d8c}.google{background:linear-gradient(145deg,#ffffff 0%,#fffdf8 72%,#f5e8c7 100%);border-color:#a9d7ff;box-shadow:5px 6px 13px #080d2688,-3px -3px 10px #ffffff35,inset 2px 2px 5px #ffffff88,inset -3px -3px 7px #003d8c}.guest-btn{width:156px;height:48px;border-radius:16px;display:flex;align-items:center;justify-content:center;gap:10px;margin:0 auto;color:#fff;font:700 16px Manrope;cursor:pointer;position:relative;overflow:hidden;background:linear-gradient(145deg,#424b59,#151a25 70%);border:1px solid #a9b4c455;box-shadow:5px 5px 12px #10001899,-4px -4px 12px #ffffff14,inset 2px 2px 5px #ffffff30,inset -3px -3px 7px #0009}.legal{font-size:10px;color:#d9b7ed;line-height:1.7;margin:7px 0 0}.legal a{color:#ffe2a0;text-decoration:underline;text-underline-offset:2px}.note{font-size:11px;color:#d9b7ed;line-height:1.6;margin-top:12px}
-@media(max-width:700px) and (orientation:portrait){body{padding:8px 14px}.page{height:100%;grid-template-columns:1fr;grid-template-rows:auto 1fr;grid-template-areas:"art" "login";gap:0;max-width:460px}.art{height:100%;max-height:42svh;gap:0}.card-sprinkle{width:calc(36svh * 2 / 3);height:36svh}.character-stage{height:36svh;max-height:100%;width:auto;max-width:100%;aspect-ratio:2/3}.character{height:100%;width:100%;max-height:100%;max-width:100%;object-fit:contain;object-position:center bottom}.brand{font-size:clamp(25px,7vw,34px);margin:0}.diamond{font-size:15px;padding:4px 18px}.login{padding:8px 5px;transform:translateY(3vh)}.bonus-message{min-height:38px;margin-bottom:8px;font-size:12px}.offer{font-size:18px;margin-bottom:8px;padding:8px 14px}.brand-logo{width:min(300px,82%);max-height:110px;margin-bottom:12px}.login-brand span{font-size:clamp(24px,7vw,32px)}.social-btn{width:58px;height:50px}.guest-btn{width:145px;height:44px}.note{margin-top:6px}.legal{font-size:9px;margin-top:3px}.top-tools{top:8px;right:8px}}
-@media(orientation:landscape){body{padding:0 3vw}.page{grid-template-columns:.95fr 1.05fr;grid-template-areas:"login art";gap:2vw;max-width:1380px}.card-sprinkle{width:calc(88svh * 2 / 3);height:88svh}.character-stage{height:88svh;max-height:100%;width:auto;max-width:100%;aspect-ratio:2/3}.character{height:100%;width:100%;max-height:100%;max-width:100%;object-fit:contain;object-position:center bottom;margin:0}.brand{font-size:clamp(30px,4.2vw,56px)}.diamond{font-size:clamp(16px,1.9vw,23px);padding:5px 20px}.offer{font-size:clamp(20px,2.2vw,29px);margin-bottom:18px}.brand-logo{width:min(350px,88%);max-height:145px;margin-bottom:16px}.social-btn{width:62px;height:54px}.guest-btn{width:156px;height:48px}.note{margin-top:10px}}
-
-/* Random small cards falling in 10 different paths */
-.art{isolation:isolate}.character{position:relative;z-index:1}.card-sprinkle{z-index:2}.play-card{opacity:.94}
-.card-sprinkle{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:100%;height:100%;z-index:0;pointer-events:none;overflow:hidden;clip-path:inset(0);contain:paint}
-.play-card{position:absolute;top:-90px;opacity:.94;filter:none;width:clamp(27px,3.3vw,42px);height:clamp(41px,5vw,63px);border-radius:5px;background:linear-gradient(145deg,#fff,#f2eee8);border:1px solid #d7d0c8;box-shadow:0 5px 12px #08000d77,inset 0 0 0 1px #fff;display:flex;align-items:center;justify-content:center;color:#151515;font-family:Georgia,serif;font-weight:700;will-change:transform,opacity;animation-duration:var(--duration,8s);animation-delay:var(--delay,0s);animation-timing-function:linear;animation-iteration-count:infinite}
-.play-card.red{color:#d71935}.play-card .pip{font-size:clamp(16px,1.9vw,24px);line-height:1}.play-card .corner{position:absolute;left:4px;top:3px;font-size:clamp(7px,.8vw,10px);line-height:.9;text-align:center}.play-card .corner.bottom{left:auto;top:auto;right:4px;bottom:3px;transform:rotate(180deg)}.play-card .face{font-size:clamp(17px,2vw,24px);text-shadow:0 1px #d9a84d}.play-card .crown{position:absolute;top:12px;font-size:9px;color:#d49a22}
-.play-card.joker{background:linear-gradient(145deg,#fff9d9,#fff 55%,#f0ddff);color:#6923a5}.play-card.joker .pip{font-size:9px;letter-spacing:-.5px}.play-card.joker:after{content:"★";position:absolute;bottom:8px;font-size:12px;color:#c02b51}
-.play-card.c1{left:2%}.play-card.c2{left:12%}.play-card.c3{left:23%}.play-card.c4{right:23%}.play-card.c5{right:12%}.play-card.c6{right:2%}.play-card.c7{left:6%}.play-card.c8{right:6%}.play-card.c9{left:31%}.play-card.c10{right:31%}
-@keyframes cardFall0{0%{transform:translate(-12vw,-10vh) rotate(-35deg) scale(.72);opacity:0}12%{opacity:1}55%{transform:translate(5vw,52vh) rotate(95deg) scale(1.04)}100%{transform:translate(-7vw,115vh) rotate(230deg) scale(.82);opacity:0}}
-@keyframes cardFall1{0%{transform:translate(10vw,-12vh) rotate(28deg) scale(1.15);opacity:0}10%{opacity:1}50%{transform:translate(-8vw,50vh) rotate(-120deg) scale(.8)}100%{transform:translate(13vw,115vh) rotate(-280deg) scale(1.1);opacity:0}}
-@keyframes cardFall2{0%{transform:translate(0,-10vh) rotate(0) scale(.65);opacity:0}15%{opacity:1}35%{transform:translate(8vw,35vh) rotate(130deg) scale(1.2)}70%{transform:translate(-7vw,78vh) rotate(260deg) scale(.85)}100%{transform:translate(2vw,115vh) rotate(390deg) scale(1);opacity:0}}
-@keyframes cardFall3{0%{transform:translate(-8vw,-8vh) rotate(65deg) scale(1);opacity:0}10%{opacity:1}40%{transform:translate(12vw,40vh) rotate(-75deg) scale(.7)}100%{transform:translate(-14vw,115vh) rotate(-330deg) scale(1.15);opacity:0}}
-@keyframes cardFall4{0%{transform:translate(12vw,-10vh) rotate(-55deg) scale(.85);opacity:0}12%{opacity:1}60%{transform:translate(-13vw,65vh) rotate(180deg) scale(1.18)}100%{transform:translate(8vw,115vh) rotate(360deg) scale(.72);opacity:0}}
-@keyframes cardFall5{0%{transform:translate(0,-12vh) rotate(90deg) scale(1.2);opacity:0}10%{opacity:1}30%{transform:translate(-12vw,28vh) rotate(0) scale(.75)}65%{transform:translate(10vw,75vh) rotate(-180deg) scale(1.1)}100%{transform:translate(-4vw,115vh) rotate(-360deg) scale(.9);opacity:0}}
-@keyframes cardFall6{0%{transform:translate(-15vw,-10vh) rotate(-10deg) scale(.9);opacity:0}12%{opacity:1}45%{transform:translate(4vw,48vh) rotate(210deg) scale(1.2)}100%{transform:translate(16vw,115vh) rotate(420deg) scale(.7);opacity:0}}
-@keyframes cardFall7{0%{transform:translate(15vw,-10vh) rotate(45deg) scale(.7);opacity:0}10%{opacity:1}50%{transform:translate(-4vw,55vh) rotate(-200deg) scale(1.15)}100%{transform:translate(-12vw,115vh) rotate(-420deg) scale(.95);opacity:0}}
-@keyframes cardFall8{0%{transform:translate(-4vw,-12vh) rotate(-90deg) scale(1.1);opacity:0}12%{opacity:1}35%{transform:translate(14vw,34vh) rotate(100deg) scale(.75)}75%{transform:translate(-10vw,83vh) rotate(280deg) scale(1.15)}100%{transform:translate(5vw,115vh) rotate(500deg) scale(.8);opacity:0}}
-@keyframes cardFall9{0%{transform:translate(8vw,-10vh) rotate(15deg) scale(.8);opacity:0}10%{opacity:1}25%{transform:translate(-10vw,25vh) rotate(160deg) scale(1.2)}60%{transform:translate(12vw,68vh) rotate(300deg) scale(.72)}100%{transform:translate(-5vw,115vh) rotate(540deg) scale(1.05);opacity:0}}
-.play-card.m0{animation-name:cardFall0}.play-card.m1{animation-name:cardFall1}.play-card.m2{animation-name:cardFall2}.play-card.m3{animation-name:cardFall3}.play-card.m4{animation-name:cardFall4}.play-card.m5{animation-name:cardFall5}.play-card.m6{animation-name:cardFall6}.play-card.m7{animation-name:cardFall7}.play-card.m8{animation-name:cardFall8}.play-card.m9{animation-name:cardFall9}
-@media(max-width:700px) and (orientation:portrait){.play-card{width:24px;height:36px}.play-card .pip{font-size:14px}.play-card .face{font-size:14px}.play-card .corner{font-size:6px}}
-@media(prefers-reduced-motion:reduce){.play-card{animation:none;opacity:.55;top:12%}}
-
-/* Spread falling cards across the full character panel, not just the PNG width. */
-.card-sprinkle{width:100% !important;height:100% !important;}
-/* Keep the brand mark close to the login actions. */
-.brand-logo{width:min(340px,86%);max-height:150px;margin:0 auto 12px;}
-@media(max-width:700px) and (orientation:portrait){.brand-logo{width:min(260px,78%);max-height:96px;margin-bottom:8px}.social-row{margin-bottom:9px}}
-
-/* Responsive safety layer: phones, tablets, short screens and safe areas */
-html{height:100%;min-height:100%;-webkit-text-size-adjust:100%}
-html,body{width:100%;min-width:0;min-height:100%;height:auto;overflow-x:hidden;overflow-y:auto;touch-action:pan-y}
-body{min-height:100vh;min-height:100svh;height:auto;padding: max(12px,env(safe-area-inset-top)) max(12px,env(safe-area-inset-right)) max(12px,env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left))}
-.page{width:min(1380px,100%);height:auto;min-height:100vh;min-height:100svh;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(12px,3vw,44px);padding:12px 0}
-.art,.login{min-width:0}
-.art{min-height:0}
-.character-stage{height:min(78svh,760px);max-width:100%}
-.login{transform:none;padding:clamp(10px,2vh,22px) 8px}
-.brand-logo{max-width:100%;height:auto}
-.social-row{flex-wrap:wrap}
-button{touch-action:manipulation}
-img{max-width:100%}
-@media (orientation:portrait) and (max-width:900px){
- body{padding:max(8px,env(safe-area-inset-top)) max(12px,env(safe-area-inset-right)) max(12px,env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left))}
- .page{width:min(560px,100%);min-height:100svh;grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto;grid-template-areas:"art" "login";gap:0;align-content:center;padding:8px 0}
- .art{height:clamp(190px,36svh,390px);max-height:none;overflow:hidden}
- .character-stage{height:100%;max-height:100%;width:auto;max-width:100%;aspect-ratio:2/3}
- .character{width:100%;height:100%;object-fit:contain;object-position:center bottom}
- .card-sprinkle{width:100%!important;height:100%!important}
- .login{width:100%;max-width:520px;margin:0 auto;padding:8px 8px 12px;transform:none}
- .brand-logo{width:min(300px,76vw);max-height:clamp(64px,12svh,112px);margin:0 auto 8px}
- .offer{font-size:clamp(16px,3.8vw,22px);margin:0 auto 10px;padding:8px 14px}
- .social-row{gap:12px;margin-bottom:9px}
- .social-btn{width:56px;height:50px}
- .guest-btn{width:148px;height:46px}
- .note{margin-top:7px;font-size:clamp(10px,2.5vw,12px)}
- .legal{font-size:10px;margin-top:5px}
- .top-tools{top:max(8px,env(safe-area-inset-top));right:max(8px,env(safe-area-inset-right))}
-}
-@media (orientation:portrait) and (max-width:380px){
- body{padding-left:8px;padding-right:8px}
- .art{height:clamp(165px,31svh,230px)}
- .login{padding-top:4px;padding-bottom:8px}
- .brand-logo{width:min(230px,70vw);max-height:72px;margin-bottom:6px}
- .offer{font-size:16px;padding:7px 10px;margin-bottom:7px}
- .social-btn{width:52px;height:46px;border-radius:14px}
- .guest-btn{height:42px}
- .note{font-size:10px;margin-top:5px}
- .legal{font-size:9px;line-height:1.45}
-}
-@media (orientation:landscape){
- body{padding:max(6px,env(safe-area-inset-top)) max(2vw,env(safe-area-inset-right)) max(6px,env(safe-area-inset-bottom)) max(2vw,env(safe-area-inset-left))}
- .page{min-height:100svh;height:auto;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:clamp(8px,2vw,28px);padding:8px 0}
- .art{height:calc(100svh - 16px);max-height:900px}
- .character-stage{height:min(86svh,760px);max-height:100%}
- .login{max-width:520px;padding:8px 4px}
- .brand-logo{width:min(300px,78%);max-height:clamp(58px,23svh,130px);margin-bottom:8px}
- .offer{font-size:clamp(16px,2.3vw,26px);margin-bottom:10px;padding:8px 14px}
- .social-row{gap:10px;margin-bottom:8px}
- .social-btn{width:54px;height:48px}
- .guest-btn{width:145px;height:44px}
- .note{margin-top:7px}
- .legal{margin-top:4px}
-}
-@media (orientation:landscape) and (max-height:430px){
- .page{padding:4px 0;gap:8px}
- .art{height:calc(100svh - 8px)}
- .character-stage{height:88svh}
- .login{padding:2px 4px}
- .brand-logo{max-height:20svh;width:min(230px,72%);margin-bottom:5px}
- .offer{font-size:16px;margin-bottom:6px;padding:5px 10px}
- .social-row{margin-bottom:5px}
- .social-btn{width:48px;height:42px}
- .guest-btn{height:40px}
- .note{font-size:10px;margin-top:4px}
- .legal{font-size:9px;line-height:1.4}
-}
-@media (prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
-
-
-/* Corrected final layout: remove artificial side gutters and strengthen logo hierarchy */
-html,body{margin:0!important;width:100%!important;max-width:100%!important;min-width:0!important;background:#210039!important}
-body{padding:0!important;overflow-x:hidden!important}
-.page{width:100%!important;max-width:none!important;margin:0!important;padding:0!important;gap:clamp(10px,2vw,28px)!important}
-.art{transform:translateX(-1.5vw)}
-.login{transform:translateY(-2.5vh)!important}
-.brand-logo{width:min(500px,100%)!important;max-height:210px!important;margin:0 auto 24px!important;transform:translateY(-28px)!important}
-.social-row{gap:16px!important;margin:0 auto 16px!important}
-.social-btn{width:72px!important;height:64px!important;border-radius:19px!important}
-.social-btn svg{width:32px!important;height:32px!important}
-.guest-btn{width:180px!important;height:56px!important;font-size:18px!important;border-radius:18px!important}
-.card-sprinkle{inset:0!important;left:0!important;top:0!important;transform:none!important;width:100%!important;height:100%!important}
-.play-card{filter:drop-shadow(0 3px 5px #08000d66)}
-.play-card.c1{left:4%;top:8%}.play-card.c2{left:17%;top:20%}.play-card.c3{left:29%;top:4%}.play-card.c4{right:27%;top:17%}.play-card.c5{right:13%;top:6%}.play-card.c6{right:3%;top:24%}.play-card.c7{left:8%;top:48%}.play-card.c8{right:7%;top:52%}.play-card.c9{left:36%;top:58%}.play-card.c10{right:34%;top:38%}
-@media (orientation:portrait) and (max-width:900px){
- body{padding:max(8px,env(safe-area-inset-top)) max(8px,env(safe-area-inset-right)) max(8px,env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left))!important}
- .page{width:100%!important;max-width:560px!important;margin:0 auto!important;padding:8px 0!important;gap:0!important}
- .art{transform:none}
- .login{transform:none!important}
- .brand-logo{width:min(360px,90vw)!important;max-height:clamp(78px,15svh,135px)!important;margin:0 auto 17px!important;transform:translateY(-14px)!important}
- .social-row{gap:14px!important;margin-bottom:12px!important}
- .social-btn{width:64px!important;height:58px!important}
- .social-btn svg{width:29px!important;height:29px!important}
- .guest-btn{width:166px!important;height:52px!important;font-size:17px!important}
-}
-@media (orientation:landscape) and (max-height:500px){
- .page{padding:0!important;gap:8px!important}
- .login{transform:none!important}
- .brand-logo{width:min(400px,95%)!important;max-height:27svh!important;margin-bottom:14px!important;transform:translateY(-12px)!important}
- .social-btn{width:58px!important;height:52px!important}
- .guest-btn{width:158px!important;height:46px!important}
- .art{transform:translateX(-1vw)}
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Manrope', sans-serif;
+  color: #fff;
+  background: radial-gradient(ellipse at 35% 45%, #7b00c6 0%, #31004e 52%, #100019 100%);
+  overscroll-behavior: none;
+  touch-action: manipulation;
 }
 
-/* Full-bleed background: paint the entire installed-app viewport, including inset areas */
-html{
- margin:0!important;padding:0!important;width:100%!important;height:100%!important;
- min-height:100%!important;overflow:hidden!important;
- background:radial-gradient(ellipse at 35% 45%,#7b00c6 0%,#31004e 52%,#100019 100%)!important;
-}
-body{
- position:fixed!important;inset:0!important;
- width:100vw!important;height:100vh!important;height:100dvh!important;
- min-width:0!important;min-height:0!important;margin:0!important;padding:0!important;
- overflow:hidden!important;display:flex!important;
- background:radial-gradient(ellipse at 35% 45%,#7b00c6 0%,#31004e 52%,#100019 100%)!important;
-}
-.page{width:100%!important;height:100%!important;min-height:100%!important;margin:0!important}
-@media (orientation:portrait) and (max-width:900px){
- body{position:fixed!important;inset:0!important;height:100dvh!important;overflow-y:auto!important}
- .page{min-height:100dvh!important;height:auto!important}
+body {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100dvh;
+  display: flex;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
 
+/* Decorative background rings */
+body::before, body::after {
+  content: "";
+  position: fixed;
+  pointer-events: none;
+  border: 1px solid #e6a9ff24;
+  border-radius: 50%;
+  width: 70vw;
+  height: 70vw;
+  max-width: 850px;
+  max-height: 850px;
+}
+body::before { left: -30vw; top: -38vw; }
+body::after { right: -35vw; bottom: -40vw; box-shadow: 0 0 80px #8b26d522 inset; }
+
+.page {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  grid-template-areas: "login art";
+  gap: clamp(10px, 2vw, 28px);
+  align-items: center;
+}
+
+/* Character & Falling Cards Section */
+.art {
+  grid-area: art;
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+  transform: translateX(-1vw);
+}
+.art::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  left: 10%;
+  right: 10%;
+  bottom: 5%;
+  height: 16%;
+  background: radial-gradient(ellipse, #ffca5d85 0%, #a72bff44 42%, transparent 74%);
+  filter: blur(14px);
+}
+.art::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  left: 14%;
+  right: 14%;
+  bottom: 4%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #ffd36d, #fff0b1, #ffd36d, transparent);
+  box-shadow: 0 0 20px 7px #ffb52d44;
+  border-radius: 50%;
+}
+
+.character-stage {
+  position: relative;
+  z-index: 1;
+  height: min(88dvh, 780px);
+  aspect-ratio: 2 / 3;
+  max-width: 100%;
+  transform-origin: bottom center;
+  animation: heroBreath 4.5s ease-in-out infinite;
+}
+@keyframes heroBreath {
+  0%, 100% { transform: scale(1) translateY(0); }
+  50% { transform: scale(1.02) translateY(-3px); }
+}
+
+.character {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+  /* Note: Agar bg-diamond.png transparent PNG hai toh mix-blend-mode hata dein */
+  mix-blend-mode: lighten;
+  filter: drop-shadow(0 0 24px #d54aff77) drop-shadow(0 12px 12px #160020aa);
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+
+/* Falling Cards */
+.card-sprinkle {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+}
+.play-card {
+  position: absolute;
+  top: -70px;
+  width: clamp(26px, 3.2vw, 40px);
+  height: clamp(39px, 4.8vw, 60px);
+  border-radius: 5px;
+  background: linear-gradient(145deg, #fff, #f2eee8);
+  border: 1px solid #d7d0c8;
+  box-shadow: 0 4px 10px #08000d77;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #151515;
+  font-family: Georgia, serif;
+  font-weight: 700;
+  opacity: 0;
+  will-change: transform, opacity;
+  animation-duration: var(--duration, 8s);
+  animation-delay: var(--delay, 0s);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+.play-card.red { color: #d71935; }
+.play-card .pip { font-size: clamp(15px, 1.8vw, 22px); line-height: 1; }
+.play-card .corner { position: absolute; left: 4px; top: 3px; font-size: clamp(7px, 0.8vw, 9px); line-height: 0.95; text-align: center; }
+.play-card .corner.bottom { left: auto; top: auto; right: 4px; bottom: 3px; transform: rotate(180deg); }
+
+.play-card.c1 { left: 4%; } .play-card.c2 { left: 15%; } .play-card.c3 { left: 26%; }
+.play-card.c4 { right: 26%; } .play-card.c5 { right: 15%; } .play-card.c6 { right: 4%; }
+.play-card.c7 { left: 10%; } .play-card.c8 { right: 10%; } .play-card.c9 { left: 36%; } .play-card.c10 { right: 36%; }
+
+@keyframes cardFall0 { 0% { transform: translate(-8vw, 0) rotate(-35deg) scale(.75); opacity: 0; } 12% { opacity: .88; } 88% { opacity: .88; } 100% { transform: translate(6vw, 112dvh) rotate(220deg) scale(.85); opacity: 0; } }
+@keyframes cardFall1 { 0% { transform: translate(8vw, 0) rotate(28deg) scale(1.05); opacity: 0; } 12% { opacity: .88; } 88% { opacity: .88; } 100% { transform: translate(-8vw, 112dvh) rotate(-250deg) scale(.95); opacity: 0; } }
+@keyframes cardFall2 { 0% { transform: translate(0, 0) rotate(0) scale(.7); opacity: 0; } 15% { opacity: .88; } 85% { opacity: .88; } 100% { transform: translate(4vw, 112dvh) rotate(340deg) scale(.9); opacity: 0; } }
+@keyframes cardFall3 { 0% { transform: translate(-6vw, 0) rotate(60deg) scale(.95); opacity: 0; } 12% { opacity: .88; } 88% { opacity: .88; } 100% { transform: translate(-10vw, 112dvh) rotate(-300deg) scale(1.05); opacity: 0; } }
+@keyframes cardFall4 { 0% { transform: translate(10vw, 0) rotate(-50deg) scale(.85); opacity: 0; } 12% { opacity: .88; } 88% { opacity: .88; } 100% { transform: translate(-6vw, 112dvh) rotate(310deg) scale(.75); opacity: 0; } }
+.play-card.m0 { animation-name: cardFall0; } .play-card.m1 { animation-name: cardFall1; }
+.play-card.m2 { animation-name: cardFall2; } .play-card.m3 { animation-name: cardFall3; }
+.play-card.m4 { animation-name: cardFall4; }
+
+/* Login Section */
+.login {
+  grid-area: login;
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
+  text-align: center;
+  padding: 12px 16px;
+}
+
+.brand-logo {
+  display: block;
+  width: min(440px, 92%);
+  max-height: 195px;
+  height: auto;
+  object-fit: contain;
+  margin: 0 auto 14px;
+  filter: drop-shadow(0 8px 18px #d94cff66);
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+
+.welcome-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  margin: 0 auto 16px;
+  border-radius: 999px;
+  border: 1px solid #ffd77a66;
+  background: linear-gradient(110deg, #260039cc, #5a1478aa, #260039cc);
+  color: #ffe4a0;
+  font: 700 clamp(12px, 1.4vw, 15px) 'Cinzel', serif;
+  letter-spacing: 0.4px;
+  box-shadow: 0 4px 14px #16002088;
+}
+
+.social-row {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin: 0 auto 14px;
+}
+
+.social-btn, .guest-btn {
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.14s ease, filter 0.14s ease;
+}
+.social-btn:active, .guest-btn:active {
+  transform: translateY(2px) scale(0.96);
+  filter: brightness(1.1);
+}
+.clay::before {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border-radius: inherit;
+  border: 1px solid #ffffff28;
+  pointer-events: none;
+}
+
+.social-btn {
+  width: 68px;
+  height: 60px;
+  border-radius: 18px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #ffffff66;
+}
+.social-btn svg { width: 30px; height: 30px; }
+
+.google {
+  background: linear-gradient(145deg, #ffffff 0%, #fffdf8 72%, #f5e8c7 100%);
+  box-shadow: 5px 6px 13px #080d2688, inset 2px 2px 5px #ffffff, inset -3px -3px 7px #d6c59a;
+}
+.facebook {
+  color: #fff;
+  background: linear-gradient(145deg, #66b4ff 0%, #1877f2 48%, #0755b8 100%);
+  border-color: #a9d7ff;
+  box-shadow: 5px 6px 13px #080d2688, inset 2px 2px 5px #ffffff88, inset -3px -3px 7px #003d8c;
+}
+
+.guest-btn {
+  width: 174px;
+  height: 52px;
+  border-radius: 17px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: #fff;
+  font: 700 17px 'Manrope', sans-serif;
+  background: linear-gradient(145deg, #424b59, #151a25 70%);
+  border: 1px solid #a9b4c455;
+  box-shadow: 5px 5px 12px #10001899, inset 2px 2px 5px #ffffff30, inset -3px -3px 7px #0009;
+}
+
+.usericon { width: 22px; height: 22px; position: relative; }
+.usericon::before { content: ""; position: absolute; top: 1px; left: 6px; width: 10px; height: 10px; border-radius: 50%; background: #e9edf4; }
+.usericon::after { content: ""; position: absolute; left: 2px; bottom: 1px; width: 18px; height: 11px; border-radius: 10px 10px 4px 4px; background: #e9edf4; }
+
+.note { font-size: 11px; color: #d9b7ed; margin: 12px 0 4px; }
+.legal { font-size: 10px; color: #d9b7ed; margin: 0; }
+.legal a { color: #ffe2a0; text-decoration: underline; text-underline-offset: 2px; }
+
+/* Portrait Phones & Tablets */
+@media (orientation: portrait) and (max-width: 900px) {
+  .page {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas: "art" "login";
+    max-width: 520px;
+    margin: 0 auto;
+    gap: 0;
+  }
+  .art { height: 35dvh; transform: none; }
+  .character-stage { height: 100%; }
+  .login { padding: 8px 14px; display: flex; flex-direction: column; justify-content: center; }
+  .brand-logo { width: min(310px, 82vw); max-height: 120px; margin-bottom: 10px; }
+  .welcome-pill { margin-bottom: 12px; padding: 5px 14px; }
+  .social-btn { width: 60px; height: 54px; }
+  .guest-btn { width: 160px; height: 48px; font-size: 16px; }
+}
+
+/* Short Landscape Phones */
+@media (orientation: landscape) and (max-height: 460px) {
+  .brand-logo { width: min(300px, 85%); max-height: 25dvh; margin-bottom: 8px; }
+  .welcome-pill { margin-bottom: 8px; padding: 4px 12px; font-size: 11px; }
+  .social-row { margin-bottom: 8px; }
+  .social-btn { width: 54px; height: 48px; }
+  .guest-btn { width: 150px; height: 44px; font-size: 15px; }
+  .note { margin-top: 6px; font-size: 10px; }
+}
 </style>
 </head>
 <body>
 <main class="page">
-<section class="art" aria-label="Teen Patti Diamond character">
-<div class="character-stage">
-<img class="character" src="./bg-diamond.png" alt="Teen Patti Diamond character">
-</div>
-<div class="card-sprinkle" aria-hidden="true">
-<span class="play-card c1"><span class="corner">2<br>♠</span><span class="pip">♠</span><span class="corner bottom">2<br>♠</span></span>
-<span class="play-card red c2"><span class="corner">3<br>♥</span><span class="pip">♥</span><span class="corner bottom">3<br>♥</span></span>
-<span class="play-card red c3"><span class="corner">4<br>♦</span><span class="pip">♦</span><span class="corner bottom">4<br>♦</span></span>
-<span class="play-card c4"><span class="corner">5<br>♣</span><span class="pip">♣</span><span class="corner bottom">5<br>♣</span></span>
-<span class="play-card c5"><span class="corner">6<br>♠</span><span class="pip">♠</span><span class="corner bottom">6<br>♠</span></span>
-<span class="play-card red c6"><span class="corner">7<br>♦</span><span class="pip">♦</span><span class="corner bottom">7<br>♦</span></span>
-<span class="play-card red c7"><span class="corner">8<br>♥</span><span class="pip">♥</span><span class="corner bottom">8<br>♥</span></span>
-<span class="play-card c8"><span class="corner">9<br>♣</span><span class="pip">♣</span><span class="corner bottom">9<br>♣</span></span>
-<span class="play-card c9"><span class="corner">10<br>♠</span><span class="pip">♠</span><span class="corner bottom">10<br>♠</span></span>
-<span class="play-card red c10"><span class="corner">A<br>♥</span><span class="pip">♥</span><span class="corner bottom">A<br>♥</span></span>
-</div>
+  <section class="art" aria-label="Teen Patti Diamond character">
+    <div class="character-stage">
+      <img class="character" src="./bg-diamond.png" alt="Teen Patti Diamond character">
+    </div>
+    <div class="card-sprinkle" aria-hidden="true">
+      <span class="play-card c1"><span class="corner">2<br>♠</span><span class="pip">♠</span><span class="corner bottom">2<br>♠</span></span>
+      <span class="play-card red c2"><span class="corner">3<br>♥</span><span class="pip">♥</span><span class="corner bottom">3<br>♥</span></span>
+      <span class="play-card red c3"><span class="corner">4<br>♦</span><span class="pip">♦</span><span class="corner bottom">4<br>♦</span></span>
+      <span class="play-card c4"><span class="corner">5<br>♣</span><span class="pip">♣</span><span class="corner bottom">5<br>♣</span></span>
+      <span class="play-card c5"><span class="corner">6<br>♠</span><span class="pip">♠</span><span class="corner bottom">6<br>♠</span></span>
+      <span class="play-card red c6"><span class="corner">7<br>♦</span><span class="pip">♦</span><span class="corner bottom">7<br>♦</span></span>
+      <span class="play-card red c7"><span class="corner">8<br>♥</span><span class="pip">♥</span><span class="corner bottom">8<br>♥</span></span>
+      <span class="play-card c8"><span class="corner">9<br>♣</span><span class="pip">♣</span><span class="corner bottom">9<br>♣</span></span>
+      <span class="play-card c9"><span class="corner">10<br>♠</span><span class="pip">♠</span><span class="corner bottom">10<br>♠</span></span>
+      <span class="play-card red c10"><span class="corner">A<br>♥</span><span class="pip">♥</span><span class="corner bottom">A<br>♥</span></span>
+    </div>
+  </section>
 
-</section>
-<section class="login" aria-label="Choose login method">
+  <section class="login" aria-label="Choose login method">
+    <img class="brand-logo" src="./teen-patti-diamond-logo.png" alt="Teen Patti Diamond logo" fetchpriority="high">
+    <div class="welcome-pill">✦ 1,20,000 FREE CHIPS ✦</div>
 
-<img class="brand-logo" src="./teen-patti-diamond-logo.png" alt="Teen Patti Diamond logo" fetchpriority="high"><div class="social-row">
-<button class="social-btn google clay" id="googleBtn" type="button" aria-label="Continue with Google"><svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 24.5c0-1.4-.1-2.8-.4-4.1H24v7.8h11a9.4 9.4 0 0 1-4.1 6.2v5.1h6.6c3.9-3.6 6.1-8.9 6.1-15z"/><path fill="#FF3D00" d="M24 44c5.5 0 10.1-1.8 13.5-4.9l-6.6-5.1c-1.8 1.2-4.1 2-6.9 2-5.3 0-9.8-3.6-11.4-8.4H5.8v5.3A20 20 0 0 0 24 44z"/><path fill="#4CAF50" d="M12.6 27.6a12 12 0 0 1 0-7.2v-5.3H5.8a20 20 0 0 0 0 17.8z"/><path fill="#1976D2" d="M24 12c3 0 5.7 1 7.8 3.1l5.8-5.8C34.1 6 29.5 4 24 4A20 20 0 0 0 5.8 15.1l6.8 5.3C14.2 15.6 18.7 12 24 12z"/></svg></button>
-<button class="social-btn facebook clay" id="facebookBtn" type="button" aria-label="Continue with Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 21v-8h2.7l.4-3.1h-3.1V8c0-.9.3-1.5 1.6-1.5h1.7V3.7c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2H7.3V13h2.8v8z"/></svg></button>
-</div>
-<button class="guest-btn clay" id="guestBtn" type="button"><span class="usericon" aria-hidden="true"></span><span>Guest</span></button>
-<p class="note">Play for fun. No real-money play or cash prizes.</p><p class="legal">By logging in, you agree to our <a href="./terms.html">Terms</a> &amp; <a href="./privacy.html">Privacy Policy</a>.</p>
-</section>
+    <div class="social-row">
+      <button class="social-btn google clay" id="googleBtn" type="button" aria-label="Continue with Google">
+        <svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 24.5c0-1.4-.1-2.8-.4-4.1H24v7.8h11a9.4 9.4 0 0 1-4.1 6.2v5.1h6.6c3.9-3.6 6.1-8.9 6.1-15z"/><path fill="#FF3D00" d="M24 44c5.5 0 10.1-1.8 13.5-4.9l-6.6-5.1c-1.8 1.2-4.1 2-6.9 2-5.3 0-9.8-3.6-11.4-8.4H5.8v5.3A20 20 0 0 0 24 44z"/><path fill="#4CAF50" d="M12.6 27.6a12 12 0 0 1 0-7.2v-5.3H5.8a20 20 0 0 0 0 17.8z"/><path fill="#1976D2" d="M24 12c3 0 5.7 1 7.8 3.1l5.8-5.8C34.1 6 29.5 4 24 4A20 20 0 0 0 5.8 15.1l6.8 5.3C14.2 15.6 18.7 12 24 12z"/></svg>
+      </button>
+      <button class="social-btn facebook clay" id="facebookBtn" type="button" aria-label="Continue with Facebook">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 21v-8h2.7l.4-3.1h-3.1V8c0-.9.3-1.5 1.6-1.5h1.7V3.7c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2H7.3V13h2.8v8z"/></svg>
+      </button>
+    </div>
+
+    <button class="guest-btn clay" id="guestBtn" type="button">
+      <span class="usericon" aria-hidden="true"></span>
+      <span>Guest</span>
+    </button>
+
+    <p class="note">Play for fun. No real-money play or cash prizes.</p>
+    <p class="legal">By logging in, you agree to our <a href="./terms.html">Terms</a> &amp; <a href="./privacy.html">Privacy Policy</a>.</p>
+  </section>
 </main>
-<script>
-// Choose a different one of 10 distinct fall animations each time a card loops.
-(()=>{
- const cards=[...document.querySelectorAll('.play-card')];
- const lastEffect=new WeakMap();
- const randomize=card=>{
-  let next=Math.floor(Math.random()*10);
-  const previous=lastEffect.get(card);
-  if(previous!==undefined){while(next===previous)next=Math.floor(Math.random()*10);}
-  lastEffect.set(card,next);
-  for(let i=0;i<10;i++)card.classList.remove('m'+i);
-  card.classList.add('m'+next);
-  card.style.setProperty('--duration',(6.5+Math.random()*4.5).toFixed(2)+'s');
- };
- cards.forEach(card=>{
-  randomize(card);
-  card.addEventListener('animationiteration',()=>randomize(card));
- });
-})();
-const TPD_CONFIG=window.TPD_SUPABASE_CONFIG||{};
-const TPD_CONFIG_READY=typeof TPD_CONFIG.url==='string'&&TPD_CONFIG.url.startsWith('https://')&&typeof TPD_CONFIG.publishableKey==='string'&&TPD_CONFIG.publishableKey.length>20&&!TPD_CONFIG.url.includes('YOUR_')&&!TPD_CONFIG.publishableKey.includes('YOUR_');
-const TPD_CLIENT=TPD_CONFIG_READY&&window.supabase?window.supabase.createClient(TPD_CONFIG.url,TPD_CONFIG.publishableKey,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}}):null;
-const showAuthError=(message)=>alert(message);
-const setAuthBusy=(busy)=>['googleBtn','facebookBtn','guestBtn'].forEach(id=>{const b=document.getElementById(id);b.disabled=busy;b.style.opacity=busy?'.65':'1'});
-async function tpdOAuth(provider){
- if(!TPD_CLIENT){showAuthError('Supabase setup baaki hai. supabase-config.js mein game project ka URL aur publishable key add karna hoga.');return}
- setAuthBusy(true);
- const {error}=await TPD_CLIENT.auth.signInWithOAuth({provider,options:{redirectTo:new URL('./lobby.html',location.href).href,queryParams:provider==='google'?{prompt:'select_account'}:undefined}});
- if(error){setAuthBusy(false);showAuthError(error.message)}
-}
-document.getElementById('googleBtn').addEventListener('click',()=>tpdOAuth('google'));
-document.getElementById('facebookBtn').addEventListener('click',()=>tpdOAuth('facebook'));
-document.getElementById('guestBtn').addEventListener('click',async()=>{
- if(!TPD_CLIENT){showAuthError('Supabase setup baaki hai. Pehle game project ka URL aur publishable key configure karo.');return}
- setAuthBusy(true);
- const {data,error}=await TPD_CLIENT.auth.signInAnonymously({options:{data:{name:'Guest Player',display_name:'Guest Player'}}});
- if(error){setAuthBusy(false);showAuthError(error.message);return}
- location.href='./lobby.html?v=27';
-});
-if(TPD_CLIENT){
- TPD_CLIENT.auth.getSession().then(({data})=>{if(data.session)location.replace('./lobby.html?v=27')});
-}
-if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=27',{updateViaCache:'none'}).then(reg=>reg.update()).catch(()=>{}));
-if(window.matchMedia('(display-mode: standalone)').matches||window.matchMedia('(display-mode: fullscreen)').matches||window.navigator.standalone){
- const lock=()=>{if(screen.orientation&&screen.orientation.lock)screen.orientation.lock('landscape').catch(()=>{});};
- lock();window.addEventListener('load',lock);document.addEventListener('visibilitychange',()=>{if(!document.hidden)lock();});
-}
-</script>
 
 <script>
-/* Ask the browser to check for a new app shell whenever the installed app opens. */
+// Randomize falling cards with negative initial delay so screen starts populated
+(() => {
+  const cards = [...document.querySelectorAll('.play-card')];
+  const lastEffect = new WeakMap();
+  const randomize = (card, isFirst = false) => {
+    let next = Math.floor(Math.random() * 5);
+    const prev = lastEffect.get(card);
+    if (prev !== undefined && next === prev) next = (next + 1) % 5;
+    lastEffect.set(card, next);
+    card.classList.remove('m0', 'm1', 'm2', 'm3', 'm4');
+    card.classList.add('m' + next);
+    const dur = (7 + Math.random() * 4).toFixed(2);
+    card.style.setProperty('--duration', dur + 's');
+    card.style.setProperty('--delay', isFirst ? (-Math.random() * dur).toFixed(2) + 's' : '0s');
+  };
+  cards.forEach(card => {
+    randomize(card, true);
+    card.addEventListener('animationiteration', () => randomize(card, false));
+  });
+})();
+
+document.getElementById('facebookBtn').addEventListener('click', () => {
+  alert('Facebook sign-in setup required: connect your Facebook OAuth app to enable login.');
+});
+document.getElementById('googleBtn').addEventListener('click', () => {
+  alert('Google sign-in setup required: connect your Google OAuth client to enable login.');
+});
+
+// Guest Login with initial 1,20,000 chips & progress initialization
+document.getElementById('guestBtn').addEventListener('click', () => {
+  let player = null;
+  try { player = JSON.parse(localStorage.getItem('tpd_player') || 'null'); } catch (e) {}
+  if (!player || player.type !== 'guest' || !player.id) {
+    const id = (globalThis.crypto && crypto.randomUUID)
+      ? crypto.randomUUID()
+      : 'guest-' + Date.now() + '-' + Math.random().toString(36).slice(2);
+    player = {
+      id,
+      type: 'guest',
+      name: 'Guest_' + id.slice(-4).toUpperCase(),
+      chips: 120000,
+      diamonds: 20,
+      level: 1,
+      createdAt: Date.now()
+    };
+    localStorage.setItem('tpd_player', JSON.stringify(player));
+  }
+  location.href = './lobby.html?v=26';
+});
+
+// Lock landscape when installed as PWA / App
+if (window.matchMedia('(display-mode: standalone)').matches || window.matchMedia('(display-mode: fullscreen)').matches || window.navigator.standalone) {
+  const lock = () => {
+    if (screen.orientation && screen.orientation.lock) {
+      screen.orientation.lock('landscape').catch(() => {});
+    }
+  };
+  lock();
+  window.addEventListener('load', lock);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) lock(); });
+}
+
+// Single clean Service Worker registration
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', async () => {
     try {
-      const registration = await navigator.serviceWorker.register('./sw.js?v=27', { updateViaCache: 'none' });
-      await registration.update();
-      if (registration.waiting) registration.waiting.postMessage({ type: 'SKIP_WAITING' });
-    } catch (error) {
-      console.warn('App update check failed', error);
+      const reg = await navigator.serviceWorker.register('./sw.js?v=26', { updateViaCache: 'none' });
+      await reg.update();
+      if (reg.waiting) reg.waiting.postMessage({ type: 'SKIP_WAITING' });
+    } catch (err) {
+      console.warn('SW registration failed', err);
     }
   });
 }
 </script>
-
-</body></html>
+</body>
+</html>
