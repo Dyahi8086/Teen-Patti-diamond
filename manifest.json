@@ -2,7 +2,7 @@
   "name": "Teen Patti Diamond",
   "short_name": "TP Diamond",
   "description": "Teen Patti Diamond game",
-  "start_url": "./login.html?v=19",
+  "start_url": "./login.html?v=21",
   "scope": "./",
   "display": "fullscreen",
   "display_override": [
