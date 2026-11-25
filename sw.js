@@ -1,4 +1,4 @@
-const CACHE_NAME = 'teen-patti-diamond-v35';
+const CACHE_NAME = 'teen-patti-diamond-v36';
 const APP_SHELL = [
   './', './index.html', './login.html', './lobby.html', './manifest.json', './supabase-config.js',
   './icon-192.svg', './icon-512.svg',
