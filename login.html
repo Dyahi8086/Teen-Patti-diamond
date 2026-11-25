@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-<meta name="theme-color" content="#210039">
+<meta name="theme-color" content="#31004e">
 <link rel="manifest" href="./manifest.json">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
@@ -23,9 +23,8 @@ html, body {
   color: #fff;
   background: radial-gradient(ellipse at 35% 45%, #7b00c6 0%, #31004e 52%, #100019 100%);
   overscroll-behavior: none;
-  touch-action: pan-x pan-y;
+  touch-action: manipulation;
   -webkit-text-size-adjust: 100%;
-  overscroll-behavior: none;
 }
 
 body {
@@ -34,6 +33,7 @@ body {
   width: 100%;
   height: 100svh;
   min-height: 100svh;
+  background: radial-gradient(ellipse at 35% 45%, #7b00c6 0%, #31004e 52%, #100019 100%);
   display: flex;
   overflow: hidden;
   padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
@@ -172,11 +172,11 @@ body::after { right: -35vw; bottom: -40vw; box-shadow: 0 0 80px #8b26d522 inset;
 .play-card.c4 { right: 26%; } .play-card.c5 { right: 15%; } .play-card.c6 { right: 4%; }
 .play-card.c7 { left: 10%; } .play-card.c8 { right: 10%; } .play-card.c9 { left: 36%; } .play-card.c10 { right: 36%; }
 
-@keyframes cardFall0 { 0% { transform: translate(-8vw, 0) rotate(-35deg) scale(.75); opacity: 0; } 12% { opacity: .88; } 88% { opacity: .88; } 100% { transform: translate(6vw, 112dvh) rotate(220deg) scale(.85); opacity: 0; } }
-@keyframes cardFall1 { 0% { transform: translate(8vw, 0) rotate(28deg) scale(1.05); opacity: 0; } 12% { opacity: .88; } 88% { opacity: .88; } 100% { transform: translate(-8vw, 112dvh) rotate(-250deg) scale(.95); opacity: 0; } }
-@keyframes cardFall2 { 0% { transform: translate(0, 0) rotate(0) scale(.7); opacity: 0; } 15% { opacity: .88; } 85% { opacity: .88; } 100% { transform: translate(4vw, 112dvh) rotate(340deg) scale(.9); opacity: 0; } }
-@keyframes cardFall3 { 0% { transform: translate(-6vw, 0) rotate(60deg) scale(.95); opacity: 0; } 12% { opacity: .88; } 88% { opacity: .88; } 100% { transform: translate(-10vw, 112dvh) rotate(-300deg) scale(1.05); opacity: 0; } }
-@keyframes cardFall4 { 0% { transform: translate(10vw, 0) rotate(-50deg) scale(.85); opacity: 0; } 12% { opacity: .88; } 88% { opacity: .88; } 100% { transform: translate(-6vw, 112dvh) rotate(310deg) scale(.75); opacity: 0; } }
+@keyframes cardFall0 { 0% { transform: translate(-8vw, 0) rotate(-35deg) scale(.75); opacity: 0; } 12% { opacity: .88; } 88% { opacity: .88; } 100% { transform: translate(6vw, 112svh) rotate(220deg) scale(.85); opacity: 0; } }
+@keyframes cardFall1 { 0% { transform: translate(8vw, 0) rotate(28deg) scale(1.05); opacity: 0; } 12% { opacity: .88; } 88% { opacity: .88; } 100% { transform: translate(-8vw, 112svh) rotate(-250deg) scale(.95); opacity: 0; } }
+@keyframes cardFall2 { 0% { transform: translate(0, 0) rotate(0) scale(.7); opacity: 0; } 15% { opacity: .88; } 85% { opacity: .88; } 100% { transform: translate(4vw, 112svh) rotate(340deg) scale(.9); opacity: 0; } }
+@keyframes cardFall3 { 0% { transform: translate(-6vw, 0) rotate(60deg) scale(.95); opacity: 0; } 12% { opacity: .88; } 88% { opacity: .88; } 100% { transform: translate(-10vw, 112svh) rotate(-300deg) scale(1.05); opacity: 0; } }
+@keyframes cardFall4 { 0% { transform: translate(10vw, 0) rotate(-50deg) scale(.85); opacity: 0; } 12% { opacity: .88; } 88% { opacity: .88; } 100% { transform: translate(-6vw, 112svh) rotate(310deg) scale(.75); opacity: 0; } }
 .play-card.m0 { animation-name: cardFall0; } .play-card.m1 { animation-name: cardFall1; }
 .play-card.m2 { animation-name: cardFall2; } .play-card.m3 { animation-name: cardFall3; }
 .play-card.m4 { animation-name: cardFall4; }
@@ -197,7 +197,7 @@ body::after { right: -35vw; bottom: -40vw; box-shadow: 0 0 80px #8b26d522 inset;
 .brand-logo {
   display: block;
   width: min(440px, 92%);
-  max-height: min(195px, 29dvh);
+  max-height: min(195px, 29svh);
   height: auto;
   object-fit: contain;
   margin: 0 auto 10px;
@@ -301,23 +301,13 @@ body::after { right: -35vw; bottom: -40vw; box-shadow: 0 0 80px #8b26d522 inset;
     margin: 0 auto;
     gap: 0;
   }
-  .art { height: 35dvh; transform: none; }
+  .art { height: 35svh; transform: none; }
   .character-stage { height: 100%; }
   .login { padding: 8px 14px; display: flex; flex-direction: column; justify-content: center; }
   .brand-logo { width: min(310px, 82vw); max-height: 120px; margin-bottom: 10px; }
   .welcome-pill { margin-bottom: 12px; padding: 5px 14px; }
   .social-btn { width: 60px; height: 54px; }
   .guest-btn { width: 160px; height: 48px; font-size: 16px; }
-}
-
-/* Short Landscape Phones */
-@media (orientation: landscape) and (max-height: 460px) {
-  .brand-logo { width: min(300px, 85%); max-height: 25dvh; margin-bottom: 8px; }
-  .welcome-pill { margin-bottom: 8px; padding: 4px 12px; font-size: 11px; }
-  .social-row { margin-bottom: 8px; }
-  .social-btn { width: 54px; height: 48px; }
-  .guest-btn { width: 150px; height: 44px; font-size: 15px; }
-  .note { margin-top: 6px; font-size: 10px; }
 }
 
 /* Keep login controls at their original size when Android system bars appear/disappear. */
