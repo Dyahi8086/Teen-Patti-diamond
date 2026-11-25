@@ -1,4 +1,4 @@
-const CACHE_NAME = 'teen-patti-diamond-v23';
+const CACHE_NAME = 'teen-patti-diamond-v24';
 const APP_SHELL = ['./', './index.html', './login.html', './manifest.json', './icon-192.svg', './icon-512.svg', './teen-patti-diamond-logo.png', './bg-diamond.png'];
 
 self.addEventListener('install', event => {
