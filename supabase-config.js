@@ -1,7 +1,7 @@
 // Teen Patti Diamond Supabase client settings.
-// Replace these two values with THIS GAME'S Supabase project URL and publishable key.
+// This file uses the project's publishable key, which is intended for browser use.
 // Never put a service_role / secret key in this file.
 window.TPD_SUPABASE_CONFIG = {
-  url: "YOUR_SUPABASE_PROJECT_URL",
-  publishableKey: "YOUR_SUPABASE_PUBLISHABLE_KEY"
+  url: "https://yzwkgnqtgicohgsnywyo.supabase.co",
+  publishableKey: "sb_publishable_j5HvLjsDpxmMO7ehJ1qebA_Ak1eulmo"
 };
