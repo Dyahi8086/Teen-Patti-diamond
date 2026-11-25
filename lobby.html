@@ -1,24 +1,198 @@
+
 <!DOCTYPE html>
-<html lang="en"><head>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="./supabase-config.js"></script><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#210039"><link rel="manifest" href="./manifest.json"><title>Teen Patti Diamond — Lobby</title>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#210039">
+<link rel="manifest" href="./manifest.json">
+<title>Teen Patti Diamond — Lobby</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="./supabase-config.js"></script>
+
 <style>
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;min-height:100%;font-family:system-ui,Arial,sans-serif;color:#fff;background:#180022}body{min-height:100dvh;padding:clamp(12px,3vw,32px);background:radial-gradient(ellipse at 50% 0,#7800ad,#39004e 48%,#160020);overflow-x:hidden}
-header{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:0 auto 18px;max-width:1100px}.player{padding:10px 14px;border:1px solid #e6bdff66;border-radius:22px;background:#ffffff12;font-weight:800}.back{border:1px solid #e6bdff66;background:#2d0b43;color:white;border-radius:12px;padding:10px 14px;font-weight:800}
-main{width:min(1100px,100%);margin:auto}.hero{text-align:center;padding:22px 14px;border:1px solid #edc2ff55;border-radius:26px;background:linear-gradient(135deg,#ffffff16,#ffffff05);box-shadow:0 18px 44px #09001266}.logo{width:min(330px,76vw);height:105px;object-fit:contain;filter:drop-shadow(0 8px 20px #d34bff66)}.eyebrow{margin:4px 0 7px;color:#ffda83;font-size:11px;font-weight:900;letter-spacing:2px;text-transform:uppercase}h1{margin:0;font:800 clamp(26px,5vw,42px) Georgia,serif}.sub{color:#e4c7f4;font-size:13px;margin:8px 0 0}.tags{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:16px}.tag{border:1px solid #e7c2ff55;background:#220c37aa;border-radius:20px;padding:7px 12px;font-size:11px;font-weight:800}
-.head{display:flex;justify-content:space-between;align-items:end;margin:25px 2px 13px}.head h2{margin:0;font-size:19px}.head small{color:#d9b9eb}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.tile{position:relative;text-align:left;min-height:155px;padding:17px;border:1px solid #e7baff77;border-radius:22px;color:#fff;background:linear-gradient(145deg,#7d29a7,#34004c 75%);box-shadow:inset 0 1px #ffffff33,0 12px 24px #08000d55;font:inherit}.tile:active{transform:scale(.98)}.tile.primary{background:linear-gradient(145deg,#ffe39c,#b86a18);color:#35122b;border-color:#fff0bf}.emoji{display:block;font-size:36px;margin-bottom:10px}.tile b{display:block;font-size:17px}.tile small{display:block;margin-top:5px;opacity:.82;font-size:11px}.arrow{position:absolute;right:15px;bottom:13px;font-size:21px}.foot{text-align:center;color:#cdaedc;font-size:11px;margin:22px 0 5px}.modal{display:none;position:fixed;inset:0;z-index:5;background:#08000dcc;align-items:center;justify-content:center;padding:20px}.modal.show{display:flex}.dialog{width:min(400px,100%);text-align:center;padding:24px;border:1px solid #e9bfff;border-radius:22px;background:linear-gradient(145deg,#641a85,#230034)}.dialog button{border:0;border-radius:12px;background:linear-gradient(145deg,#ffe19a,#d99a32);padding:12px 25px;font-weight:900;color:#32102b}
-@media(min-width:760px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}.tile{min-height:185px}}@media(max-width:380px){body{padding:10px}.grid{gap:9px}.tile{min-height:140px;padding:13px}.tile b{font-size:15px}}
-</style></head><body>
-<header><div class="player" id="playerName">Loading player…</div><button class="back" id="logoutBtn">Log out</button></header>
-<main><section class="hero"><img class="logo" src="./teen-patti-diamond-logo.png" alt="Teen Patti Diamond"><p class="eyebrow">Welcome to the table</p><h1>Ready to Play?</h1><p class="sub">Choose a table, invite friends and enjoy a friendly game.</p><div class="tags"><span class="tag">♠ Free Play</span><span class="tag">No cash prizes</span><span class="tag">Play with friends</span></div></section>
-<div class="head"><h2>Game Lobby</h2><small>Choose how you want to play</small></div>
-<section class="grid"><button class="tile primary" data-feature="Quick Play"><span class="emoji">🃏</span><b>Quick Play</b><small>Find a friendly table</small><span class="arrow">↗</span></button><button class="tile" data-feature="Private Table"><span class="emoji">♠️</span><b>Private Table</b><small>Create a room for friends</small><span class="arrow">↗</span></button><button class="tile" data-feature="Friends"><span class="emoji">👥</span><b>Friends</b><small>Invite and play together</small><span class="arrow">↗</span></button><button class="tile" data-feature="Leaderboard"><span class="emoji">🏆</span><b>Leaderboard</b><small>Friendly rankings</small><span class="arrow">↗</span></button></section>
-<p class="foot">Just for fun • No real-money play or cash prizes</p></main>
-<div class="modal" id="modal"><div class="dialog"><h2 id="modalTitle">Coming soon</h2><p id="modalText">This feature is being built next.</p><button id="closeModal">Got it</button></div></div>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+
+html,body{
+  margin:0;
+  width:100%;
+  min-height:100%;
+  font-family:system-ui,Arial,sans-serif;
+  color:#fff;
+  background:#210039;
+  overscroll-behavior:none;
+  -webkit-text-size-adjust:100%;
+}
+
+body{
+  width:100%;
+  min-height:100vh;
+  min-height:100svh;
+  padding:
+    max(clamp(12px,3vw,32px),env(safe-area-inset-top))
+    max(clamp(12px,3vw,32px),env(safe-area-inset-right))
+    max(clamp(12px,3vw,32px),env(safe-area-inset-bottom))
+    max(clamp(12px,3vw,32px),env(safe-area-inset-left));
+  background:radial-gradient(ellipse at 50% 0,#7800ad,#39004e 48%,#210039);
+  overflow-x:hidden;
+}
+
+header{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:0 auto 18px;max-width:1100px}
+.player{padding:10px 14px;border:1px solid #e6bdff66;border-radius:22px;background:#ffffff12;font-weight:800}
+.back{border:1px solid #e6bdff66;background:#2d0b43;color:white;border-radius:12px;padding:10px 14px;font-weight:800}
+
+main{width:min(1100px,100%);margin:auto}
+.hero{text-align:center;padding:22px 14px;border:1px solid #edc2ff55;border-radius:26px;background:linear-gradient(135deg,#ffffff16,#ffffff05);box-shadow:0 18px 44px #09001266}
+.logo{width:min(330px,76vw);height:105px;object-fit:contain;filter:drop-shadow(0 8px 20px #d34bff66)}
+.eyebrow{margin:4px 0 7px;color:#ffda83;font-size:11px;font-weight:900;letter-spacing:2px;text-transform:uppercase}
+h1{margin:0;font:800 clamp(26px,5vw,42px) Georgia,serif}
+.sub{color:#e4c7f4;font-size:13px;margin:8px 0 0}
+.tags{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:16px}
+.tag{border:1px solid #e7c2ff55;background:#220c37aa;border-radius:20px;padding:7px 12px;font-size:11px;font-weight:800}
+
+.head{display:flex;justify-content:space-between;align-items:end;margin:25px 2px 13px}
+.head h2{margin:0;font-size:19px}
+.head small{color:#d9b9eb}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.tile{position:relative;text-align:left;min-height:155px;padding:17px;border:1px solid #e7baff77;border-radius:22px;color:#fff;background:linear-gradient(145deg,#7d29a7,#34004c 75%);box-shadow:inset 0 1px #ffffff33,0 12px 24px #08000d55;font:inherit}
+.tile:active{transform:scale(.98)}
+.tile.primary{background:linear-gradient(145deg,#ffe39c,#b86a18);color:#35122b;border-color:#fff0bf}
+.emoji{display:block;font-size:36px;margin-bottom:10px}
+.tile b{display:block;font-size:17px}
+.tile small{display:block;margin-top:5px;opacity:.82;font-size:11px}
+.arrow{position:absolute;right:15px;bottom:13px;font-size:21px}
+.foot{text-align:center;color:#cdaedc;font-size:11px;margin:22px 0 5px}
+.modal{display:none;position:fixed;inset:0;z-index:5;background:#08000dcc;align-items:center;justify-content:center;padding:20px}
+.modal.show{display:flex}
+.dialog{width:min(400px,100%);text-align:center;padding:24px;border:1px solid #e9bfff;border-radius:22px;background:linear-gradient(145deg,#641a85,#230034)}
+.dialog button{border:0;border-radius:12px;background:linear-gradient(145deg,#ffe19a,#d99a32);padding:12px 25px;font-weight:900;color:#32102b}
+
+@media(min-width:760px){
+  .grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .tile{min-height:185px}
+}
+@media(max-width:380px){
+  body{padding:10px}
+  .grid{gap:9px}
+  .tile{min-height:140px;padding:13px}
+  .tile b{font-size:15px}
+}
+</style>
+</head>
+
+<body>
+<header>
+  <div class="player" id="playerName">Loading player…</div>
+  <button class="back" id="logoutBtn">Log out</button>
+</header>
+
+<main>
+<section class="hero">
+  <img class="logo" src="./teen-patti-diamond-logo.png" alt="Teen Patti Diamond">
+  <p class="eyebrow">Welcome to the table</p>
+  <h1>Ready to Play?</h1>
+  <p class="sub">Choose a table, invite friends and enjoy a friendly game.</p>
+  <div class="tags">
+    <span class="tag">♠ Free Play</span>
+    <span class="tag">No cash prizes</span>
+    <span class="tag">Play with friends</span>
+  </div>
+</section>
+
+<div class="head">
+  <h2>Game Lobby</h2>
+  <small>Choose how you want to play</small>
+</div>
+
+<section class="grid">
+  <button class="tile primary" data-feature="Quick Play">
+    <span class="emoji">🃏</span><b>Quick Play</b>
+    <small>Find a friendly table</small><span class="arrow">↗</span>
+  </button>
+  <button class="tile" data-feature="Private Table">
+    <span class="emoji">♠️</span><b>Private Table</b>
+    <small>Create a room for friends</small><span class="arrow">↗</span>
+  </button>
+  <button class="tile" data-feature="Friends">
+    <span class="emoji">👥</span><b>Friends</b>
+    <small>Invite and play together</small><span class="arrow">↗</span>
+  </button>
+  <button class="tile" data-feature="Leaderboard">
+    <span class="emoji">🏆</span><b>Leaderboard</b>
+    <small>Friendly rankings</small><span class="arrow">↗</span>
+  </button>
+</section>
+
+<p class="foot">Just for fun • No real-money play or cash prizes</p>
+</main>
+
+<div class="modal" id="modal">
+  <div class="dialog">
+    <h2 id="modalTitle">Coming soon</h2>
+    <p id="modalText">This feature is being built next.</p>
+    <button id="closeModal">Got it</button>
+  </div>
+</div>
+
 <script>
-const cfg=window.TPD_SUPABASE_CONFIG||{};const ready=cfg.url&&cfg.publishableKey&&!String(cfg.url).includes('YOUR_')&&!String(cfg.publishableKey).includes('YOUR_');const client=ready&&window.supabase?window.supabase.createClient(cfg.url,cfg.publishableKey,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}}):null;
-async function start(){if(!client){location.replace('./login.html?v=27');return}const {data,error}=await client.auth.getSession();if(error||!data.session){location.replace('./login.html?v=27');return}const u=data.session.user;let name=u.is_anonymous?'Guest Player':(u.user_metadata?.full_name||u.user_metadata?.name||u.email?.split('@')[0]||'Player');try{const {data:p}=await client.from('profiles').select('username').eq('id',u.id).maybeSingle();if(p?.username)name=p.username}catch(e){}document.getElementById('playerName').textContent=(u.is_anonymous?'👤 ':'⭐ ')+name}
-document.getElementById('logoutBtn').onclick=async()=>{if(client)await client.auth.signOut();location.replace('./login.html?v=27')};
-document.querySelectorAll('[data-feature]').forEach(b=>b.onclick=()=>{document.getElementById('modalTitle').textContent=b.dataset.feature;document.getElementById('modalText').textContent=b.dataset.feature+' table screen is the next build. Your Supabase login is active.';document.getElementById('modal').classList.add('show')});
-document.getElementById('closeModal').onclick=()=>document.getElementById('modal').classList.remove('show');document.getElementById('modal').onclick=e=>{if(e.target.id==='modal')e.currentTarget.classList.remove('show')};start();
-</script></body></html>
+const cfg=window.TPD_SUPABASE_CONFIG||{};
+const ready=cfg.url&&cfg.publishableKey&&
+  !String(cfg.url).includes('YOUR_')&&
+  !String(cfg.publishableKey).includes('YOUR_');
+
+const client=ready&&window.supabase?
+  window.supabase.createClient(cfg.url,cfg.publishableKey,{
+    auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}
+  }):null;
+
+async function start(){
+  if(!client){
+    location.replace('./login.html?v=27');
+    return;
+  }
+  const {data,error}=await client.auth.getSession();
+  if(error||!data.session){
+    location.replace('./login.html?v=27');
+    return;
+  }
+  const u=data.session.user;
+  let name=u.is_anonymous?'Guest Player':
+    (u.user_metadata?.full_name||u.user_metadata?.name||
+    u.email?.split('@')[0]||'Player');
+
+  try{
+    const {data:p}=await client.from('profiles')
+      .select('username').eq('id',u.id).maybeSingle();
+    if(p?.username)name=p.username;
+  }catch(e){}
+
+  document.getElementById('playerName').textContent=
+    (u.is_anonymous?'👤 ':'⭐ ')+name;
+}
+
+document.getElementById('logoutBtn').onclick=async()=>{
+  if(client)await client.auth.signOut();
+  location.replace('./login.html?v=27');
+};
+
+document.querySelectorAll('[data-feature]').forEach(b=>{
+  b.onclick=()=>{
+    document.getElementById('modalTitle').textContent=b.dataset.feature;
+    document.getElementById('modalText').textContent=
+      b.dataset.feature+' table screen is the next build. Your Supabase login is active.';
+    document.getElementById('modal').classList.add('show');
+  };
+});
+
+document.getElementById('closeModal').onclick=()=>{
+  document.getElementById('modal').classList.remove('show');
+};
+
+document.getElementById('modal').onclick=e=>{
+  if(e.target.id==='modal')e.currentTarget.classList.remove('show');
+};
+
+start();
+</script>
+</body>
+</html>
