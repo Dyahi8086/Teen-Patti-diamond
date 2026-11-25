@@ -147,12 +147,12 @@ const client=ready&&window.supabase?
 
 async function start(){
   if(!client){
-    location.replace('./login.html?v=27');
+    location.replace('./login.html?v=38');
     return;
   }
   const {data,error}=await client.auth.getSession();
   if(error||!data.session){
-    location.replace('./login.html?v=27');
+    location.replace('./login.html?v=38');
     return;
   }
   const u=data.session.user;
@@ -172,7 +172,7 @@ async function start(){
 
 document.getElementById('logoutBtn').onclick=async()=>{
   if(client)await client.auth.signOut();
-  location.replace('./login.html?v=27');
+  location.replace('./login.html?v=38');
 };
 
 document.querySelectorAll('[data-feature]').forEach(b=>{
@@ -193,6 +193,28 @@ document.getElementById('modal').onclick=e=>{
 };
 
 start();
+
+// Keep the installed app updated even when it is opened directly on the lobby.
+if ('serviceWorker' in navigator) {
+  let refreshingAfterUpdate = false;
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (refreshingAfterUpdate) return;
+    refreshingAfterUpdate = true;
+    window.location.reload();
+  });
+  window.addEventListener('load', async () => {
+    try {
+      const reg = await navigator.serviceWorker.register('./sw.js?v=38', { updateViaCache: 'none' });
+      await reg.update();
+      if (reg.waiting) reg.waiting.postMessage({ type: 'SKIP_WAITING' });
+      document.addEventListener('visibilitychange', () => {
+        if (!document.hidden) reg.update().catch(() => {});
+      });
+    } catch (err) {
+      console.warn('SW update check failed', err);
+    }
+  });
+}
 </script>
 </body>
 </html>
