@@ -310,6 +310,8 @@ body::after { right: -35vw; bottom: -40vw; box-shadow: 0 0 80px #8b26d522 inset;
   .note { margin-top: 6px; font-size: 10px; }
 }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="./supabase-config.js"></script>
 </head>
 <body>
 <main class="page">
@@ -376,34 +378,62 @@ body::after { right: -35vw; bottom: -40vw; box-shadow: 0 0 80px #8b26d522 inset;
   });
 })();
 
-document.getElementById('facebookBtn').addEventListener('click', () => {
-  alert('Facebook sign-in setup required: connect your Facebook OAuth app to enable login.');
-});
-document.getElementById('googleBtn').addEventListener('click', () => {
-  alert('Google sign-in setup required: connect your Google OAuth client to enable login.');
+// Supabase authentication for Google, Facebook and anonymous guest play.
+const TPD_CONFIG = window.TPD_SUPABASE_CONFIG || {};
+const TPD_CONFIG_READY = !!(TPD_CONFIG.url && TPD_CONFIG.publishableKey &&
+  !String(TPD_CONFIG.url).includes('YOUR_') &&
+  !String(TPD_CONFIG.publishableKey).includes('YOUR_'));
+const TPD_AUTH = TPD_CONFIG_READY && window.supabase
+  ? window.supabase.createClient(TPD_CONFIG.url, TPD_CONFIG.publishableKey, {
+      auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true }
+    })
+  : null;
+const TPD_LOBBY_URL = new URL('./lobby.html?v=28', window.location.href).href;
+
+function showAuthError(error) {
+  console.error('Teen Patti Diamond sign-in error:', error);
+  alert(error?.message || 'Sign-in could not start. Please try again.');
+}
+
+async function startOAuth(provider) {
+  if (!TPD_AUTH) {
+    alert('Login setup is incomplete. Please try again later.');
+    return;
+  }
+  const { error } = await TPD_AUTH.auth.signInWithOAuth({
+    provider,
+    options: { redirectTo: TPD_LOBBY_URL }
+  });
+  if (error) showAuthError(error);
+}
+
+document.getElementById('googleBtn').addEventListener('click', () => startOAuth('google'));
+document.getElementById('facebookBtn').addEventListener('click', () => startOAuth('facebook'));
+
+document.getElementById('guestBtn').addEventListener('click', async () => {
+  if (!TPD_AUTH) {
+    alert('Login setup is incomplete. Please try again later.');
+    return;
+  }
+  const button = document.getElementById('guestBtn');
+  button.disabled = true;
+  try {
+    const { data, error } = await TPD_AUTH.auth.signInAnonymously();
+    if (error) throw error;
+    if (data.session) window.location.replace(TPD_LOBBY_URL);
+    else throw new Error('Guest session was not created. Please try again.');
+  } catch (error) {
+    showAuthError(error);
+    button.disabled = false;
+  }
 });
 
-// Guest Login with initial 1,20,000 chips & progress initialization
-document.getElementById('guestBtn').addEventListener('click', () => {
-  let player = null;
-  try { player = JSON.parse(localStorage.getItem('tpd_player') || 'null'); } catch (e) {}
-  if (!player || player.type !== 'guest' || !player.id) {
-    const id = (globalThis.crypto && crypto.randomUUID)
-      ? crypto.randomUUID()
-      : 'guest-' + Date.now() + '-' + Math.random().toString(36).slice(2);
-    player = {
-      id,
-      type: 'guest',
-      name: 'Guest_' + id.slice(-4).toUpperCase(),
-      chips: 120000,
-      diamonds: 20,
-      level: 1,
-      createdAt: Date.now()
-    };
-    localStorage.setItem('tpd_player', JSON.stringify(player));
-  }
-  location.href = './lobby.html?v=26';
-});
+// If the player already has a Supabase session, continue to the lobby.
+(async () => {
+  if (!TPD_AUTH) return;
+  const { data, error } = await TPD_AUTH.auth.getSession();
+  if (!error && data.session) window.location.replace(TPD_LOBBY_URL);
+})();
 
 // Lock landscape when installed as PWA / App
 if (window.matchMedia('(display-mode: standalone)').matches || window.matchMedia('(display-mode: fullscreen)').matches || window.navigator.standalone) {
@@ -421,7 +451,7 @@ if (window.matchMedia('(display-mode: standalone)').matches || window.matchMedia
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', async () => {
     try {
-      const reg = await navigator.serviceWorker.register('./sw.js?v=26', { updateViaCache: 'none' });
+      const reg = await navigator.serviceWorker.register('./sw.js?v=28', { updateViaCache: 'none' });
       await reg.update();
       if (reg.waiting) reg.waiting.postMessage({ type: 'SKIP_WAITING' });
     } catch (err) {
