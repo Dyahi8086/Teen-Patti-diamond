@@ -557,13 +557,23 @@ if (window.matchMedia('(display-mode: standalone)').matches || window.matchMedia
   document.addEventListener('visibilitychange', () => { if (!document.hidden) lock(); });
 }
 
-// Single clean Service Worker registration
+// PWA auto-update: check on launch/return and reload once when a new worker takes control.
 if ('serviceWorker' in navigator) {
+  let refreshingAfterUpdate = false;
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (refreshingAfterUpdate) return;
+    refreshingAfterUpdate = true;
+    window.location.reload();
+  });
+
   window.addEventListener('load', async () => {
     try {
-      const reg = await navigator.serviceWorker.register('./sw.js?v=37', { updateViaCache: 'none' });
+      const reg = await navigator.serviceWorker.register('./sw.js?v=38', { updateViaCache: 'none' });
       await reg.update();
       if (reg.waiting) reg.waiting.postMessage({ type: 'SKIP_WAITING' });
+      document.addEventListener('visibilitychange', () => {
+        if (!document.hidden) reg.update().catch(() => {});
+      });
     } catch (err) {
       console.warn('SW registration failed', err);
     }
