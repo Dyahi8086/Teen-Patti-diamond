@@ -484,7 +484,7 @@ const TPD_AUTH = TPD_CONFIG_READY && window.supabase
       auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true }
     })
   : null;
-const TPD_LOBBY_URL = new URL('./lobby.html?v=30', window.location.href).href;
+const TPD_LOBBY_URL = new URL('./lobby.html?v=31', window.location.href).href;
 
 function showAuthError(error) {
   console.error('Teen Patti Diamond sign-in error:', error);
@@ -547,7 +547,7 @@ if (window.matchMedia('(display-mode: standalone)').matches || window.matchMedia
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', async () => {
     try {
-      const reg = await navigator.serviceWorker.register('./sw.js?v=30', { updateViaCache: 'none' });
+      const reg = await navigator.serviceWorker.register('./sw.js?v=31', { updateViaCache: 'none' });
       await reg.update();
       if (reg.waiting) reg.waiting.postMessage({ type: 'SKIP_WAITING' });
     } catch (err) {
