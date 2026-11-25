@@ -162,6 +162,26 @@ body{padding:0!important;overflow-x:hidden!important}
  .guest-btn{width:158px!important;height:46px!important}
  .art{transform:translateX(-1vw)}
 }
+
+/* Full-bleed background: paint the entire installed-app viewport, including inset areas */
+html{
+ margin:0!important;padding:0!important;width:100%!important;height:100%!important;
+ min-height:100%!important;overflow:hidden!important;
+ background:radial-gradient(ellipse at 35% 45%,#7b00c6 0%,#31004e 52%,#100019 100%)!important;
+}
+body{
+ position:fixed!important;inset:0!important;
+ width:100vw!important;height:100vh!important;height:100dvh!important;
+ min-width:0!important;min-height:0!important;margin:0!important;padding:0!important;
+ overflow:hidden!important;display:flex!important;
+ background:radial-gradient(ellipse at 35% 45%,#7b00c6 0%,#31004e 52%,#100019 100%)!important;
+}
+.page{width:100%!important;height:100%!important;min-height:100%!important;margin:0!important}
+@media (orientation:portrait) and (max-width:900px){
+ body{position:fixed!important;inset:0!important;height:100dvh!important;overflow-y:auto!important}
+ .page{min-height:100dvh!important;height:auto!important}
+}
+
 </style>
 </head>
 <body>
@@ -217,7 +237,7 @@ document.getElementById('facebookBtn').addEventListener('click',()=>alert('Faceb
 document.getElementById('googleBtn').addEventListener('click',()=>alert('Google sign-in setup required: connect your Google OAuth client to enable login.'));
 document.getElementById('guestBtn').addEventListener('click',()=>alert('Guest session logic ko game ke saath connect karna baaki hai.'));
 
-if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=23',{updateViaCache:'none'}).then(reg=>reg.update()).catch(()=>{}));
+if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=24',{updateViaCache:'none'}).then(reg=>reg.update()).catch(()=>{}));
 if(window.matchMedia('(display-mode: standalone)').matches||window.matchMedia('(display-mode: fullscreen)').matches||window.navigator.standalone){
  const lock=()=>{if(screen.orientation&&screen.orientation.lock)screen.orientation.lock('landscape').catch(()=>{});};
  lock();window.addEventListener('load',lock);document.addEventListener('visibilitychange',()=>{if(!document.hidden)lock();});
