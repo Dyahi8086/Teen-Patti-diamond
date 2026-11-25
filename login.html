@@ -136,7 +136,6 @@ body::after { right: -35vw; bottom: -40vw; box-shadow: 0 0 80px #8b26d522 inset;
 
 /* Falling Cards */
  .card-sprinkle {
-  display: none !important;
   position: absolute;
   inset: 0;
   z-index: 1;
@@ -457,7 +456,26 @@ body::after { right: -35vw; bottom: -40vw; box-shadow: 0 0 80px #8b26d522 inset;
 </main>
 
 <script>
-// Falling card animation intentionally disabled for a clean, static character view.
+// Animate decorative playing cards in the background; character remains stationary.
+(() => {
+  const cards = [...document.querySelectorAll('.play-card')];
+  const lastEffect = new WeakMap();
+  const randomize = (card, isFirst = false) => {
+    let next = Math.floor(Math.random() * 5);
+    const prev = lastEffect.get(card);
+    if (prev !== undefined && next === prev) next = (next + 1) % 5;
+    lastEffect.set(card, next);
+    card.classList.remove('m0', 'm1', 'm2', 'm3', 'm4');
+    card.classList.add('m' + next);
+    const dur = (7 + Math.random() * 4).toFixed(2);
+    card.style.setProperty('--duration', dur + 's');
+    card.style.setProperty('--delay', isFirst ? (-Math.random() * dur).toFixed(2) + 's' : '0s');
+  };
+  cards.forEach(card => {
+    randomize(card, true);
+    card.addEventListener('animationiteration', () => randomize(card, false));
+  });
+})();
 
 // Supabase authentication for Google, Facebook and anonymous guest play.
 const TPD_CONFIG = window.TPD_SUPABASE_CONFIG || {};
@@ -469,7 +487,7 @@ const TPD_AUTH = TPD_CONFIG_READY && window.supabase
       auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true }
     })
   : null;
-const TPD_LOBBY_URL = new URL('./lobby.html?v=33', window.location.href).href;
+const TPD_LOBBY_URL = new URL('./lobby.html?v=34', window.location.href).href;
 
 function showAuthError(error) {
   console.error('Teen Patti Diamond sign-in error:', error);
@@ -532,7 +550,7 @@ if (window.matchMedia('(display-mode: standalone)').matches || window.matchMedia
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', async () => {
     try {
-      const reg = await navigator.serviceWorker.register('./sw.js?v=33', { updateViaCache: 'none' });
+      const reg = await navigator.serviceWorker.register('./sw.js?v=34', { updateViaCache: 'none' });
       await reg.update();
       if (reg.waiting) reg.waiting.postMessage({ type: 'SKIP_WAITING' });
     } catch (err) {
