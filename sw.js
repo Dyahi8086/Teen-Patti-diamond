@@ -1,4 +1,4 @@
-const CACHE_NAME = 'teen-patti-diamond-v37';
+const CACHE_NAME = 'teen-patti-diamond-v38';
 const APP_SHELL = [
   './', './index.html', './login.html', './lobby.html', './manifest.json', './supabase-config.js',
   './icon-192.svg', './icon-512.svg',
@@ -47,18 +47,17 @@ self.addEventListener('fetch', event => {
     return;
   }
 
+  // Network-first for same-origin assets so installed apps receive new files.
   event.respondWith((async () => {
-    const cached = await caches.match(req);
-    if (cached) return cached;
     try {
-      const fresh = await fetch(req);
+      const fresh = await fetch(new Request(req, { cache: 'no-store' }));
       if (fresh && fresh.ok) {
         const cache = await caches.open(CACHE_NAME);
         await cache.put(req, fresh.clone());
       }
       return fresh;
     } catch (error) {
-      return Response.error();
+      return (await caches.match(req)) || Response.error();
     }
   })());
 });
