@@ -8,6 +8,9 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <title>Teen Patti Diamond | Login</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="./supabase-config.js"></script>
+
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Manrope:wght@400;600;700;800&display=swap');
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -233,19 +236,30 @@ body{
   card.addEventListener('animationiteration',()=>randomize(card));
  });
 })();
-document.getElementById('facebookBtn').addEventListener('click',()=>alert('Facebook sign-in setup required: connect your Facebook OAuth app to enable login.'));
-document.getElementById('googleBtn').addEventListener('click',()=>alert('Google sign-in setup required: connect your Google OAuth client to enable login.'));
-document.getElementById('guestBtn').addEventListener('click',()=>{
-  let player;try{player=JSON.parse(localStorage.getItem('tpd_player')||'null')}catch(e){}
-  if(!player||player.type!=='guest'||!player.id){
-    const id=globalThis.crypto&&crypto.randomUUID?crypto.randomUUID():'guest-'+Date.now()+'-'+Math.random().toString(36).slice(2);
-    player={id,type:'guest',name:'Guest Player'};
-    localStorage.setItem('tpd_player',JSON.stringify(player));
-  }
-  location.href='./lobby.html?v=26';
+const TPD_CONFIG=window.TPD_SUPABASE_CONFIG||{};
+const TPD_CONFIG_READY=typeof TPD_CONFIG.url==='string'&&TPD_CONFIG.url.startsWith('https://')&&typeof TPD_CONFIG.publishableKey==='string'&&TPD_CONFIG.publishableKey.length>20&&!TPD_CONFIG.url.includes('YOUR_')&&!TPD_CONFIG.publishableKey.includes('YOUR_');
+const TPD_CLIENT=TPD_CONFIG_READY&&window.supabase?window.supabase.createClient(TPD_CONFIG.url,TPD_CONFIG.publishableKey,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}}):null;
+const showAuthError=(message)=>alert(message);
+const setAuthBusy=(busy)=>['googleBtn','facebookBtn','guestBtn'].forEach(id=>{const b=document.getElementById(id);b.disabled=busy;b.style.opacity=busy?'.65':'1'});
+async function tpdOAuth(provider){
+ if(!TPD_CLIENT){showAuthError('Supabase setup baaki hai. supabase-config.js mein game project ka URL aur publishable key add karna hoga.');return}
+ setAuthBusy(true);
+ const {error}=await TPD_CLIENT.auth.signInWithOAuth({provider,options:{redirectTo:new URL('./lobby.html',location.href).href,queryParams:provider==='google'?{prompt:'select_account'}:undefined}});
+ if(error){setAuthBusy(false);showAuthError(error.message)}
+}
+document.getElementById('googleBtn').addEventListener('click',()=>tpdOAuth('google'));
+document.getElementById('facebookBtn').addEventListener('click',()=>tpdOAuth('facebook'));
+document.getElementById('guestBtn').addEventListener('click',async()=>{
+ if(!TPD_CLIENT){showAuthError('Supabase setup baaki hai. Pehle game project ka URL aur publishable key configure karo.');return}
+ setAuthBusy(true);
+ const {data,error}=await TPD_CLIENT.auth.signInAnonymously({options:{data:{name:'Guest Player',display_name:'Guest Player'}}});
+ if(error){setAuthBusy(false);showAuthError(error.message);return}
+ location.href='./lobby.html?v=27';
 });
-
-if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=26',{updateViaCache:'none'}).then(reg=>reg.update()).catch(()=>{}));
+if(TPD_CLIENT){
+ TPD_CLIENT.auth.getSession().then(({data})=>{if(data.session)location.replace('./lobby.html?v=27')});
+}
+if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=27',{updateViaCache:'none'}).then(reg=>reg.update()).catch(()=>{}));
 if(window.matchMedia('(display-mode: standalone)').matches||window.matchMedia('(display-mode: fullscreen)').matches||window.navigator.standalone){
  const lock=()=>{if(screen.orientation&&screen.orientation.lock)screen.orientation.lock('landscape').catch(()=>{});};
  lock();window.addEventListener('load',lock);document.addEventListener('visibilitychange',()=>{if(!document.hidden)lock();});
@@ -257,7 +271,7 @@ if(window.matchMedia('(display-mode: standalone)').matches||window.matchMedia('(
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', async () => {
     try {
-      const registration = await navigator.serviceWorker.register('./sw.js?v=26', { updateViaCache: 'none' });
+      const registration = await navigator.serviceWorker.register('./sw.js?v=27', { updateViaCache: 'none' });
       await registration.update();
       if (registration.waiting) registration.waiting.postMessage({ type: 'SKIP_WAITING' });
     } catch (error) {
