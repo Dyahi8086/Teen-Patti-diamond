@@ -147,12 +147,12 @@ const client=ready&&window.supabase?
 
 async function start(){
   if(!client){
-    location.replace('./login.html?v=38');
+    location.replace('./login.html?v=39');
     return;
   }
   const {data,error}=await client.auth.getSession();
   if(error||!data.session){
-    location.replace('./login.html?v=38');
+    location.replace('./login.html?v=39');
     return;
   }
   const u=data.session.user;
@@ -162,8 +162,8 @@ async function start(){
 
   try{
     const {data:p}=await client.from('profiles')
-      .select('username').eq('id',u.id).maybeSingle();
-    if(p?.username)name=p.username;
+      .select('display_name').eq('id',u.id).maybeSingle();
+    if(p?.display_name)name=p.display_name;
   }catch(e){}
 
   document.getElementById('playerName').textContent=
@@ -172,7 +172,7 @@ async function start(){
 
 document.getElementById('logoutBtn').onclick=async()=>{
   if(client)await client.auth.signOut();
-  location.replace('./login.html?v=38');
+  location.replace('./login.html?v=39');
 };
 
 document.querySelectorAll('[data-feature]').forEach(b=>{
@@ -204,7 +204,7 @@ if ('serviceWorker' in navigator) {
   });
   window.addEventListener('load', async () => {
     try {
-      const reg = await navigator.serviceWorker.register('./sw.js?v=38', { updateViaCache: 'none' });
+      const reg = await navigator.serviceWorker.register('./sw.js?v=39', { updateViaCache: 'none' });
       await reg.update();
       if (reg.waiting) reg.waiting.postMessage({ type: 'SKIP_WAITING' });
       document.addEventListener('visibilitychange', () => {
