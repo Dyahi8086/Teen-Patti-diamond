@@ -581,7 +581,7 @@ if ('serviceWorker' in navigator) {
 
   window.addEventListener('load', async () => {
     try {
-      const reg = await navigator.serviceWorker.register('./sw.js?v=39', { updateViaCache: 'none' });
+      const reg = await navigator.serviceWorker.register('./sw.js?v=40', { updateViaCache: 'none' });
       await reg.update();
       if (reg.waiting) reg.waiting.postMessage({ type: 'SKIP_WAITING' });
       document.addEventListener('visibilitychange', () => {
