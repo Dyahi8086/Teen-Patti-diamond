@@ -93,6 +93,22 @@
     .top-actions{gap:6px}.vip-btn{font-size:10px;padding:6px 9px}.icon-btn{width:32px;height:32px;font-size:14px}
     @media(max-width:650px){.top-bar{justify-content:space-between;gap:7px;padding:7px 9px}.profile-banner{width:min(100%,390px);min-height:68px;grid-template-columns:45px minmax(80px,1fr) auto;gap:7px;padding:7px 9px}.profile-avatar-wrap{width:40px;height:40px}.profile-avatar{font-size:21px}.profile-name-row h4{font-size:14px}.profile-star{font-size:16px}.profile-currency{padding:4px 6px}.coin-stack{font-size:17px}.profile-currency .currency-val{font-size:11px}.profile-currency .add-btn{width:17px;height:17px;font-size:12px}.top-actions{gap:4px}.vip-btn{font-size:8px;padding:5px 6px}.icon-btn{width:28px;height:28px;font-size:12px}}
     @media(max-width:390px){.top-bar{flex-wrap:wrap}.profile-banner{width:100%;max-width:100%}.top-actions{margin-left:auto}}
+
+    /* Small player identity card only — no currency or XP */
+    .top-bar{justify-content:space-between;align-items:center}
+    .profile-banner{width:265px;min-height:62px;display:flex;align-items:center;gap:11px;padding:6px 12px;border:2px solid #ffcf36;border-radius:15px;background:linear-gradient(110deg,rgba(65,0,0,.96),rgba(117,0,0,.9));box-shadow:inset 0 0 0 2px #8f3b09,0 0 12px #ff9b0038}
+    .profile-banner:before{inset:3px;border-radius:11px}
+    .profile-avatar-wrap{width:44px;height:44px;flex:0 0 44px;padding:2px;box-shadow:0 0 0 2px #7a1700,0 0 8px #ffbf00}
+    .profile-avatar{font-size:23px}
+    .profile-level{bottom:-5px;font-size:8px;padding:1px 6px;border-width:1px}
+    .profile-details{min-width:0;flex:1}
+    .profile-name-row{gap:5px;padding:0;border:0}
+    .profile-star{font-size:18px}
+    .profile-name-row h4{font-size:16px;line-height:1.2}
+    .edit-profile{width:24px;height:23px;font-size:13px;border-width:1px}
+    .profile-id-row,.xp-row,.profile-currency,.profile-rank{display:none!important}
+    @media(max-width:650px){.top-bar{justify-content:space-between;flex-wrap:nowrap}.profile-banner{width:220px;min-width:0;min-height:54px;gap:8px;padding:5px 9px}.profile-avatar-wrap{width:38px;height:38px;flex-basis:38px}.profile-avatar{font-size:20px}.profile-name-row h4{font-size:13px}.profile-star{font-size:15px}.edit-profile{width:22px;height:21px;font-size:12px}.top-actions{margin-left:auto}}
+    @media(max-width:390px){.profile-banner{width:190px;min-height:50px;gap:7px;padding:4px 7px}.profile-avatar-wrap{width:34px;height:34px;flex-basis:34px}.profile-avatar{font-size:18px}.profile-name-row h4{font-size:12px}.vip-btn{font-size:7px;padding:5px}.icon-btn{width:25px;height:25px}}
 </style>
 </head>
 <body>
@@ -105,8 +121,8 @@
         <div class="profile-id-row"><span>ID: <b id="playerId">—</b></span><button class="copy-id" id="copyIdBtn" aria-label="Copy player ID">▢</button></div>
         <div class="xp-row"><b>XP</b><div class="xp-track"><span class="xp-fill"></span></div><strong>12,540 / 20,000</strong></div>
       </div>
-      <div class="profile-currency"><span class="coin-stack">🪙</span><span class="currency-val" id="chipsDisplay">5,00,000</span><button class="add-btn" id="addChips" aria-label="Claim free chips">+</button></div>
-      <div class="profile-rank">💎</div>
+      
+      
     </section>
     <div class="top-actions"><button class="vip-btn" id="vipBtn">👑 VIP PASS</button><button class="icon-btn" id="settingsBtn" aria-label="Settings">⚙️</button><button class="icon-btn" id="logoutBtn" aria-label="Log out">↪</button></div>
   </header>
