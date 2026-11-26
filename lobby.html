@@ -82,6 +82,17 @@
     .coin-stack{font-size:34px}.profile-currency .currency-val{font-size:clamp(14px,2vw,25px);font-weight:900}.profile-rank{font-size:48px;filter:drop-shadow(0 0 8px #ffb000);z-index:1}
     @media(max-width:650px){.top-bar{gap:8px;justify-content:center}.profile-banner{grid-template-columns:70px minmax(0,1fr);gap:9px;padding:11px;min-height:120px}.profile-avatar-wrap{width:66px;height:66px}.profile-avatar{font-size:32px}.profile-level{font-size:10px;padding:2px 7px}.profile-name-row{gap:5px}.profile-name-row h4{font-size:clamp(16px,5vw,25px)}.profile-star{font-size:21px}.edit-profile{width:30px;height:29px;font-size:16px}.profile-id-row{font-size:11px;padding:4px 0}.copy-id{width:26px;height:25px;font-size:14px}.xp-row{gap:5px;padding:4px 7px}.xp-row>b{font-size:14px}.xp-track{height:12px}.xp-row strong{font-size:9px}.profile-currency{grid-column:1/3;justify-self:center;padding:5px 10px}.coin-stack{font-size:23px}.profile-currency .currency-val{font-size:16px}.profile-rank{display:none}.top-actions{margin-left:auto}}
     @media(max-width:390px){.profile-banner{grid-template-columns:58px minmax(0,1fr);gap:7px;padding:9px}.profile-avatar-wrap{width:56px;height:56px}.profile-avatar{font-size:27px}.profile-name-row h4{font-size:15px}.profile-star{font-size:18px}.xp-row strong{font-size:8px}}
+
+    /* Compact player strip */
+    .top-bar{justify-content:space-between;align-items:center;gap:10px;padding:8px clamp(12px,2vw,24px)}
+    .profile-banner{width:min(430px,calc(100% - 150px));min-height:76px;grid-template-columns:54px minmax(100px,1fr) auto;gap:10px;padding:8px 12px;border-width:2px;border-radius:18px}
+    .profile-banner:before{inset:4px;border-radius:13px}.profile-avatar-wrap{width:48px;height:48px;padding:3px;box-shadow:0 0 0 2px #7a1700,0 0 10px #ffbf00}.profile-avatar{font-size:25px}
+    .profile-level{bottom:-6px;font-size:9px;padding:1px 7px;border-width:1px}.profile-name-row{gap:5px;padding:0;border:0}.profile-star{font-size:19px}.profile-name-row h4{font-size:clamp(14px,1.6vw,20px)}
+    .edit-profile{width:25px;height:24px;font-size:14px;border-width:1px}.profile-id-row,.xp-row,.profile-rank{display:none}
+    .profile-currency{gap:5px;padding:5px 7px;border-radius:13px;border-width:1px}.coin-stack{font-size:20px}.profile-currency .currency-val{font-size:13px}.profile-currency .add-btn{width:19px;height:19px;font-size:13px}
+    .top-actions{gap:6px}.vip-btn{font-size:10px;padding:6px 9px}.icon-btn{width:32px;height:32px;font-size:14px}
+    @media(max-width:650px){.top-bar{justify-content:space-between;gap:7px;padding:7px 9px}.profile-banner{width:min(100%,390px);min-height:68px;grid-template-columns:45px minmax(80px,1fr) auto;gap:7px;padding:7px 9px}.profile-avatar-wrap{width:40px;height:40px}.profile-avatar{font-size:21px}.profile-name-row h4{font-size:14px}.profile-star{font-size:16px}.profile-currency{padding:4px 6px}.coin-stack{font-size:17px}.profile-currency .currency-val{font-size:11px}.profile-currency .add-btn{width:17px;height:17px;font-size:12px}.top-actions{gap:4px}.vip-btn{font-size:8px;padding:5px 6px}.icon-btn{width:28px;height:28px;font-size:12px}}
+    @media(max-width:390px){.top-bar{flex-wrap:wrap}.profile-banner{width:100%;max-width:100%}.top-actions{margin-left:auto}}
 </style>
 </head>
 <body>
