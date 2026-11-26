@@ -534,12 +534,8 @@ document.getElementById('guestBtn').addEventListener('click', async () => {
   }
 });
 
-// If the player already has a Supabase session, continue to the lobby.
-(async () => {
-  if (!TPD_AUTH) return;
-  const { data, error } = await TPD_AUTH.auth.getSession();
-  if (!error && data.session) window.location.replace(TPD_LOBBY_URL);
-})();
+// Always show the login screen when the app opens.
+// Successful Google, Facebook, or Guest sign-in redirects to the lobby above.
 
 // Lock landscape when installed as PWA / App
 if (window.matchMedia('(display-mode: standalone)').matches || window.matchMedia('(display-mode: fullscreen)').matches || window.navigator.standalone) {
