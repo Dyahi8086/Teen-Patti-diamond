@@ -119,8 +119,7 @@ body::after { right: -35vw; bottom: -40vw; box-shadow: 0 0 80px #8b26d522 inset;
   max-width: 100%;
   margin: auto;
   transform-origin: center center;
-  animation: none !important;
-  transform: none !important;
+  animation: heroBreath 3.8s ease-in-out infinite;
 }
 @keyframes heroBreath {
   0%, 100% { transform: scale(1) translateY(0); }
@@ -467,7 +466,7 @@ body::after { right: -35vw; bottom: -40vw; box-shadow: 0 0 80px #8b26d522 inset;
 </main>
 
 <script>
-// Animate decorative playing cards in the background; character remains stationary.
+// Animate the character gently and keep the decorative playing cards moving.
 (() => {
   const cards = [...document.querySelectorAll('.play-card')];
   const lastEffect = new WeakMap();
