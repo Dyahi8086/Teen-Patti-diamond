@@ -119,11 +119,8 @@ body::after { right: -35vw; bottom: -40vw; box-shadow: 0 0 80px #8b26d522 inset;
   max-width: 100%;
   margin: auto;
   transform-origin: center center;
-  animation: heroBreath 3.8s ease-in-out infinite;
-}
-@keyframes heroBreath {
-  0%, 100% { transform: scale(1) translateY(0); }
-  50% { transform: scale(1.02) translateY(-3px); }
+  animation: none !important;
+  transform: none !important;
 }
 
 .character {
@@ -352,8 +349,8 @@ body::after { right: -35vw; bottom: -40vw; box-shadow: 0 0 80px #8b26d522 inset;
     will-change: transform;
   }
   @keyframes logoFloat {
-    0%, 100% { transform: translateY(-8px); }
-    50% { transform: translateY(-14px); }
+    0%, 100% { transform: translateY(-16px); }
+    50% { transform: translateY(-22px); }
   }
   .welcome-pill {
     margin: 0 auto;
