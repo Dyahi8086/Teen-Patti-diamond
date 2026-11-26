@@ -1,220 +1,155 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#210039">
-<link rel="manifest" href="./manifest.json">
-<title>Teen Patti Diamond — Lobby</title>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="./supabase-config.js"></script>
-
-<style>
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-
-html,body{
-  margin:0;
-  width:100%;
-  min-height:100%;
-  font-family:system-ui,Arial,sans-serif;
-  color:#fff;
-  background:#210039;
-  overscroll-behavior:none;
-  -webkit-text-size-adjust:100%;
-}
-
-body{
-  width:100%;
-  min-height:100vh;
-  min-height:100svh;
-  padding:
-    max(clamp(12px,3vw,32px),env(safe-area-inset-top))
-    max(clamp(12px,3vw,32px),env(safe-area-inset-right))
-    max(clamp(12px,3vw,32px),env(safe-area-inset-bottom))
-    max(clamp(12px,3vw,32px),env(safe-area-inset-left));
-  background:radial-gradient(ellipse at 50% 0,#7800ad,#39004e 48%,#210039);
-  overflow-x:hidden;
-}
-
-header{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:0 auto 18px;max-width:1100px}
-.player{padding:10px 14px;border:1px solid #e6bdff66;border-radius:22px;background:#ffffff12;font-weight:800}
-.back{border:1px solid #e6bdff66;background:#2d0b43;color:white;border-radius:12px;padding:10px 14px;font-weight:800}
-
-main{width:min(1100px,100%);margin:auto}
-.hero{text-align:center;padding:22px 14px;border:1px solid #edc2ff55;border-radius:26px;background:linear-gradient(135deg,#ffffff16,#ffffff05);box-shadow:0 18px 44px #09001266}
-.logo{width:min(330px,76vw);height:105px;object-fit:contain;filter:drop-shadow(0 8px 20px #d34bff66)}
-.eyebrow{margin:4px 0 7px;color:#ffda83;font-size:11px;font-weight:900;letter-spacing:2px;text-transform:uppercase}
-h1{margin:0;font:800 clamp(26px,5vw,42px) Georgia,serif}
-.sub{color:#e4c7f4;font-size:13px;margin:8px 0 0}
-.tags{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:16px}
-.tag{border:1px solid #e7c2ff55;background:#220c37aa;border-radius:20px;padding:7px 12px;font-size:11px;font-weight:800}
-
-.head{display:flex;justify-content:space-between;align-items:end;margin:25px 2px 13px}
-.head h2{margin:0;font-size:19px}
-.head small{color:#d9b9eb}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
-.tile{position:relative;text-align:left;min-height:155px;padding:17px;border:1px solid #e7baff77;border-radius:22px;color:#fff;background:linear-gradient(145deg,#7d29a7,#34004c 75%);box-shadow:inset 0 1px #ffffff33,0 12px 24px #08000d55;font:inherit}
-.tile:active{transform:scale(.98)}
-.tile.primary{background:linear-gradient(145deg,#ffe39c,#b86a18);color:#35122b;border-color:#fff0bf}
-.emoji{display:block;font-size:36px;margin-bottom:10px}
-.tile b{display:block;font-size:17px}
-.tile small{display:block;margin-top:5px;opacity:.82;font-size:11px}
-.arrow{position:absolute;right:15px;bottom:13px;font-size:21px}
-.foot{text-align:center;color:#cdaedc;font-size:11px;margin:22px 0 5px}
-.modal{display:none;position:fixed;inset:0;z-index:5;background:#08000dcc;align-items:center;justify-content:center;padding:20px}
-.modal.show{display:flex}
-.dialog{width:min(400px,100%);text-align:center;padding:24px;border:1px solid #e9bfff;border-radius:22px;background:linear-gradient(145deg,#641a85,#230034)}
-.dialog button{border:0;border-radius:12px;background:linear-gradient(145deg,#ffe19a,#d99a32);padding:12px 25px;font-weight:900;color:#32102b}
-
-@media(min-width:760px){
-  .grid{grid-template-columns:repeat(4,minmax(0,1fr))}
-  .tile{min-height:185px}
-}
-@media(max-width:380px){
-  body{padding:10px}
-  .grid{gap:9px}
-  .tile{min-height:140px;padding:13px}
-  .tile b{font-size:15px}
-}
-</style>
-</head>
-
-<body>
-<header>
-  <div class="player" id="playerName">Loading player…</div>
-  <button class="back" id="logoutBtn">Log out</button>
-</header>
-
-<main>
-<section class="hero">
-  <img class="logo" src="./teen-patti-diamond-logo.png" alt="Teen Patti Diamond">
-  <p class="eyebrow">Welcome to the table</p>
-  <h1>Ready to Play?</h1>
-  <p class="sub">Choose a table, invite friends and enjoy a friendly game.</p>
-  <div class="tags">
-    <span class="tag">♠ Free Play</span>
-    <span class="tag">No cash prizes</span>
-    <span class="tag">Play with friends</span>
-  </div>
-</section>
-
-<div class="head">
-  <h2>Game Lobby</h2>
-  <small>Choose how you want to play</small>
-</div>
-
-<section class="grid">
-  <button class="tile primary" data-feature="Quick Play">
-    <span class="emoji">🃏</span><b>Quick Play</b>
-    <small>Find a friendly table</small><span class="arrow">↗</span>
-  </button>
-  <button class="tile" data-feature="Private Table">
-    <span class="emoji">♠️</span><b>Private Table</b>
-    <small>Create a room for friends</small><span class="arrow">↗</span>
-  </button>
-  <button class="tile" data-feature="Friends">
-    <span class="emoji">👥</span><b>Friends</b>
-    <small>Invite and play together</small><span class="arrow">↗</span>
-  </button>
-  <button class="tile" data-feature="Leaderboard">
-    <span class="emoji">🏆</span><b>Leaderboard</b>
-    <small>Friendly rankings</small><span class="arrow">↗</span>
-  </button>
-</section>
-
-<p class="foot">Just for fun • No real-money play or cash prizes</p>
-</main>
-
-<div class="modal" id="modal">
-  <div class="dialog">
-    <h2 id="modalTitle">Coming soon</h2>
-    <p id="modalText">This feature is being built next.</p>
-    <button id="closeModal">Got it</button>
-  </div>
-</div>
-
-<script>
-const cfg=window.TPD_SUPABASE_CONFIG||{};
-const ready=cfg.url&&cfg.publishableKey&&
-  !String(cfg.url).includes('YOUR_')&&
-  !String(cfg.publishableKey).includes('YOUR_');
-
-const client=ready&&window.supabase?
-  window.supabase.createClient(cfg.url,cfg.publishableKey,{
-    auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}
-  }):null;
-
-async function start(){
-  if(!client){
-    location.replace('./login.html?v=39');
-    return;
-  }
-  const {data,error}=await client.auth.getSession();
-  if(error||!data.session){
-    location.replace('./login.html?v=39');
-    return;
-  }
-  const u=data.session.user;
-  let name=u.is_anonymous?'Guest Player':
-    (u.user_metadata?.full_name||u.user_metadata?.name||
-    u.email?.split('@')[0]||'Player');
-
-  try{
-    const {data:p}=await client.from('profiles')
-      .select('display_name').eq('id',u.id).maybeSingle();
-    if(p?.display_name)name=p.display_name;
-  }catch(e){}
-
-  document.getElementById('playerName').textContent=
-    (u.is_anonymous?'👤 ':'⭐ ')+name;
-}
-
-document.getElementById('logoutBtn').onclick=async()=>{
-  if(client)await client.auth.signOut();
-  location.replace('./login.html?v=39');
-};
-
-document.querySelectorAll('[data-feature]').forEach(b=>{
-  b.onclick=()=>{
-    document.getElementById('modalTitle').textContent=b.dataset.feature;
-    document.getElementById('modalText').textContent=
-      b.dataset.feature+' table screen is the next build. Your Supabase login is active.';
-    document.getElementById('modal').classList.add('show');
-  };
-});
-
-document.getElementById('closeModal').onclick=()=>{
-  document.getElementById('modal').classList.remove('show');
-};
-
-document.getElementById('modal').onclick=e=>{
-  if(e.target.id==='modal')e.currentTarget.classList.remove('show');
-};
-
-start();
-
-// Keep the installed app updated even when it is opened directly on the lobby.
-if ('serviceWorker' in navigator) {
-  let refreshingAfterUpdate = false;
-  navigator.serviceWorker.addEventListener('controllerchange', () => {
-    if (refreshingAfterUpdate) return;
-    refreshingAfterUpdate = true;
-    window.location.reload();
-  });
-  window.addEventListener('load', async () => {
-    try {
-      const reg = await navigator.serviceWorker.register('./sw.js?v=39', { updateViaCache: 'none' });
-      await reg.update();
-      if (reg.waiting) reg.waiting.postMessage({ type: 'SKIP_WAITING' });
-      document.addEventListener('visibilitychange', () => {
-        if (!document.hidden) reg.update().catch(() => {});
-      });
-    } catch (err) {
-      console.warn('SW update check failed', err);
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0f0524">
+  <link rel="manifest" href="./manifest.json">
+  <title>Teen Patti Diamond - Royal Lobby</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="./supabase-config.js"></script>
+  <style>
+    :root{--bg-deep:#0f0524;--bg-purple:#240b4c;--gold-light:#fff099;--gold-main:#ffd700;--gold-dark:#b8860b;--cyan-glow:#00f0ff;--glass-bg:rgba(25,10,54,.72);--glass-border:rgba(255,215,0,.35)}
+    *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+    body{font-family:Poppins,sans-serif;background:radial-gradient(circle at center,var(--bg-purple),var(--bg-deep) 85%);color:#fff;min-height:100vh;min-height:100svh;width:100%;overflow-x:hidden;display:flex;flex-direction:column;justify-content:space-between;position:relative;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+    button{font:inherit}
+    .bg-glow{position:fixed;width:350px;height:350px;background:radial-gradient(circle,rgba(255,215,0,.14),transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;z-index:0}
+    .top-bar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px clamp(12px,2vw,24px);background:linear-gradient(180deg,rgba(10,3,24,.9),transparent);z-index:2;flex-wrap:wrap}
+    .profile-box{display:flex;align-items:center;gap:10px;background:var(--glass-bg);border:1.5px solid var(--gold-main);border-radius:40px;padding:4px 14px 4px 5px;box-shadow:0 0 15px #ffd70033;min-width:0}
+    .avatar-frame{width:42px;height:42px;flex:0 0 42px;border-radius:50%;background:linear-gradient(135deg,var(--gold-light),var(--gold-dark));padding:2px;display:flex;align-items:center;justify-content:center;position:relative}
+    .avatar-inner{width:100%;height:100%;border-radius:50%;background:#1b083b;display:flex;align-items:center;justify-content:center;font-size:20px}
+    .level-badge{position:absolute;bottom:-4px;background:linear-gradient(90deg,#ff8c00,#ffd700);color:#1a0636;font-size:9px;font-weight:800;padding:1px 6px;border-radius:8px}
+    .player-info{min-width:0}.player-info h4{font-size:13px;font-weight:600;color:var(--gold-light);max-width:125px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.player-info span{font-size:10px;color:#bba8e0}
+    .currency-group{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+    .currency-pill{display:flex;align-items:center;gap:8px;background:rgba(13,5,32,.85);border:1.5px solid var(--glass-border);border-radius:30px;padding:5px 8px 5px 12px;min-width:112px;justify-content:space-between}
+    .currency-val{font-weight:700;font-size:13px;color:#fff}
+    .add-btn{background:linear-gradient(135deg,#28e070,#129c49);border:0;color:#fff;font-weight:800;width:22px;height:22px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;box-shadow:0 0 8px #28e07080}
+    .top-actions{display:flex;align-items:center;gap:8px}
+    .vip-btn{background:linear-gradient(135deg,#ffd700,#ff9900);color:#1f0742;font-family:Cinzel,serif;font-weight:900;font-size:12px;padding:7px 12px;border-radius:20px;border:1px solid #fff3b0;cursor:pointer;box-shadow:0 0 15px #ffd70073;animation:pulseGold 2.5s infinite}
+    .icon-btn{width:38px;height:38px;border-radius:50%;background:var(--glass-bg);border:1px solid var(--glass-border);color:var(--gold-main);font-size:16px;cursor:pointer}
+    .center-stage{display:flex;align-items:center;justify-content:space-between;padding:12px clamp(12px,2vw,24px);gap:16px;z-index:1;flex:1;max-width:1440px;width:100%;margin:auto}
+    .left-widgets{display:flex;flex-direction:column;gap:12px}
+    .side-card{width:82px;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:14px;padding:8px 6px;text-align:center;cursor:pointer;transition:transform .2s}
+    .side-card:active{transform:scale(.94)}.side-card .emoji{font-size:24px;display:block;margin-bottom:2px}.side-card p{font-size:10px;font-weight:600;color:var(--gold-light)}
+    .modes-container{display:flex;align-items:center;justify-content:center;gap:18px;flex:1;min-width:0}
+    .game-card{width:175px;min-width:0;height:210px;border-radius:20px;padding:16px 12px;display:flex;flex-direction:column;align-items:center;justify-content:space-between;text-align:center;cursor:pointer;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s;backdrop-filter:blur(8px)}
+    .game-card:active{transform:scale(.96)}
+    .card-classic{width:195px;height:225px;background:linear-gradient(160deg,#3c137a,#190638);border:2px solid var(--gold-main);box-shadow:0 10px 30px #ffd70047}
+    .card-private{background:linear-gradient(160deg,#103b5c,#091936);border:1.5px solid var(--cyan-glow);box-shadow:0 8px 25px #00f0ff33}
+    .card-variations{background:linear-gradient(160deg,#4a1248,#1c0621);border:1.5px solid #ff5ec4;box-shadow:0 8px 25px #ff5ec433}
+    .badge-tag{font-size:9px;font-weight:700;padding:3px 10px;border-radius:12px;text-transform:uppercase;letter-spacing:.5px}
+    .tag-gold{background:#ffd70033;color:var(--gold-main);border:1px solid var(--gold-main)}.tag-cyan{background:#00f0ff2e;color:var(--cyan-glow);border:1px solid var(--cyan-glow)}.tag-pink{background:#ff5ec433;color:#ff85d5;border:1px solid #ff5ec4}
+    .mini-cards-art{display:flex;justify-content:center;align-items:center;margin:6px 0}
+    .m-card{width:36px;height:50px;background:#fff;border-radius:6px;border:1.5px solid var(--gold-main);color:#d90429;font-family:Cinzel,serif;font-weight:900;font-size:13px;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 4px 10px #0008}
+    .m-card:nth-child(1){transform:rotate(-16deg) translateX(8px)}.m-card:nth-child(2){transform:translateY(-5px);z-index:2}.m-card:nth-child(3){transform:rotate(16deg) translateX(-8px)}
+    .game-card h3{font-family:Cinzel,serif;font-size:16px;font-weight:800;letter-spacing:.5px;color:#fff}.game-card p{font-size:10px;color:#d0c4e8}
+    .play-pill{width:85%;padding:7px 0;border-radius:20px;font-weight:700;font-size:12px;border:0;cursor:pointer}
+    .btn-gold{background:linear-gradient(90deg,#ffd700,#ffaa00);color:#1a0536}.btn-cyan{background:linear-gradient(90deg,#00f0ff,#0099ff);color:#051529}.btn-pink{background:linear-gradient(90deg,#ff5ec4,#b829ea);color:#fff}
+    .bottom-bar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:8px clamp(12px,2vw,24px) 12px;background:linear-gradient(0deg,rgba(10,3,24,.95),transparent);z-index:2;flex-wrap:wrap}
+    .dock-items{display:flex;gap:10px;flex-wrap:wrap}.dock-btn{display:flex;align-items:center;gap:7px;background:var(--glass-bg);border:1px solid var(--glass-border);padding:7px 12px;border-radius:14px;color:#fff;font-size:11px;font-weight:600;cursor:pointer;position:relative}
+    .dock-btn span.ico{font-size:16px}.notif-dot{position:absolute;top:-4px;right:-4px;width:10px;height:10px;background:#ff2a55;border-radius:50%;border:1.5px solid #fff}
+    .free-ad-btn{background:linear-gradient(135deg,#16c768,#0d8a47);border:1.5px solid #7affb2;padding:8px 16px;border-radius:25px;color:#fff;font-size:12px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;box-shadow:0 0 15px #16c76866}
+    .modal-overlay{display:none;position:fixed;inset:0;background:#05020fd1;backdrop-filter:blur(5px);z-index:10;align-items:center;justify-content:center;padding:18px}
+    .modal-box{background:linear-gradient(160deg,#270c54,#120529);border:2px solid var(--gold-main);border-radius:20px;padding:22px 24px;width:min(340px,100%);text-align:center;box-shadow:0 0 35px #ffd70059}
+    .modal-box h2{font-family:Cinzel,serif;color:var(--gold-main);font-size:18px;margin-bottom:8px}.modal-box p{font-size:12px;color:#ddd;margin-bottom:16px;white-space:pre-line}
+    .modal-close{background:linear-gradient(90deg,#ffd700,#ffaa00);color:#190536;border:0;padding:8px 24px;border-radius:20px;font-weight:700;cursor:pointer}
+    @keyframes pulseGold{0%,100%{box-shadow:0 0 10px #ffd70066}50%{box-shadow:0 0 22px #ffd700d9}}
+    @media(max-width:900px){.top-bar{justify-content:center}.center-stage{gap:10px}.modes-container{gap:10px}.game-card{width:clamp(145px,25vw,175px)}.card-classic{width:clamp(155px,28vw,195px)}.bottom-bar{justify-content:center}}
+    @media(max-width:650px){
+      .top-bar{gap:8px}.profile-box{order:0}.currency-group{order:2;width:100%;justify-content:center}.top-actions{order:1;margin-left:auto}
+      .center-stage{flex-direction:column;justify-content:center;gap:12px;padding:12px}.left-widgets{flex-direction:row;order:2}.modes-container{width:100%;gap:8px;order:1}
+      .game-card,.card-classic{width:calc((100% - 16px)/3);height:190px;padding:10px 6px}.badge-tag{font-size:7px;padding:3px 5px}.game-card h3{font-size:clamp(10px,2.7vw,14px)}.game-card p{font-size:9px}.mini-cards-art{transform:scale(.82);margin:0}.m-card{width:29px;height:42px}
+      .game-card .emoji-large{font-size:32px!important}.play-pill{width:100%;font-size:10px;padding:7px 2px}
+      .bottom-bar{gap:9px;padding:8px 10px 12px}.dock-items{justify-content:center;gap:6px}.dock-btn{font-size:9px;padding:7px 8px}.dock-btn span.ico{font-size:14px}.free-ad-btn{font-size:10px;padding:8px 12px}
     }
-  });
-}
-</script>
+    @media(max-width:390px){.game-card,.card-classic{height:175px}.top-bar{padding-left:8px;padding-right:8px}.currency-pill{min-width:104px}.player-info h4{max-width:100px}.dock-btn{padding:6px}}
+    @media(max-height:520px) and (orientation:landscape){.top-bar{padding-top:4px;padding-bottom:4px}.avatar-frame{width:34px;height:34px}.center-stage{padding-top:4px;padding-bottom:4px}.game-card,.card-classic{height:clamp(145px,48vh,190px)}.bottom-bar{padding-top:4px;padding-bottom:5px}}
+    @media(prefers-reduced-motion:reduce){.vip-btn{animation:none}}
+  </style>
+</head>
+<body>
+  <div class="bg-glow" aria-hidden="true"></div>
+  <header class="top-bar">
+    <div class="profile-box" id="profileBox" role="button" tabindex="0">
+      <div class="avatar-frame"><div class="avatar-inner">👑</div><span class="level-badge">LV 5</span></div>
+      <div class="player-info"><h4 id="playerName">Loading…</h4><span>Diamond League</span></div>
+    </div>
+    <div class="currency-group">
+      <div class="currency-pill"><span>🪙 <span class="currency-val" id="chipsDisplay">5,00,000</span></span><button class="add-btn" id="addChips" aria-label="Claim free chips">+</button></div>
+      <div class="currency-pill"><span>💎 <span class="currency-val" id="diamondsDisplay">50</span></span><button class="add-btn" id="addDiamonds" aria-label="Diamond information">+</button></div>
+    </div>
+    <div class="top-actions">
+      <button class="vip-btn" id="vipBtn">👑 VIP PASS</button>
+      <button class="icon-btn" id="settingsBtn" aria-label="Settings">⚙️</button>
+      <button class="icon-btn" id="logoutBtn" aria-label="Log out">↪</button>
+    </div>
+  </header>
+  <main class="center-stage">
+    <div class="left-widgets">
+      <button class="side-card" id="spinBtn"><span class="emoji">🎡</span><p>Daily Spin</p></button>
+      <button class="side-card" id="rankBtn"><span class="emoji">🏆</span><p>Rank #14</p></button>
+    </div>
+    <section class="modes-container" aria-label="Game modes">
+      <button class="game-card card-classic" id="classicBtn">
+        <span class="badge-tag tag-gold">🔥 Most Popular</span>
+        <div class="mini-cards-art"><div class="m-card">A<span>♠</span></div><div class="m-card">A<span>♥</span></div><div class="m-card">A<span>♦</span></div></div>
+        <div><h3>CLASSIC</h3><p>Friendly Play • No Cash Prizes</p></div>
+        <span class="play-pill btn-gold">PLAY NOW</span>
+      </button>
+      <button class="game-card card-private" id="privateBtn">
+        <span class="badge-tag tag-cyan">🎙️ Voice Chat</span><span class="emoji-large" style="font-size:42px;margin:4px 0">🎧</span>
+        <div><h3>PRIVATE TABLE</h3><p>Play with Friends</p></div><span class="play-pill btn-cyan">CREATE / JOIN</span>
+      </button>
+      <button class="game-card card-variations" id="variationsBtn">
+        <span class="badge-tag tag-pink">✨ Special Modes</span><span class="emoji-large" style="font-size:42px;margin:4px 0">🃏</span>
+        <div><h3>VARIATIONS</h3><p>Muflis • AK47 • Joker</p></div><span class="play-pill btn-pink">EXPLORE</span>
+      </button>
+    </section>
+  </main>
+  <footer class="bottom-bar">
+    <nav class="dock-items" aria-label="Lobby shortcuts">
+      <button class="dock-btn" id="missionsBtn"><span class="notif-dot"></span><span class="ico">🎯</span>Missions</button>
+      <button class="dock-btn" id="leaderboardBtn"><span class="ico">📊</span>Leaderboard</button>
+      <button class="dock-btn" id="saveBtn"><span class="ico">🔗</span>Save Progress</button>
+    </nav>
+    <button class="free-ad-btn" id="freeChipsBtn">🎬 +50,000 Free Chips</button>
+  </footer>
+  <div class="modal-overlay" id="customModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-box"><h2 id="modalTitle">Title</h2><p id="modalBody">Message</p><button class="modal-close" id="modalClose">AWESOME</button></div>
+  </div>
+  <script>
+    const config=window.TPD_SUPABASE_CONFIG||{};
+    const configured=!!(config.url&&config.publishableKey&&!String(config.url).includes('YOUR_')&&!String(config.publishableKey).includes('YOUR_'));
+    const auth=configured&&window.supabase?window.supabase.createClient(config.url,config.publishableKey,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}}):null;
+    const $=id=>document.getElementById(id);
+    let chips=readNumber('tpd_chips',500000),diamonds=readNumber('tpd_diamonds',50);
+    function readNumber(key,fallback){const n=Number(localStorage.getItem(key));return Number.isFinite(n)&&n>=0?n:fallback}
+    function updateCurrency(){ $('chipsDisplay').textContent=chips.toLocaleString('en-IN');$('diamondsDisplay').textContent=diamonds.toLocaleString('en-IN');localStorage.setItem('tpd_chips',String(chips));localStorage.setItem('tpd_diamonds',String(diamonds))}
+    function modal(title,message){$('modalTitle').textContent=title;$('modalBody').textContent=message;$('customModal').style.display='flex'}
+    function closeModal(){$('customModal').style.display='none'}
+    $('modalClose').addEventListener('click',closeModal);
+    $('customModal').addEventListener('click',e=>{if(e.target===$('customModal'))closeModal()});
+    function feature(title,message){modal(title,message)}
+    function claimFreeChips(){chips+=50000;updateCurrency();modal('🎁 Reward Claimed!','You received +50,000 free practice chips. Have fun!')}
+    function claimDailySpin(){const today=new Date().toDateString();if(localStorage.getItem('tpd_last_spin')===today){modal('🎡 Daily Spin','You have already claimed today’s spin. Come back tomorrow!');return}const prizes=[25000,50000,100000];const won=prizes[Math.floor(Math.random()*prizes.length)];chips+=won;localStorage.setItem('tpd_last_spin',today);updateCurrency();modal('🎉 Spin Reward',`You won +${won.toLocaleString('en-IN')} practice chips!`)}
+    function openSoon(name){modal(name,'This feature is coming in a future update. No real-money play or cash prizes.')}
+    async function initPlayer(){if(!auth){location.replace('./login.html?v=39');return}try{const {data,error}=await auth.auth.getSession();if(error||!data.session){location.replace('./login.html?v=39');return}const user=data.session.user;let name=user.is_anonymous?'Guest Player':(user.user_metadata?.full_name||user.user_metadata?.name||user.email?.split('@')[0]||'Player');try{const {data:profile}=await auth.from('profiles').select('display_name').eq('id',user.id).maybeSingle();if(profile?.display_name)name=profile.display_name}catch(e){console.warn('Profile lookup unavailable',e)}$('playerName').textContent=name;$('profileBox').addEventListener('click',()=>feature('Player Profile',`Player: ${name} • Friendly practice account`));$('profileBox').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();$('profileBox').click()}})}catch(e){console.error('Session check failed',e);location.replace('./login.html?v=39')}}
+    $('addChips').addEventListener('click',claimFreeChips);$('freeChipsBtn').addEventListener('click',claimFreeChips);
+    $('addDiamonds').addEventListener('click',()=>feature('Diamond Collection','Diamonds are currently display-only practice points.'));
+    $('vipBtn').addEventListener('click',()=>feature('Royal Diamond Pass','VIP cosmetic rewards are planned for a future update.'));
+    $('settingsBtn').addEventListener('click',()=>feature('Settings','Sound and appearance settings are coming soon.'));
+    $('logoutBtn').addEventListener('click',async()=>{if(auth)await auth.auth.signOut();location.replace('./login.html?v=39')});
+    $('spinBtn').addEventListener('click',claimDailySpin);
+    $('rankBtn').addEventListener('click',()=>feature('Weekly League','Friendly rankings are coming soon.'));
+    $('classicBtn').addEventListener('click',()=>openSoon('Classic Teen Patti'));
+    $('privateBtn').addEventListener('click',()=>openSoon('Private Table'));
+    $('variationsBtn').addEventListener('click',()=>openSoon('Royal Variations'));
+    $('missionsBtn').addEventListener('click',()=>feature('Daily Missions','Practice missions are coming soon.'));
+    $('leaderboardBtn').addEventListener('click',()=>feature('Global Leaderboard','Friendly leaderboard is coming soon.'));
+    $('saveBtn').addEventListener('click',()=>feature('Save Progress','Your sign-in is active. Account linking options are coming soon.'));
+    updateCurrency();initPlayer();
+    if('serviceWorker'in navigator){let reloading=false;navigator.serviceWorker.addEventListener('controllerchange',()=>{if(reloading)return;reloading=true;location.reload()});window.addEventListener('load',async()=>{try{const reg=await navigator.serviceWorker.register('./sw.js?v=39',{updateViaCache:'none'});await reg.update();if(reg.waiting)reg.waiting.postMessage({type:'SKIP_WAITING'});document.addEventListener('visibilitychange',()=>{if(!document.hidden)reg.update().catch(()=>{})})}catch(e){console.warn('Service worker update check failed',e)}})}
+  </script>
 </body>
 </html>
