@@ -149,7 +149,7 @@
     $('leaderboardBtn').addEventListener('click',()=>feature('Global Leaderboard','Friendly leaderboard is coming soon.'));
     $('saveBtn').addEventListener('click',()=>feature('Save Progress','Your sign-in is active. Account linking options are coming soon.'));
     updateCurrency();initPlayer();
-    if('serviceWorker'in navigator){let reloading=false;navigator.serviceWorker.addEventListener('controllerchange',()=>{if(reloading)return;reloading=true;location.reload()});window.addEventListener('load',async()=>{try{const reg=await navigator.serviceWorker.register('./sw.js?v=39',{updateViaCache:'none'});await reg.update();if(reg.waiting)reg.waiting.postMessage({type:'SKIP_WAITING'});document.addEventListener('visibilitychange',()=>{if(!document.hidden)reg.update().catch(()=>{})})}catch(e){console.warn('Service worker update check failed',e)}})}
+    if('serviceWorker'in navigator){let reloading=false;navigator.serviceWorker.addEventListener('controllerchange',()=>{if(reloading)return;reloading=true;location.reload()});window.addEventListener('load',async()=>{try{const reg=await navigator.serviceWorker.register('./sw.js?v=40',{updateViaCache:'none'});await reg.update();if(reg.waiting)reg.waiting.postMessage({type:'SKIP_WAITING'});document.addEventListener('visibilitychange',()=>{if(!document.hidden)reg.update().catch(()=>{})})}catch(e){console.warn('Service worker update check failed',e)}})}
   </script>
 </body>
 </html>
